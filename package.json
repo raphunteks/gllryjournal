@@ -1,0 +1,21 @@
+{
+  "name": "axarifka-scrapbook",
+  "version": "2.1.0",
+  "description": "Headless Frontend Gallery Journal connected to Google Apps Script. Contains Local Storage Auth mechanism.",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "keywords": [
+    "vercel",
+    "headless",
+    "google-apps-script",
+    "auth-session"
+  ],
+  "author": "Axa & Rifka",
+  "license": "MIT"
+}
