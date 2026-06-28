@@ -371,7 +371,7 @@
 </head>
 <body class="p-4 md:p-8 relative">
 
-  <!-- AUDIO PLAYER (BGM) - Dipisahkan sepenuhnya logicnya -->
+  <!-- AUDIO PLAYER (BGM) -->
   <audio id="bgm-player" preload="auto">
     <source id="bgm-source" src="" type="audio/mpeg">
   </audio>
@@ -814,8 +814,13 @@
        const track = currentMusicData[index];
        
        let playUrl = track.url;
-       const driveIdMatch = playUrl.match(/id=([a-zA-Z0-9_-]+)/);
-       if (driveIdMatch && driveIdMatch[1]) playUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
+       // NEW: Logika agar link Google Drive diubah menjadi format direct play uc?export=download
+       if (playUrl.includes('drive.google') || playUrl.includes('drive.usercontent')) {
+           const driveIdMatch = playUrl.match(/id=([a-zA-Z0-9_-]+)/);
+           if (driveIdMatch && driveIdMatch[1]) {
+               playUrl = `https://drive.google.com/uc?export=download&id=${driveIdMatch[1]}`;
+           }
+       }
 
        const player = document.getElementById('bgm-player');
        player.volume = 0.6;
