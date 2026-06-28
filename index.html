@@ -12,14 +12,12 @@
     :root {
       --neon-green: #4ade80;
       --dark-bg: #0f172a;
-      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-bg: rgba(30, 41, 59, 0.65);
       --glass-border: rgba(74, 222, 128, 0.3);
     }
     
     body {
       background-color: var(--dark-bg);
-      background-image: radial-gradient(circle at 15% 50%, rgba(74, 222, 128, 0.08), transparent 25%), 
-                        radial-gradient(circle at 85% 30%, rgba(74, 222, 128, 0.05), transparent 25%);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
       color: #e2e8f0;
@@ -29,10 +27,37 @@
 
     .font-handwriting { font-family: 'Caveat', cursive; }
 
+    /* =========================================
+       CSS3 INNOVATIONS: AMBIENT BACKGROUND
+       ========================================= */
+    .bg-orbs {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s infinite ease-in-out;
+    }
+    .orb-1 { width: 400px; height: 400px; background: rgba(74, 222, 128, 0.15); top: -10%; left: -10%; animation-delay: 0s; }
+    .orb-2 { width: 350px; height: 350px; background: rgba(56, 189, 248, 0.15); bottom: -10%; right: -5%; animation-delay: -5s; }
+    .orb-3 { width: 300px; height: 300px; background: rgba(168, 85, 247, 0.15); top: 40%; left: 40%; animation-delay: -10s; }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
     /* CSS3 ANIMATIONS */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from { opacity: 0; transform: translateY(50px) scale(0.9); filter: blur(5px); }
+      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
     }
 
     @keyframes popIn {
@@ -43,23 +68,31 @@
 
     .animate-staggered {
       opacity: 0;
-      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
 
-    /* POLAROID 3D FLIP & FLOAT CSS3 MAGIC */
+    /* =========================================
+       POLAROID 3D FLIP & FLOAT CSS3 MAGIC 
+       ========================================= */
     .polaroid-container {
-      perspective: 1200px;
+      perspective: 1500px; /* Diperbesar agar efek 3D lebih dramatis */
       width: 100%;
       max-width: 320px;
       margin: 0 auto;
       aspect-ratio: 3/4;
       cursor: pointer;
-      transition: transform 0.4s ease, filter 0.4s ease;
+      /* Menggunakan variabel CSS untuk rotasi agar tidak bentrok dengan hover */
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.5s ease;
+      transform: rotate(var(--rot));
     }
     
+    .rotate-1 { --rot: -2.5deg; }
+    .rotate-2 { --rot: 3deg; }
+    .rotate-3 { --rot: -1.5deg; }
+
     .polaroid-container:hover, .polaroid-container:active {
-      transform: translateY(-10px) scale(1.02);
-      filter: drop-shadow(0 20px 25px rgba(74, 222, 128, 0.15));
+      transform: translateY(-15px) scale(1.05) rotate(calc(var(--rot) + 2deg));
+      filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.5));
       z-index: 10;
     }
 
@@ -68,7 +101,8 @@
       width: 100%;
       height: 100%;
       text-align: center;
-      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      /* Transisi bouncy saat flip */
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-style: preserve-3d;
     }
 
@@ -82,16 +116,15 @@
       height: 100%;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      border-radius: 6px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255,255,255,0.2);
     }
 
     .polaroid-front {
-      background-color: #f8fafc;
-      padding: 12px 12px 65px 12px;
+      background-color: #fafafa;
+      padding: 12px 12px 75px 12px; /* Bottom padding diperbesar untuk lokasi 2 baris */
       display: flex;
       flex-direction: column;
-      border: 1px solid rgba(255,255,255,0.8);
     }
 
     .polaroid-photo-wrapper {
@@ -99,73 +132,107 @@
       height: 100%;
       overflow: hidden;
       background-color: #1e293b;
-      border: 1px solid #cbd5e1;
       border-radius: 2px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
     }
 
-    /* TAPE EFFECT */
+    /* TAPE EFFECT - Lebih Realistis */
     .polaroid-container::before {
       content: '';
       position: absolute;
-      top: -14px;
+      top: -16px;
       left: 50%;
-      width: 110px;
-      height: 32px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.2), inset 0 0 10px rgba(255,255,255,0.3);
-      transform: translateX(-50%) rotate(-3deg);
+      width: 120px;
+      height: 35px;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1), inset 0 0 10px rgba(255,255,255,0.4);
+      transform: translateX(-50%) rotate(-2deg);
       z-index: 50;
       pointer-events: none;
-      border-radius: 2px;
+      /* Efek ujung selotip yang robek/bergerigi secara halus */
+      clip-path: polygon(2% 0, 98% 2%, 100% 98%, 1% 100%);
     }
 
     .polaroid-back {
       background-color: #fdfbf7;
+      /* Tekstur garis buku tulis */
       background-image: 
-        linear-gradient(rgba(74, 222, 128, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(74, 222, 128, 0.15) 1px, transparent 1px);
-      background-size: 20px 20px;
+        linear-gradient(rgba(74, 222, 128, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74, 222, 128, 0.1) 1px, transparent 1px);
+      background-size: 24px 24px;
       color: #1e293b;
       transform: rotateY(180deg);
       padding: 24px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      border: 1px solid #cbd5e1;
     }
 
+    /* =========================================
+       SOLUSI TEXT OFFSIDE & TERPOTONG 
+       ========================================= */
+    /* Scroll khusus caption di belakang */
+    .caption-scroll-area {
+      max-height: 180px; /* Batas tinggi, sisa konten akan di-scroll */
+      overflow-y: auto;
+      overflow-x: hidden;
+      width: 100%;
+      padding-right: 6px;
+      /* Memberikan fading di atas/bawah agar scroll terlihat estetik */
+      mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    }
+
+    /* Desain Custom Scrollbar yang Elegan */
+    .caption-scroll-area::-webkit-scrollbar { width: 4px; }
+    .caption-scroll-area::-webkit-scrollbar-track { background: transparent; }
+    .caption-scroll-area::-webkit-scrollbar-thumb { 
+      background: rgba(74, 222, 128, 0.5); 
+      border-radius: 10px; 
+    }
+    .caption-scroll-area::-webkit-scrollbar-thumb:hover { background: rgba(74, 222, 128, 0.8); }
+
+    /* Fix Lokasi Depan Maksimal 2 Baris */
+    .text-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.1; /* Jarak antar baris dirapatkan */
+    }
+
+    /* =========================================
+       GLASSMORPHISM BOARD
+       ========================================= */
     .scrapbook-board {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
-      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(74, 222, 128, 0.05);
-      border-radius: 24px;
+      box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(74, 222, 128, 0.05);
+      border-radius: 32px;
       position: relative;
     }
 
     .z-safe-layer { z-index: -10; }
-    .rotate-1 { transform: rotate(-2.5deg); }
-    .rotate-2 { transform: rotate(3deg); }
-    .rotate-3 { transform: rotate(-1.5deg); }
 
     .file-drop-area {
       position: relative;
       border: 2px dashed rgba(74, 222, 128, 0.4);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 16px;
+      padding: 24px;
       text-align: center;
       background: rgba(15, 23, 42, 0.5);
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
       overflow: hidden;
     }
     .file-drop-area:hover, .file-drop-area.dragover {
-      background: rgba(74, 222, 128, 0.1);
+      background: rgba(74, 222, 128, 0.15);
       border-color: var(--neon-green);
+      transform: scale(1.02);
     }
     .file-input {
       position: absolute;
@@ -176,29 +243,34 @@
     textarea::-webkit-scrollbar { width: 6px; }
     textarea::-webkit-scrollbar-thumb { background-color: var(--neon-green); border-radius: 4px; }
     
-    #update-indicator {
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
+    #update-indicator { transition: opacity 0.5s ease, transform 0.5s ease; }
 
-    /* Tambahan Styling Admin */
     .admin-card {
       background: rgba(30, 41, 59, 0.8);
       border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
     }
     .admin-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+      border-color: rgba(74, 222, 128, 0.4);
     }
   </style>
 </head>
 <body class="p-4 md:p-8 relative">
 
+  <!-- Ambient Background Orbs -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="toast-container" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none"></div>
 
   <!-- ICON GEMBOK ADMIN DI POJOK KANAN BAWAH -->
-  <a href="?page=admin" id="btn-admin-entry" class="fixed bottom-4 right-4 bg-slate-800/50 p-3 rounded-full border border-slate-600/50 text-slate-500 hover:text-green-400 hover:bg-slate-800 transition-all z-[90] backdrop-blur-md cursor-pointer">
+  <a href="?page=admin" id="btn-admin-entry" class="fixed bottom-4 right-4 bg-slate-800/50 p-4 rounded-full border border-slate-600/50 text-slate-400 hover:text-green-400 hover:bg-slate-800 transition-all z-[90] backdrop-blur-md cursor-pointer shadow-lg hover:shadow-green-500/20 hover:scale-110">
     🔒
   </a>
 
@@ -206,16 +278,17 @@
   <!-- PUBLIC GALLERY VIEW -->
   <!-- ========================================================================= -->
   <div id="view-public" class="w-full">
-    <header class="text-center mb-8 mt-4 relative z-20 flex flex-col items-center">
+    <header class="text-center mb-10 mt-4 relative z-20 flex flex-col items-center">
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-2" style="animation: fadeUp 0.8s ease forwards;">
-        Axa <span class="text-white text-3xl md:text-5xl">&</span> <span class="text-green-400 font-handwriting text-5xl md:text-7xl drop-shadow-[0_0_15px_rgba(74,222,128,0.6)]">Rifka</span>
+        Axa <span class="text-white text-3xl md:text-5xl opacity-50">&</span> <span class="text-green-400 font-handwriting text-6xl md:text-8xl drop-shadow-[0_0_20px_rgba(74,222,128,0.5)]">Rifka</span>
       </h1>
       <!-- Deskripsi Gen Z Cozy Romantic -->
-      <p class="text-slate-400 text-sm md:text-base max-w-lg mx-auto mb-6" style="animation: fadeUp 1s ease forwards;">
+      <p class="text-slate-300 text-sm md:text-base max-w-lg mx-auto mb-8 font-light" style="animation: fadeUp 1s ease forwards;">
         just a digital diary of us. late-night drives, random coffee dates, and everything in between 🤍✨
       </p>
       
-      <button onclick="openModal('upload-modal')" style="animation: popIn 1.2s ease forwards;" class="flex items-center gap-2 px-6 py-3 bg-green-500/10 border border-green-400 text-green-400 rounded-full font-semibold hover:bg-green-400 hover:text-slate-900 transition-all duration-300 shadow-[0_0_15px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.5)] transform hover:-translate-y-1">
+      <button onclick="openModal('upload-modal')" style="animation: popIn 1.2s ease forwards;" class="group relative flex items-center gap-2 px-8 py-3.5 bg-slate-800/80 border border-green-500/50 text-green-400 rounded-full font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(74,222,128,0.15)] hover:shadow-[0_0_40px_rgba(74,222,128,0.4)] hover:bg-green-400 hover:text-slate-900 transform hover:-translate-y-1 backdrop-blur-md overflow-hidden">
+        <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
         </svg>
@@ -223,30 +296,33 @@
       </button>
     </header>
 
-    <main class="scrapbook-board max-w-7xl mx-auto p-6 md:p-12 relative z-10 min-h-[60vh]">
+    <main class="scrapbook-board max-w-7xl mx-auto p-6 md:p-14 relative z-10 min-h-[65vh]">
       <!-- Sinkronisasi Indicator -->
-      <div id="update-indicator" class="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-slate-800/80 rounded-full border border-slate-600 opacity-0 transform translate-y-[-10px] pointer-events-none z-30">
-        <div class="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-        <span class="text-xs text-slate-300 font-mono">Syncing our moments...</span>
+      <div id="update-indicator" class="absolute top-6 right-6 flex items-center gap-3 px-4 py-2 bg-slate-800/90 rounded-full border border-slate-600 opacity-0 transform translate-y-[-10px] pointer-events-none z-30 shadow-lg backdrop-blur-sm">
+        <div class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+        </div>
+        <span class="text-xs text-slate-300 font-mono font-medium tracking-wide">Syncing...</span>
       </div>
 
       <!-- Loading State -->
-      <div id="loader" class="flex flex-col items-center justify-center h-64 space-y-4">
-        <div class="relative w-16 h-16">
-          <div class="absolute inset-0 border-4 border-slate-700 rounded-full"></div>
+      <div id="loader" class="flex flex-col items-center justify-center h-72 space-y-6">
+        <div class="relative w-20 h-20">
+          <div class="absolute inset-0 border-4 border-slate-700/50 rounded-full"></div>
           <div class="absolute inset-0 border-4 border-green-400 rounded-full border-t-transparent animate-spin"></div>
         </div>
         <p class="text-green-400 font-medium animate-pulse tracking-widest font-mono text-sm">LOADING OUR MEMORIES...</p>
       </div>
 
       <!-- Gallery Grid -->
-      <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-14 hidden"></div>
+      <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16 hidden mt-4"></div>
       
       <!-- Empty State -->
-      <div id="empty-state" class="hidden flex-col items-center justify-center h-64 space-y-4 text-center">
-        <div class="text-6xl mb-2 opacity-50 drop-shadow-xl animate-bounce">📸</div>
+      <div id="empty-state" class="hidden flex-col items-center justify-center h-72 space-y-4 text-center">
+        <div class="text-7xl mb-4 opacity-40 drop-shadow-2xl animate-bounce" style="animation-duration: 2s;">📸</div>
         <h3 class="text-2xl text-white font-semibold">It's a little quiet here</h3>
-        <p class="text-slate-400">drop our first picture to start this journey together.</p>
+        <p class="text-slate-400 max-w-sm">drop our first picture to start this journey together.</p>
       </div>
     </main>
   </div>
@@ -254,49 +330,50 @@
   <!-- ========================================================================= -->
   <!-- ADMIN VIEW (LOGIN & DASHBOARD) -->
   <!-- ========================================================================= -->
-  <div id="view-admin" class="w-full hidden flex-col items-center justify-center min-h-[80vh]">
+  <div id="view-admin" class="w-full hidden flex-col items-center justify-center min-h-[80vh] relative z-20">
     
     <!-- Bagian 1: FORM LOGIN -->
-    <div id="admin-login-box" class="w-full max-w-md bg-slate-800/90 border border-slate-600 rounded-2xl shadow-2xl p-8 backdrop-blur-xl">
-      <div class="text-center mb-6">
-        <h2 class="text-3xl font-bold text-white mb-2">Admin <span class="text-green-400 font-handwriting">Panel</span></h2>
-        <p class="text-slate-400 text-sm">Silakan login untuk mengedit Database Jurnal.</p>
+    <div id="admin-login-box" class="w-full max-w-md bg-slate-800/90 border border-slate-600/50 rounded-3xl shadow-2xl p-10 backdrop-blur-xl relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent pointer-events-none"></div>
+      <div class="text-center mb-8 relative z-10">
+        <h2 class="text-3xl font-bold text-white mb-2">Admin <span class="text-green-400 font-handwriting text-4xl">Panel</span></h2>
+        <p class="text-slate-400 text-sm">Autentikasi untuk mengedit Jurnal.</p>
       </div>
-      <form onsubmit="event.preventDefault(); handleAdminLogin();" class="space-y-4">
+      <form onsubmit="event.preventDefault(); handleAdminLogin();" class="space-y-5 relative z-10">
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-1">Username</label>
-          <input type="text" id="admin-user" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors">
+          <label class="block text-sm font-medium text-slate-300 mb-1.5">Username</label>
+          <input type="text" id="admin-user" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors shadow-inner">
         </div>
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-1">Password</label>
-          <input type="password" id="admin-pass" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors">
+          <label class="block text-sm font-medium text-slate-300 mb-1.5">Password</label>
+          <input type="password" id="admin-pass" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors shadow-inner">
         </div>
-        <button type="submit" id="btn-login" class="w-full py-3 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(74,222,128,0.3)] transition-all flex items-center justify-center gap-2 mt-4">
+        <button type="submit" id="btn-login" class="w-full py-3.5 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.4)] transition-all flex items-center justify-center gap-2 mt-6">
           Login ke Server
         </button>
-        <div class="text-center mt-4">
-          <a href="?" class="text-slate-500 hover:text-white text-sm underline">← Kembali ke Galeri</a>
+        <div class="text-center mt-6">
+          <a href="?" class="text-slate-500 hover:text-green-400 text-sm underline transition-colors">← Kembali ke Galeri</a>
         </div>
       </form>
     </div>
 
     <!-- Bagian 2: DASHBOARD UTAMA -->
     <div id="admin-dashboard-box" class="w-full max-w-6xl hidden flex-col">
-      <div class="flex flex-col md:flex-row justify-between items-center bg-slate-800/90 border border-green-500/30 p-6 rounded-2xl mb-8 backdrop-blur-md">
+      <div class="flex flex-col md:flex-row justify-between items-center bg-slate-800/80 border border-green-500/30 p-6 rounded-2xl mb-8 backdrop-blur-xl shadow-xl">
         <div>
-          <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-            <span class="text-green-400">🛡️</span> Dashboard Editor
+          <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+            <span class="text-green-400 text-3xl">🛡️</span> Dashboard Editor
           </h2>
           <p class="text-slate-400 text-sm mt-1">Kelola foto, hapus, atau ubah detail secara realtime.</p>
         </div>
-        <div class="flex gap-4 mt-4 md:mt-0">
-          <button onclick="logoutAdmin()" class="px-4 py-2 bg-red-500/20 text-red-400 border border-red-500/50 rounded-lg hover:bg-red-500 hover:text-white transition-colors">Logout</button>
-          <a href="?" class="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors">Lihat Web</a>
+        <div class="flex gap-3 mt-4 md:mt-0">
+          <button onclick="logoutAdmin()" class="px-5 py-2.5 bg-red-500/10 text-red-400 border border-red-500/30 rounded-xl hover:bg-red-500 hover:border-red-500 hover:text-white transition-all">Logout</button>
+          <a href="?" class="px-5 py-2.5 bg-slate-700/80 text-white rounded-xl hover:bg-slate-600 border border-slate-600 transition-all shadow-md">Lihat Web</a>
         </div>
       </div>
 
       <!-- Grid Data Admin -->
-      <div id="admin-data-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div id="admin-data-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <!-- Akan diisi otomatis oleh JS -->
       </div>
     </div>
@@ -306,47 +383,47 @@
   <!-- ========================================================================= -->
   <!-- MODAL: UPLOAD (PUBLIK) -->
   <!-- ========================================================================= -->
-  <div id="upload-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-400 z-50">
-    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-lg z-safe-layer transition-opacity" onclick="closeModal('upload-modal')"></div>
-    <div class="relative w-full max-w-md bg-slate-800/90 border border-green-500/40 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.8)] p-6 md:p-8 transform scale-90 opacity-0 transition-all duration-400 ease-out" id="upload-modal-panel">
+  <div id="upload-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500 z-50">
+    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md z-safe-layer transition-opacity" onclick="closeModal('upload-modal')"></div>
+    <div class="relative w-full max-w-md bg-slate-800 border border-green-500/30 rounded-3xl shadow-2xl p-6 md:p-8 transform scale-95 opacity-0 transition-all duration-500 ease-out" id="upload-modal-panel">
       
-      <button type="button" onclick="closeModal('upload-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white hover:bg-white/10 p-1 rounded-full transition-colors z-20">
+      <button type="button" onclick="closeModal('upload-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-white hover:bg-white/10 p-1.5 rounded-full transition-colors z-20">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
 
-      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2"><span class="text-green-400">🖼️</span> Save a Memory</h2>
+      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2"><span class="text-green-400 text-3xl">🖼️</span> Save a Memory</h2>
       <form id="upload-form" onsubmit="event.preventDefault(); submitMemory();" class="space-y-5">
         <div>
           <label class="block text-sm font-medium text-slate-300 mb-2">Pick a photo of us</label>
-          <div class="file-drop-area" id="drop-area-add">
+          <div class="file-drop-area group" id="drop-area-add">
             <input type="file" id="input-file" accept="image/*" class="file-input" required onchange="handleFileSelect(event, 'preview-add', 'prompt-add')">
-            <div id="prompt-add" class="flex flex-col items-center justify-center space-y-2 pointer-events-none">
-              <span class="text-3xl">📷</span>
+            <div id="prompt-add" class="flex flex-col items-center justify-center space-y-3 pointer-events-none transition-transform group-hover:scale-105">
+              <span class="text-4xl">📷</span>
               <p class="text-slate-300 text-sm font-medium">Click or Drag & Drop here</p>
             </div>
-            <div id="preview-add-container" class="hidden relative w-full h-40 rounded-lg overflow-hidden border border-slate-600">
+            <div id="preview-add-container" class="hidden relative w-full h-40 rounded-xl overflow-hidden border border-slate-600 shadow-inner">
               <img id="preview-add" src="" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                <span class="text-white text-sm font-medium bg-black/60 px-3 py-1 rounded-full">Change Photo</span>
+              <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity backdrop-blur-sm">
+                <span class="text-white text-sm font-medium bg-black/60 px-4 py-1.5 rounded-full border border-white/20">Change Photo</span>
               </div>
             </div>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-1">Date</label>
-            <input type="date" id="input-tanggal" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white [&::-webkit-calendar-picker-indicator]:invert">
+            <label class="block text-sm font-medium text-slate-300 mb-1.5">Date</label>
+            <input type="date" id="input-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-4 py-2.5 text-white [&::-webkit-calendar-picker-indicator]:invert shadow-inner focus:border-green-400 focus:outline-none">
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-1">Location</label>
-            <input type="text" id="input-lokasi" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white">
+            <label class="block text-sm font-medium text-slate-300 mb-1.5">Location</label>
+            <input type="text" id="input-lokasi" placeholder="e.g. City Lights" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-4 py-2.5 text-white shadow-inner focus:border-green-400 focus:outline-none">
           </div>
         </div>
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-1">Our Note / Caption</label>
-          <textarea id="input-pesan" required rows="3" class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white resize-none"></textarea>
+          <label class="block text-sm font-medium text-slate-300 mb-1.5">Our Note / Caption</label>
+          <textarea id="input-pesan" placeholder="Write something sweet..." required rows="3" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-4 py-2.5 text-white resize-none shadow-inner focus:border-green-400 focus:outline-none"></textarea>
         </div>
-        <button type="submit" id="btn-submit" class="w-full py-3 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(74,222,128,0.3)] transition-all">Add to Scrapbook</button>
+        <button type="submit" id="btn-submit" class="w-full py-3.5 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_20px_rgba(74,222,128,0.2)] transition-all mt-2">Add to Scrapbook</button>
       </form>
     </div>
   </div>
@@ -354,28 +431,28 @@
   <!-- ========================================================================= -->
   <!-- MODAL: EDIT (ADMIN ONLY) -->
   <!-- ========================================================================= -->
-  <div id="edit-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-400 z-50">
-    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-lg z-safe-layer transition-opacity" onclick="closeModal('edit-modal')"></div>
-    <div class="relative w-full max-w-md bg-slate-800/90 border border-blue-500/40 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.8)] p-6 md:p-8 transform scale-90 opacity-0 transition-all duration-400 ease-out" id="edit-modal-panel">
+  <div id="edit-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500 z-50">
+    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md z-safe-layer transition-opacity" onclick="closeModal('edit-modal')"></div>
+    <div class="relative w-full max-w-md bg-slate-800 border border-blue-500/30 rounded-3xl shadow-2xl p-6 md:p-8 transform scale-95 opacity-0 transition-all duration-500 ease-out" id="edit-modal-panel">
       
-      <button type="button" onclick="closeModal('edit-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white hover:bg-white/10 p-1 rounded-full transition-colors z-20">
+      <button type="button" onclick="closeModal('edit-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-white hover:bg-white/10 p-1.5 rounded-full transition-colors z-20">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
 
-      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2"><span class="text-blue-400">✏️</span> Edit Memory</h2>
+      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2"><span class="text-blue-400 text-3xl">✏️</span> Edit Memory</h2>
       <form id="edit-form" onsubmit="event.preventDefault(); submitEditMemory();" class="space-y-4">
         
         <!-- Hidden ID Utama Asli -->
         <input type="hidden" id="edit-id-asli">
 
         <div>
-          <label class="block text-xs font-medium text-blue-300 mb-1">Ganti Foto (Kosongkan jika tidak ingin diubah)</label>
-          <div class="file-drop-area !border-blue-500/40 !p-3" id="drop-area-edit">
+          <label class="block text-xs font-medium text-blue-300 mb-1.5">Ganti Foto (Kosongkan jika tidak diubah)</label>
+          <div class="file-drop-area !border-blue-500/40 !p-4 hover:!bg-blue-500/10" id="drop-area-edit">
             <input type="file" id="edit-file" accept="image/*" class="file-input" onchange="handleFileSelect(event, 'preview-edit', 'prompt-edit')">
             <div id="prompt-edit" class="flex flex-col items-center justify-center pointer-events-none">
-               <span class="text-white text-xs bg-slate-700 px-3 py-1 rounded-full">Pilih Foto Baru</span>
+               <span class="text-white text-xs bg-slate-700/80 px-4 py-2 rounded-full border border-slate-600 font-medium tracking-wide">Pilih Foto Baru</span>
             </div>
-            <div id="preview-edit-container" class="hidden relative w-full h-32 rounded-lg overflow-hidden border border-slate-600 mt-2">
+            <div id="preview-edit-container" class="hidden relative w-full h-32 rounded-xl overflow-hidden border border-slate-600 mt-2 shadow-inner">
               <img id="preview-edit" src="" class="w-full h-full object-cover">
             </div>
           </div>
@@ -383,29 +460,28 @@
 
         <div class="grid grid-cols-2 gap-4">
           <div>
-             <label class="block text-sm font-medium text-slate-300 mb-1">ID Foto</label>
-             <!-- Form Input ID FOTO (Bisa Diubah Sesuai Request) -->
-             <input type="text" id="edit-id" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-3 py-2 text-white font-mono text-sm">
+             <label class="block text-sm font-medium text-slate-300 mb-1.5">ID Foto</label>
+             <input type="text" id="edit-id" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-2 text-white font-mono text-sm shadow-inner focus:border-blue-400 focus:outline-none">
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-1">Tanggal</label>
-            <input type="date" id="edit-tanggal" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-3 py-2 text-white [&::-webkit-calendar-picker-indicator]:invert text-sm">
+            <label class="block text-sm font-medium text-slate-300 mb-1.5">Tanggal</label>
+            <input type="date" id="edit-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-2 text-white [&::-webkit-calendar-picker-indicator]:invert text-sm shadow-inner focus:border-blue-400 focus:outline-none">
           </div>
         </div>
         
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-1">Lokasi</label>
-          <input type="text" id="edit-lokasi" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm">
+          <label class="block text-sm font-medium text-slate-300 mb-1.5">Lokasi</label>
+          <input type="text" id="edit-lokasi" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-2 text-white text-sm shadow-inner focus:border-blue-400 focus:outline-none">
         </div>
         
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-1">Our Note / Caption</label>
-          <textarea id="edit-pesan" required rows="2" class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-3 py-2 text-white resize-none text-sm"></textarea>
+          <label class="block text-sm font-medium text-slate-300 mb-1.5">Our Note / Caption</label>
+          <textarea id="edit-pesan" required rows="3" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-2 text-white resize-none text-sm shadow-inner focus:border-blue-400 focus:outline-none"></textarea>
         </div>
 
-        <div class="pt-2 flex gap-3">
-           <button type="button" onclick="closeModal('edit-modal')" class="w-1/3 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl transition-all">Batal</button>
-           <button type="submit" id="btn-submit-edit" class="w-2/3 py-2.5 bg-blue-500 hover:bg-blue-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all">
+        <div class="pt-4 flex gap-3">
+           <button type="button" onclick="closeModal('edit-modal')" class="w-1/3 py-3 bg-slate-700/80 hover:bg-slate-600 text-white font-bold rounded-xl transition-all border border-slate-500">Batal</button>
+           <button type="submit" id="btn-submit-edit" class="w-2/3 py-3 bg-blue-500 hover:bg-blue-400 text-slate-900 font-bold rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all">
              Simpan Perubahan
            </button>
         </div>
@@ -426,7 +502,7 @@
     let selectedFileBase64 = null;
     let selectedFileName = null;
     let selectedFileMime = null;
-    let currentGalleryData = []; // Menyimpan state data
+    let currentGalleryData = []; 
 
     // Router Logic (Mendeteksi apakah user di URL ?page=admin)
     const urlParams = new URLSearchParams(window.location.search);
@@ -455,7 +531,7 @@
       const icon = type === 'success' ? '✨' : (type === 'info' ? 'ℹ️' : '⚠️');
       
       toast.className = `flex items-center gap-3 px-5 py-3.5 rounded-xl border shadow-2xl text-white font-medium text-sm transform transition-all duration-300 translate-y-10 opacity-0 ${bgColor} backdrop-blur-md pointer-events-auto`;
-      toast.innerHTML = `<span class="text-lg">${icon}</span> <span>${message}</span>`;
+      toast.innerHTML = `<span class="text-xl drop-shadow-md">${icon}</span> <span>${message}</span>`;
       document.getElementById('toast-container').appendChild(toast);
       
       requestAnimationFrame(() => {
@@ -476,7 +552,7 @@
         document.getElementById('admin-login-box').classList.add('hidden');
         document.getElementById('admin-dashboard-box').classList.remove('hidden');
         document.getElementById('admin-dashboard-box').classList.add('flex');
-        fetchGallery(); // Load untuk Dashboard Admin
+        fetchGallery(); 
       }
     }
 
@@ -545,7 +621,6 @@
       .finally(() => { if(!isAdminPage) showUpdateIndicator(false); });
     }
 
-    // Router Render: Mau render gallery publik atau admin grid?
     function distributeRender(data) {
       if (isAdminPage) {
         renderAdminGrid(data);
@@ -572,7 +647,7 @@
       let htmlBuilder = '';
       data.forEach((item, index) => {
         const rotateClass = rotateClasses[index % rotateClasses.length];
-        const delay = index * 0.15; 
+        const delay = index * 0.12; 
         
         let displayUrl = item.url;
         const driveIdMatch = item.url.match(/id=([a-zA-Z0-9_-]+)/);
@@ -581,6 +656,10 @@
         }
         const fallbackImg = "https://ui-avatars.com/api/?name=Memori+Hilang&background=1e293b&color=cbd5e1&size=512";
         
+        // SOLUSI: 
+        // 1. Teks Lokasi Depan menggunakan "text-clamp-2" agar bisa 2 baris
+        // 2. Teks Pesan Belakang dibungkus div dengan "caption-scroll-area" agar bisa discroll vertikal
+        
         htmlBuilder += `
           <div class="polaroid-container ${rotateClass} animate-staggered" style="animation-delay: ${delay}s" onclick="toggleFlip(this)">
             <div class="polaroid-inner">
@@ -588,15 +667,23 @@
                 <div class="polaroid-photo-wrapper relative group bg-slate-800 flex items-center justify-center">
                   <img src="${displayUrl}" alt="Memori ${item.id}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImg}';" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                 </div>
-                <div class="absolute bottom-5 left-0 right-0 text-center text-slate-800 font-handwriting text-2xl md:text-3xl px-2 truncate">${item.lokasi}</div>
+                <!-- FIXED LOKASI -->
+                <div class="absolute bottom-2.5 left-0 right-0 h-[60px] flex items-center justify-center px-4">
+                  <div class="text-center text-slate-800 font-handwriting text-[1.4rem] md:text-3xl text-clamp-2 font-bold">${item.lokasi}</div>
+                </div>
               </div>
               <div class="polaroid-back">
                 <div class="flex flex-col h-full w-full relative">
-                  <span class="text-green-600 font-bold text-xs md:text-sm tracking-widest uppercase border-b-2 border-green-200/50 pb-2 mb-4 w-full text-center">${item.tanggal}</span>
-                  <div class="flex-grow flex items-center justify-center">
-                    <p class="font-handwriting text-2xl md:text-3xl leading-relaxed text-slate-800 text-center px-2">"${item.pesan}"</p>
+                  <span class="text-green-600 font-bold text-xs md:text-sm tracking-widest uppercase border-b-2 border-green-300/40 pb-2 mb-3 w-full text-center shrink-0 drop-shadow-sm">${item.tanggal}</span>
+                  
+                  <!-- FIXED CAPTION SCROLLING -->
+                  <div class="flex-grow flex items-center justify-center w-full my-2 overflow-hidden">
+                    <div class="caption-scroll-area w-full">
+                      <p class="font-handwriting text-2xl md:text-3xl leading-relaxed text-slate-800 text-center px-1 font-semibold">"${item.pesan}"</p>
+                    </div>
                   </div>
-                  <div class="mt-4 text-[10px] md:text-xs text-slate-400 w-full text-right font-mono">${item.id}</div>
+
+                  <div class="mt-auto pt-3 text-[10px] md:text-xs text-slate-400 w-full text-right font-mono shrink-0">${item.id}</div>
                 </div>
               </div>
             </div>
@@ -619,7 +706,7 @@
       const grid = document.getElementById('admin-data-grid');
       
       if (!data || data.length === 0) {
-        grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400">Database Kosong.</div>`;
+        grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 text-lg border-2 border-dashed border-slate-600 rounded-2xl">Database masih kosong.</div>`;
         return;
       }
 
@@ -631,18 +718,19 @@
         const fallbackImg = "https://ui-avatars.com/api/?name=MH&background=1e293b&color=cbd5e1&size=512";
 
         htmlBuilder += `
-          <div class="admin-card rounded-xl overflow-hidden flex flex-col">
-            <div class="h-40 w-full overflow-hidden bg-slate-900 border-b border-slate-700 relative">
-               <img src="${displayUrl}" onerror="this.onerror=null; this.src='${fallbackImg}';" class="w-full h-full object-cover opacity-80">
-               <span class="absolute top-2 left-2 bg-slate-900/80 text-green-400 text-xs font-mono px-2 py-1 rounded border border-green-500/30">${item.id}</span>
+          <div class="admin-card rounded-2xl overflow-hidden flex flex-col relative group">
+            <div class="h-44 w-full overflow-hidden bg-slate-900 border-b border-slate-700 relative">
+               <img src="${displayUrl}" onerror="this.onerror=null; this.src='${fallbackImg}';" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500">
+               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+               <span class="absolute top-3 left-3 bg-slate-900/80 text-green-400 text-xs font-mono px-2.5 py-1 rounded-md border border-green-500/30 backdrop-blur-sm shadow-lg">${item.id}</span>
             </div>
-            <div class="p-4 flex-grow flex flex-col">
-               <h4 class="text-white font-bold mb-1">${item.lokasi}</h4>
-               <span class="text-slate-400 text-xs mb-2 block">${item.tanggal}</span>
-               <p class="text-slate-300 text-sm line-clamp-2 flex-grow">"${item.pesan}"</p>
-               <div class="flex gap-2 mt-4">
-                 <button onclick="openEditModal('${item.id}')" class="flex-1 py-2 bg-blue-500/20 text-blue-400 hover:bg-blue-500 hover:text-white rounded-lg transition-colors border border-blue-500/50 text-sm font-semibold">✏️ Edit</button>
-                 <button onclick="deleteMemory('${item.id}')" class="flex-1 py-2 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors border border-red-500/50 text-sm font-semibold">🗑️ Delete</button>
+            <div class="p-5 flex-grow flex flex-col bg-slate-800/90">
+               <h4 class="text-white font-bold text-lg mb-1 truncate">${item.lokasi}</h4>
+               <span class="text-green-400/80 text-xs mb-3 block font-medium">${item.tanggal}</span>
+               <p class="text-slate-300 text-sm line-clamp-3 flex-grow font-light leading-relaxed">"${item.pesan}"</p>
+               <div class="flex gap-3 mt-5">
+                 <button onclick="openEditModal('${item.id}')" class="flex-1 py-2.5 bg-blue-500/10 text-blue-400 hover:bg-blue-500 hover:text-white rounded-xl transition-colors border border-blue-500/30 text-sm font-semibold shadow-sm">✏️ Edit</button>
+                 <button onclick="deleteMemory('${item.id}')" class="flex-1 py-2.5 bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white rounded-xl transition-colors border border-red-500/30 text-sm font-semibold shadow-sm">🗑️ Delete</button>
                </div>
             </div>
           </div>
@@ -688,7 +776,7 @@
       const panel = document.getElementById(modalId + '-panel');
       modal.classList.remove('opacity-0', 'pointer-events-none');
       requestAnimationFrame(() => {
-        panel.classList.remove('scale-90', 'opacity-0');
+        panel.classList.remove('scale-95', 'opacity-0');
         panel.classList.add('scale-100', 'opacity-100');
       });
     }
@@ -697,12 +785,11 @@
       const modal = document.getElementById(modalId);
       const panel = document.getElementById(modalId + '-panel');
       panel.classList.remove('scale-100', 'opacity-100');
-      panel.classList.add('scale-90', 'opacity-0');
+      panel.classList.add('scale-95', 'opacity-0');
       
       setTimeout(() => {
         modal.classList.add('opacity-0', 'pointer-events-none');
         
-        // Reset specific forms
         if (modalId === 'upload-modal') {
           document.getElementById('upload-form').reset();
           document.getElementById('prompt-add').classList.remove('hidden');
@@ -713,14 +800,15 @@
           document.getElementById('preview-edit-container').classList.add('hidden');
         }
         selectedFileBase64 = null;
-      }, 300);
+      }, 400); // Sesuaikan dengan durasi animasi
     }
 
 
-    // --- 8. CRUD ACTIONS (POST TO GOOGLE API) ---
+    // --- 8. CRUD ACTIONS ---
     function executePost(payload, btnElement, loadingText, originalText, successCallback) {
       btnElement.innerHTML = loadingText;
       btnElement.disabled = true;
+      btnElement.classList.add('opacity-70', 'cursor-not-allowed');
 
       fetch(API_URL, {
         method: 'POST',
@@ -740,11 +828,15 @@
             showToast("Gagal: " + res.message, "error");
           }
         } catch (e) {
-          showToast("Gagal. API menolak / tidak dikonfigurasi 'Siapa Saja'.", "error");
+          showToast("Gagal. API menolak / belum disetting 'Siapa Saja'.", "error");
         }
       })
       .catch(error => showToast("Error Jaringan.", "error"))
-      .finally(() => { btnElement.innerHTML = originalText; btnElement.disabled = false; });
+      .finally(() => { 
+        btnElement.innerHTML = originalText; 
+        btnElement.disabled = false; 
+        btnElement.classList.remove('opacity-70', 'cursor-not-allowed');
+      });
     }
 
     // [ADD] Public Add
@@ -761,7 +853,7 @@
         pesan: document.getElementById('input-pesan').value
       };
       const btn = document.getElementById('btn-submit');
-      executePost(payload, btn, "Uploading...", "Add to Scrapbook", () => {
+      executePost(payload, btn, "Uploading Memory...", "Add to Scrapbook", () => {
         closeModal('upload-modal');
         fetchGallery();
       });
@@ -771,22 +863,18 @@
     function deleteMemory(id) {
       if (confirm(`Peringatan: Yakin ingin menghapus Foto ${id} secara permanen?`)) {
         const payload = { action: 'delete', id: id };
-        // Gunakan Fake Button logic
-        const fakeBtn = { innerHTML: '', disabled: false }; 
+        const fakeBtn = { innerHTML: '', disabled: false, classList: {add:()=>{}, remove:()=>{}} }; 
         executePost(payload, fakeBtn, "Menghapus...", "", () => {
-          fetchGallery(); // Refresh Dashboard Grid
+          fetchGallery(); 
         });
       }
     }
 
-    // [EDIT] Open Modal & Populate Data
+    // [EDIT] Open Modal & Populate
     function openEditModal(id) {
       const item = currentGalleryData.find(x => x.id === id);
       if(!item) return showToast("Data tidak ditemukan!", "error");
 
-      // Format balik tanggal untuk input[type="date"] (dd MMMM yyyy -> YYYY-MM-DD)
-      // Catatan: Seringkali parsing tanggal bahasa Indonesia agak rumit di native JS.
-      // Jika parsing gagal, input date kosong, user wajib isi ulang.
       let dtValue = "";
       try {
          const d = new Date(item.tanggal);
@@ -794,7 +882,7 @@
       } catch(e){}
 
       document.getElementById('edit-id-asli').value = item.id;
-      document.getElementById('edit-id').value = item.id; // Field ID yang bisa diganti
+      document.getElementById('edit-id').value = item.id; 
       document.getElementById('edit-tanggal').value = dtValue;
       document.getElementById('edit-lokasi').value = item.lokasi;
       document.getElementById('edit-pesan').value = item.pesan;
@@ -806,14 +894,13 @@
     function submitEditMemory() {
       const payload = {
         action: 'update',
-        id: document.getElementById('edit-id-asli').value, // ID Target
-        newId: document.getElementById('edit-id').value,   // Request User (Bisa ubah ID)
+        id: document.getElementById('edit-id-asli').value,
+        newId: document.getElementById('edit-id').value,   
         tanggal: document.getElementById('edit-tanggal').value,
         lokasi: document.getElementById('edit-lokasi').value,
         pesan: document.getElementById('edit-pesan').value
       };
 
-      // Jika ada file baru yang diselect
       if (selectedFileBase64) {
         payload.base64Data = selectedFileBase64;
         payload.fileName = selectedFileName;
@@ -823,7 +910,7 @@
       const btn = document.getElementById('btn-submit-edit');
       executePost(payload, btn, "Updating Database...", "Simpan Perubahan", () => {
         closeModal('edit-modal');
-        fetchGallery(); // Refresh Dashboard Grid
+        fetchGallery(); 
       });
     }
 
