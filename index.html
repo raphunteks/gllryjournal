@@ -66,14 +66,15 @@
     .font-hw-4 { font-family: 'Shadows Into Light', cursive; font-size: 1.05em; font-weight: bold; }
 
     /* =========================================
-       CSS3 INNOVATIONS: PARTICLES (OPTIMIZED)
+       CSS3 INNOVATIONS: PARTICLES & PARALLAX
        ========================================= */
-    .bg-orbs {
+    .bg-orbs-container {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       overflow: hidden;
       z-index: -1;
       pointer-events: none;
+      transition: transform 0.2s ease-out; /* Parallax smooth transition */
     }
     .orb {
       position: absolute;
@@ -340,6 +341,12 @@
     textarea::-webkit-scrollbar-thumb { background-color: var(--neon-green); border-radius: 4px; }
     
     #update-indicator { transition: opacity 0.5s ease, transform 0.5s ease; }
+    
+    /* Neon Frost Glowing Elements */
+    .neon-frost {
+      box-shadow: 0 0 15px rgba(74, 222, 128, 0.4), inset 0 0 20px rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.5);
+    }
     .sync-glow { box-shadow: 0 0 15px rgba(74, 222, 128, 0.5); border-color: rgba(74, 222, 128, 0.8); }
 
     .admin-card {
@@ -367,17 +374,22 @@
       padding-right: 100%;
     }
     @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+    /* Theatrical Curtain Transition */
+    .curtain-reveal {
+      transform: scale(1.5) translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body class="p-4 md:p-8 relative">
 
-  <!-- AUDIO PLAYER (BGM) -->
-  <audio id="bgm-player" preload="auto">
-    <source id="bgm-source" src="" type="audio/mpeg">
-  </audio>
+  <!-- AUDIO PLAYER (BGM) - Source URL injeksi dinamis dari script -->
+  <audio id="bgm-player" preload="auto"></audio>
 
-  <!-- COVER OVERLAY FOR AUTOPLAY POLICY BYPASS (WEDDING INVITE STYLE) -->
-  <div id="cover-overlay" class="fixed inset-0 z-[200] bg-[#0f1423] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
+  <!-- COVER OVERLAY (WEDDING INVITE THEATRICAL STYLE) -->
+  <div id="cover-overlay" class="fixed inset-0 z-[200] bg-[#0f1423] flex flex-col items-center justify-center transition-all duration-1000 cubic-bezier(0.175, 0.885, 0.32, 1.275) transform origin-bottom">
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
        <div class="orb orb-1"></div>
        <div class="orb orb-2" style="background: rgba(168, 85, 247, 0.15)"></div>
@@ -400,8 +412,8 @@
     </div>
   </div>
 
-  <!-- MUSIC PLAYER BUTTON (WIDGET DENGAN MARQUEE) -->
-  <div id="music-player-btn" class="fixed bottom-4 left-4 z-[90] bg-slate-800/90 p-2 pl-3 rounded-full border border-slate-600/50 backdrop-blur-xl flex items-center shadow-2xl transition-transform duration-300 hidden max-w-[200px]">
+  <!-- MUSIC PLAYER BUTTON (WIDGET DENGAN MARQUEE & NEON FROST) -->
+  <div id="music-player-btn" class="fixed bottom-4 left-4 z-[90] bg-slate-800/90 p-2 pl-3 rounded-full backdrop-blur-xl flex items-center shadow-2xl transition-transform duration-300 hidden max-w-[200px] neon-frost hover:scale-105">
     
     <!-- Info Marquee & Play/Pause Click Area -->
     <div class="flex items-center gap-3 pr-2 cursor-pointer" onclick="toggleMusic()">
@@ -419,8 +431,8 @@
     </div>
     
     <!-- Next Button -->
-    <div class="border-l border-slate-600/50 pl-2 ml-1 flex items-center">
-       <button onclick="nextTrack(event)" class="text-slate-400 hover:text-white p-1 rounded-full hover:bg-slate-700 transition-colors">
+    <div class="border-l border-green-500/30 pl-2 ml-1 flex items-center">
+       <button onclick="nextTrack(event)" class="text-slate-400 hover:text-green-400 p-1.5 rounded-full hover:bg-slate-700/50 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z" />
           </svg>
@@ -434,7 +446,7 @@
   </style>
 
   <!-- Ambient Background Orbs & Romantic Particles -->
-  <div class="bg-orbs" id="particles-container">
+  <div class="bg-orbs-container" id="particles-container">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <!-- JS injected stardust, sakura & romantic icons here -->
@@ -733,6 +745,7 @@
       generateBackgroundParticles(); 
       setupDragDrop('drop-area-add');
       setupDragDrop('drop-area-edit');
+      setupMouseParallax(); // Efek 3D Ambient Interaction
       
       if (isAdminPage) {
         document.getElementById('cover-overlay').remove(); 
@@ -741,12 +754,23 @@
         document.getElementById('view-admin').classList.remove('hidden');
         document.getElementById('view-admin').classList.add('flex');
         checkAdminSession();
-        updateLoopUI(); // Set UI untuk Loop Control
+        updateLoopUI(); 
       } 
       
       setupMusicPlayer();
       startAutoSync();
     });
+
+    // --- EFFECT: MOUSE PARALLAX AMBIENT ---
+    function setupMouseParallax() {
+        if(window.innerWidth < 768) return; // Nonaktifkan parallax di HP demi performa
+        const bgContainer = document.getElementById('particles-container');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20; // 20px pergerakan max
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            bgContainer.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    }
 
     // --- EFFECT: MUSIC PLAYER CONTROL (PLAYLIST LOGIC WITH LOOP MODE) ---
     function setupMusicPlayer() {
@@ -761,9 +785,15 @@
                nextTrack(); // Putar lagu berikutnya (akan looping ke awal jika habis)
            }
        };
+
+       // Error handler untuk bypass Google Drive Media Issues
+       player.onerror = (e) => {
+           console.error("Audio playback error:", e);
+           showToast("Gagal memutar lagu, skip ke track berikutnya...", "error");
+           setTimeout(() => nextTrack(), 1500); 
+       };
     }
 
-    // Toggle Mode Looping: 'all' atau 'single'
     function setLoopMode(mode) {
       localStorage.setItem('axarifka_loop_mode', mode);
       updateLoopUI();
@@ -787,20 +817,21 @@
 
     function openJournal() {
       const cover = document.getElementById('cover-overlay');
-      cover.classList.add('opacity-0', 'pointer-events-none');
+      // Theatrical Curtain Reveal Animation
+      cover.classList.add('curtain-reveal');
       setTimeout(() => cover.remove(), 1000);
       
       document.getElementById('view-public').classList.remove('hidden');
       fetchGallery(); 
 
-      // Putar musik jika data sudah ada
       if (currentMusicData.length > 0) {
          playTrack(0);
       } else {
-         // Default fallback jika data telat loading
+         // Default fallback jika data dari server telat masuk
          const player = document.getElementById('bgm-player');
          player.volume = 0.6;
          player.src = '/music/Justin Bieber - Daisies.mp3'; 
+         player.load();
          player.play().then(() => updateMusicUI(true, 'Justin Bieber - Daisies.mp3')).catch(e=>{});
       }
     }
@@ -814,26 +845,30 @@
        const track = currentMusicData[index];
        
        let playUrl = track.url;
-       // NEW: Logika agar link Google Drive diubah menjadi format direct play uc?export=download
+       // FIX GOOGLE DRIVE MEDIA STREAMING (Bypass Virus Warning)
        if (playUrl.includes('drive.google') || playUrl.includes('drive.usercontent')) {
            const driveIdMatch = playUrl.match(/id=([a-zA-Z0-9_-]+)/);
            if (driveIdMatch && driveIdMatch[1]) {
-               playUrl = `https://drive.google.com/uc?export=download&id=${driveIdMatch[1]}`;
+               // Penambahan &confirm=t di akhir URL untuk memastikan file besar diunduh/distream sbg raw file MP3
+               playUrl = `https://drive.google.com/uc?export=download&id=${driveIdMatch[1]}&confirm=t`;
            }
        }
 
        const player = document.getElementById('bgm-player');
        player.volume = 0.6;
        player.src = playUrl;
+       player.load(); // Paksa browser muat ulang DOM Audio agar tidak nyangkut (Crucial Fix)
        player.play().then(() => {
           updateMusicUI(true, track.fileName);
-       }).catch(e => console.log("Auto-play blocked", e));
+       }).catch(e => {
+          console.log("Auto-play blocked or network error", e);
+          updateMusicUI(false, "Audio blocked/error");
+       });
     }
 
     function nextTrack(e) {
        if(e) e.stopPropagation(); 
        if(currentMusicData.length === 0) {
-          // Fallback manual reload untuk github path default
           const player = document.getElementById('bgm-player');
           player.currentTime = 0;
           player.play();
@@ -867,11 +902,13 @@
          status.innerText = "Playing";
          status.classList.remove('text-slate-400');
          status.classList.add('text-green-400');
+         playerBtn.classList.add('neon-frost'); // Add glow when playing
        } else {
          disc.style.animationPlayState = 'paused';
          status.innerText = "Paused";
          status.classList.remove('text-green-400');
          status.classList.add('text-slate-400');
+         playerBtn.classList.remove('neon-frost');
        }
 
        if(title) titleEl.innerText = title;
