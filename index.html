@@ -179,6 +179,17 @@
     #update-indicator {
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
+
+    /* Tambahan Styling Admin */
+    .admin-card {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .admin-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
   </style>
 </head>
 <body class="p-4 md:p-8 relative">
@@ -186,144 +197,271 @@
   <!-- Toast Notification Container -->
   <div id="toast-container" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none"></div>
 
-  <header class="text-center mb-8 mt-4 relative z-20 flex flex-col items-center">
-    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-2" style="animation: fadeUp 0.8s ease forwards;">
-      Axa <span class="text-white text-3xl md:text-5xl">&</span> <span class="text-green-400 font-handwriting text-5xl md:text-7xl drop-shadow-[0_0_15px_rgba(74,222,128,0.6)]">Rifka</span>
-    </h1>
-    <!-- Deskripsi Gen Z Cozy Romantic -->
-    <p class="text-slate-400 text-sm md:text-base max-w-lg mx-auto mb-6" style="animation: fadeUp 1s ease forwards;">
-      just a digital diary of us. late-night drives, random coffee dates, and everything in between 🤍✨
-    </p>
-    
-    <button onclick="openModal()" style="animation: popIn 1.2s ease forwards;" class="flex items-center gap-2 px-6 py-3 bg-green-500/10 border border-green-400 text-green-400 rounded-full font-semibold hover:bg-green-400 hover:text-slate-900 transition-all duration-300 shadow-[0_0_15px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.5)] transform hover:-translate-y-1">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-      </svg>
-      Upload Our Memory
-    </button>
-  </header>
+  <!-- ICON GEMBOK ADMIN DI POJOK KANAN BAWAH -->
+  <a href="?page=admin" id="btn-admin-entry" class="fixed bottom-4 right-4 bg-slate-800/50 p-3 rounded-full border border-slate-600/50 text-slate-500 hover:text-green-400 hover:bg-slate-800 transition-all z-[90] backdrop-blur-md cursor-pointer">
+    🔒
+  </a>
 
-  <main class="scrapbook-board max-w-7xl mx-auto p-6 md:p-12 relative z-10 min-h-[60vh]">
-    <!-- Sinkronisasi Indicator -->
-    <div id="update-indicator" class="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-slate-800/80 rounded-full border border-slate-600 opacity-0 transform translate-y-[-10px] pointer-events-none z-30">
-      <div class="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-      <span class="text-xs text-slate-300 font-mono">Syncing our moments...</span>
-    </div>
-
-    <!-- Loading State -->
-    <div id="loader" class="flex flex-col items-center justify-center h-64 space-y-4">
-      <div class="relative w-16 h-16">
-        <div class="absolute inset-0 border-4 border-slate-700 rounded-full"></div>
-        <div class="absolute inset-0 border-4 border-green-400 rounded-full border-t-transparent animate-spin"></div>
-      </div>
-      <p class="text-green-400 font-medium animate-pulse tracking-widest font-mono text-sm">LOADING OUR MEMORIES...</p>
-    </div>
-
-    <!-- Gallery Grid -->
-    <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-14 hidden"></div>
-    
-    <!-- Empty State -->
-    <div id="empty-state" class="hidden flex-col items-center justify-center h-64 space-y-4 text-center">
-      <div class="text-6xl mb-2 opacity-50 drop-shadow-xl animate-bounce">📸</div>
-      <h3 class="text-2xl text-white font-semibold">It's a little quiet here</h3>
-      <p class="text-slate-400">drop our first picture to start this journey together.</p>
-    </div>
-  </main>
-
-  <!-- MODAL UPLOAD -->
-  <div id="upload-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-400 z-50">
-    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-lg z-safe-layer transition-opacity" onclick="closeModal()"></div>
-    
-    <div class="relative w-full max-w-md bg-slate-800/90 border border-green-500/40 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.8)] p-6 md:p-8 transform scale-90 opacity-0 transition-all duration-400 ease-out" id="modal-panel">
+  <!-- ========================================================================= -->
+  <!-- PUBLIC GALLERY VIEW -->
+  <!-- ========================================================================= -->
+  <div id="view-public" class="w-full">
+    <header class="text-center mb-8 mt-4 relative z-20 flex flex-col items-center">
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-2" style="animation: fadeUp 0.8s ease forwards;">
+        Axa <span class="text-white text-3xl md:text-5xl">&</span> <span class="text-green-400 font-handwriting text-5xl md:text-7xl drop-shadow-[0_0_15px_rgba(74,222,128,0.6)]">Rifka</span>
+      </h1>
+      <!-- Deskripsi Gen Z Cozy Romantic -->
+      <p class="text-slate-400 text-sm md:text-base max-w-lg mx-auto mb-6" style="animation: fadeUp 1s ease forwards;">
+        just a digital diary of us. late-night drives, random coffee dates, and everything in between 🤍✨
+      </p>
       
-      <button type="button" onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white hover:bg-white/10 p-1 rounded-full transition-colors z-20">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      <button onclick="openModal('upload-modal')" style="animation: popIn 1.2s ease forwards;" class="flex items-center gap-2 px-6 py-3 bg-green-500/10 border border-green-400 text-green-400 rounded-full font-semibold hover:bg-green-400 hover:text-slate-900 transition-all duration-300 shadow-[0_0_15px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.5)] transform hover:-translate-y-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
         </svg>
+        Upload Our Memory
+      </button>
+    </header>
+
+    <main class="scrapbook-board max-w-7xl mx-auto p-6 md:p-12 relative z-10 min-h-[60vh]">
+      <!-- Sinkronisasi Indicator -->
+      <div id="update-indicator" class="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-slate-800/80 rounded-full border border-slate-600 opacity-0 transform translate-y-[-10px] pointer-events-none z-30">
+        <div class="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+        <span class="text-xs text-slate-300 font-mono">Syncing our moments...</span>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loader" class="flex flex-col items-center justify-center h-64 space-y-4">
+        <div class="relative w-16 h-16">
+          <div class="absolute inset-0 border-4 border-slate-700 rounded-full"></div>
+          <div class="absolute inset-0 border-4 border-green-400 rounded-full border-t-transparent animate-spin"></div>
+        </div>
+        <p class="text-green-400 font-medium animate-pulse tracking-widest font-mono text-sm">LOADING OUR MEMORIES...</p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-14 hidden"></div>
+      
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden flex-col items-center justify-center h-64 space-y-4 text-center">
+        <div class="text-6xl mb-2 opacity-50 drop-shadow-xl animate-bounce">📸</div>
+        <h3 class="text-2xl text-white font-semibold">It's a little quiet here</h3>
+        <p class="text-slate-400">drop our first picture to start this journey together.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ADMIN VIEW (LOGIN & DASHBOARD) -->
+  <!-- ========================================================================= -->
+  <div id="view-admin" class="w-full hidden flex-col items-center justify-center min-h-[80vh]">
+    
+    <!-- Bagian 1: FORM LOGIN -->
+    <div id="admin-login-box" class="w-full max-w-md bg-slate-800/90 border border-slate-600 rounded-2xl shadow-2xl p-8 backdrop-blur-xl">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold text-white mb-2">Admin <span class="text-green-400 font-handwriting">Panel</span></h2>
+        <p class="text-slate-400 text-sm">Silakan login untuk mengedit Database Jurnal.</p>
+      </div>
+      <form onsubmit="event.preventDefault(); handleAdminLogin();" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1">Username</label>
+          <input type="text" id="admin-user" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1">Password</label>
+          <input type="password" id="admin-pass" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors">
+        </div>
+        <button type="submit" id="btn-login" class="w-full py-3 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(74,222,128,0.3)] transition-all flex items-center justify-center gap-2 mt-4">
+          Login ke Server
+        </button>
+        <div class="text-center mt-4">
+          <a href="?" class="text-slate-500 hover:text-white text-sm underline">← Kembali ke Galeri</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Bagian 2: DASHBOARD UTAMA -->
+    <div id="admin-dashboard-box" class="w-full max-w-6xl hidden flex-col">
+      <div class="flex flex-col md:flex-row justify-between items-center bg-slate-800/90 border border-green-500/30 p-6 rounded-2xl mb-8 backdrop-blur-md">
+        <div>
+          <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+            <span class="text-green-400">🛡️</span> Dashboard Editor
+          </h2>
+          <p class="text-slate-400 text-sm mt-1">Kelola foto, hapus, atau ubah detail secara realtime.</p>
+        </div>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <button onclick="logoutAdmin()" class="px-4 py-2 bg-red-500/20 text-red-400 border border-red-500/50 rounded-lg hover:bg-red-500 hover:text-white transition-colors">Logout</button>
+          <a href="?" class="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors">Lihat Web</a>
+        </div>
+      </div>
+
+      <!-- Grid Data Admin -->
+      <div id="admin-data-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Akan diisi otomatis oleh JS -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: UPLOAD (PUBLIK) -->
+  <!-- ========================================================================= -->
+  <div id="upload-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-400 z-50">
+    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-lg z-safe-layer transition-opacity" onclick="closeModal('upload-modal')"></div>
+    <div class="relative w-full max-w-md bg-slate-800/90 border border-green-500/40 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.8)] p-6 md:p-8 transform scale-90 opacity-0 transition-all duration-400 ease-out" id="upload-modal-panel">
+      
+      <button type="button" onclick="closeModal('upload-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white hover:bg-white/10 p-1 rounded-full transition-colors z-20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
 
-      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-        <span class="text-green-400">🖼️</span> Save a Memory
-      </h2>
-
+      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2"><span class="text-green-400">🖼️</span> Save a Memory</h2>
       <form id="upload-form" onsubmit="event.preventDefault(); submitMemory();" class="space-y-5">
         <div>
           <label class="block text-sm font-medium text-slate-300 mb-2">Pick a photo of us</label>
-          <div class="file-drop-area" id="drop-area">
-            <input type="file" id="input-file" accept="image/*" class="file-input" required onchange="handleFileSelect(event)">
-            
-            <div id="upload-prompt" class="flex flex-col items-center justify-center space-y-2 pointer-events-none">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-400/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+          <div class="file-drop-area" id="drop-area-add">
+            <input type="file" id="input-file" accept="image/*" class="file-input" required onchange="handleFileSelect(event, 'preview-add', 'prompt-add')">
+            <div id="prompt-add" class="flex flex-col items-center justify-center space-y-2 pointer-events-none">
+              <span class="text-3xl">📷</span>
               <p class="text-slate-300 text-sm font-medium">Click or Drag & Drop here</p>
-              <p class="text-slate-500 text-xs">Max 5MB (JPG/PNG)</p>
             </div>
-
-            <div id="image-preview-container" class="hidden relative w-full h-40 rounded-lg overflow-hidden border border-slate-600">
-              <img id="image-preview" src="" alt="Preview" class="w-full h-full object-cover">
+            <div id="preview-add-container" class="hidden relative w-full h-40 rounded-lg overflow-hidden border border-slate-600">
+              <img id="preview-add" src="" class="w-full h-full object-cover">
               <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                 <span class="text-white text-sm font-medium bg-black/60 px-3 py-1 rounded-full">Change Photo</span>
               </div>
             </div>
           </div>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-sm font-medium text-slate-300 mb-1">Date</label>
-            <input type="date" id="input-tanggal" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors [&::-webkit-calendar-picker-indicator]:invert">
+            <input type="date" id="input-tanggal" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white [&::-webkit-calendar-picker-indicator]:invert">
           </div>
           <div>
             <label class="block text-sm font-medium text-slate-300 mb-1">Location</label>
-            <input type="text" id="input-lokasi" required placeholder="Where were we?" class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors">
+            <input type="text" id="input-lokasi" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white">
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1">Our Note / Caption</label>
+          <textarea id="input-pesan" required rows="3" class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white resize-none"></textarea>
+        </div>
+        <button type="submit" id="btn-submit" class="w-full py-3 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(74,222,128,0.3)] transition-all">Add to Scrapbook</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: EDIT (ADMIN ONLY) -->
+  <!-- ========================================================================= -->
+  <div id="edit-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-400 z-50">
+    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-lg z-safe-layer transition-opacity" onclick="closeModal('edit-modal')"></div>
+    <div class="relative w-full max-w-md bg-slate-800/90 border border-blue-500/40 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.8)] p-6 md:p-8 transform scale-90 opacity-0 transition-all duration-400 ease-out" id="edit-modal-panel">
+      
+      <button type="button" onclick="closeModal('edit-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white hover:bg-white/10 p-1 rounded-full transition-colors z-20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+
+      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2"><span class="text-blue-400">✏️</span> Edit Memory</h2>
+      <form id="edit-form" onsubmit="event.preventDefault(); submitEditMemory();" class="space-y-4">
+        
+        <!-- Hidden ID Utama Asli -->
+        <input type="hidden" id="edit-id-asli">
+
+        <div>
+          <label class="block text-xs font-medium text-blue-300 mb-1">Ganti Foto (Kosongkan jika tidak ingin diubah)</label>
+          <div class="file-drop-area !border-blue-500/40 !p-3" id="drop-area-edit">
+            <input type="file" id="edit-file" accept="image/*" class="file-input" onchange="handleFileSelect(event, 'preview-edit', 'prompt-edit')">
+            <div id="prompt-edit" class="flex flex-col items-center justify-center pointer-events-none">
+               <span class="text-white text-xs bg-slate-700 px-3 py-1 rounded-full">Pilih Foto Baru</span>
+            </div>
+            <div id="preview-edit-container" class="hidden relative w-full h-32 rounded-lg overflow-hidden border border-slate-600 mt-2">
+              <img id="preview-edit" src="" class="w-full h-full object-cover">
+            </div>
           </div>
         </div>
 
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+             <label class="block text-sm font-medium text-slate-300 mb-1">ID Foto</label>
+             <!-- Form Input ID FOTO (Bisa Diubah Sesuai Request) -->
+             <input type="text" id="edit-id" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-3 py-2 text-white font-mono text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-1">Tanggal</label>
+            <input type="date" id="edit-tanggal" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-3 py-2 text-white [&::-webkit-calendar-picker-indicator]:invert text-sm">
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1">Lokasi</label>
+          <input type="text" id="edit-lokasi" required class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm">
+        </div>
+        
         <div>
           <label class="block text-sm font-medium text-slate-300 mb-1">Our Note / Caption</label>
-          <textarea id="input-pesan" required rows="3" placeholder="How did this moment feel?..." class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors resize-none"></textarea>
+          <textarea id="edit-pesan" required rows="2" class="w-full bg-slate-900/60 border border-slate-600 rounded-lg px-3 py-2 text-white resize-none text-sm"></textarea>
         </div>
 
-        <div class="pt-2">
-          <button type="submit" id="btn-submit" class="w-full py-3 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(74,222,128,0.3)] transition-all flex items-center justify-center gap-2 text-lg">
-            Add to Scrapbook
-          </button>
+        <div class="pt-2 flex gap-3">
+           <button type="button" onclick="closeModal('edit-modal')" class="w-1/3 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl transition-all">Batal</button>
+           <button type="submit" id="btn-submit-edit" class="w-2/3 py-2.5 bg-blue-500 hover:bg-blue-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all">
+             Simpan Perubahan
+           </button>
         </div>
       </form>
     </div>
   </div>
 
+
   <script>
     // ==========================================
-    // AXA & RIFKA PROTOCOL: API FETCH & SWR CACHING
-    // EXTERNAL VERCEL/GITHUB HOSTING SUPPORT
+    // AXA & RIFKA PROTOCOL: ROUTING & API MANAGER
     // ==========================================
 
-    // URL API yang sudah di update
     const API_URL = "https://script.google.com/macros/s/AKfycbwdgxW_eLZVJYimZ_aeYNQ_ir4DJgFerlwBFMgjx6xjgYHh3zcGordjwCtRnC_yubE/exec";
     const rotateClasses = ['rotate-1', 'rotate-2', 'rotate-3'];
     
+    // Global State
     let selectedFileBase64 = null;
     let selectedFileName = null;
     let selectedFileMime = null;
+    let currentGalleryData = []; // Menyimpan state data
 
-    // CUSTOM TOAST NOTIFICATION
+    // Router Logic (Mendeteksi apakah user di URL ?page=admin)
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdminPage = urlParams.get('page') === 'admin';
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setupDragDrop('drop-area-add');
+      setupDragDrop('drop-area-edit');
+      
+      if (isAdminPage) {
+        document.getElementById('btn-admin-entry').classList.add('hidden');
+        document.getElementById('view-public').classList.add('hidden');
+        document.getElementById('view-admin').classList.remove('hidden');
+        document.getElementById('view-admin').classList.add('flex');
+        
+        checkAdminSession();
+      } else {
+        fetchGallery(); // Load Public
+      }
+    });
+
+    // --- 1. TOAST & UTILS ---
     function showToast(message, type = 'error') {
       const toast = document.createElement('div');
-      const bgColor = type === 'success' ? 'bg-green-500/90 border-green-400' : 'bg-red-500/90 border-red-400';
-      const icon = type === 'success' ? '✨' : '⚠️';
+      const bgColor = type === 'success' ? 'bg-green-500/90 border-green-400' : (type === 'info' ? 'bg-blue-500/90 border-blue-400' : 'bg-red-500/90 border-red-400');
+      const icon = type === 'success' ? '✨' : (type === 'info' ? 'ℹ️' : '⚠️');
       
       toast.className = `flex items-center gap-3 px-5 py-3.5 rounded-xl border shadow-2xl text-white font-medium text-sm transform transition-all duration-300 translate-y-10 opacity-0 ${bgColor} backdrop-blur-md pointer-events-auto`;
       toast.innerHTML = `<span class="text-lg">${icon}</span> <span>${message}</span>`;
-      
       document.getElementById('toast-container').appendChild(toast);
       
       requestAnimationFrame(() => {
         toast.classList.remove('translate-y-10', 'opacity-0');
         toast.classList.add('translate-y-0', 'opacity-100');
       });
-      
       setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-10', 'opacity-0');
@@ -331,104 +469,93 @@
       }, 3500);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      fetchGallery();
-      setupDragDrop();
-    });
-
-    function handleFileSelect(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      if (file.size > 5 * 1024 * 1024) {
-        showToast("Ukuran file terlalu besar! Maksimal 5MB.", "error");
-        event.target.value = '';
-        return;
+    // --- 2. ADMIN AUTHENTICATION ---
+    function checkAdminSession() {
+      const token = localStorage.getItem('axarifka_admin_token');
+      if (token) {
+        document.getElementById('admin-login-box').classList.add('hidden');
+        document.getElementById('admin-dashboard-box').classList.remove('hidden');
+        document.getElementById('admin-dashboard-box').classList.add('flex');
+        fetchGallery(); // Load untuk Dashboard Admin
       }
-      selectedFileName = file.name;
-      selectedFileMime = file.type;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        selectedFileBase64 = e.target.result;
-        document.getElementById('upload-prompt').classList.add('hidden');
-        const previewContainer = document.getElementById('image-preview-container');
-        previewContainer.classList.remove('hidden');
-        document.getElementById('image-preview').src = selectedFileBase64;
-      };
-      reader.readAsDataURL(file);
     }
 
-    function setupDragDrop() {
-      const dropArea = document.getElementById('drop-area');
-      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, preventDefaults, false);
-      });
-      function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
-      ['dragenter', 'dragover'].forEach(eventName => {
-        dropArea.addEventListener(eventName, () => dropArea.classList.add('dragover'), false);
-      });
-      ['dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragover'), false);
-      });
+    function handleAdminLogin() {
+      const user = document.getElementById('admin-user').value;
+      const pass = document.getElementById('admin-pass').value;
+      const btn = document.getElementById('btn-login');
+      btn.innerHTML = "Memverifikasi..."; btn.disabled = true;
+
+      const payload = { action: 'login', username: user, password: pass };
+
+      fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), redirect: 'follow' })
+      .then(res => res.json())
+      .then(res => {
+        if (res.status) {
+          localStorage.setItem('axarifka_admin_token', res.token);
+          showToast(res.message, "success");
+          checkAdminSession();
+        } else {
+          showToast(res.message, "error");
+        }
+      })
+      .catch(err => showToast("Gagal menyambung ke server.", "error"))
+      .finally(() => { btn.innerHTML = "Login ke Server"; btn.disabled = false; });
     }
 
-    // FETCH DATA VIA REST API (SAFE SWR CACHING)
+    function logoutAdmin() {
+      localStorage.removeItem('axarifka_admin_token');
+      showToast("Berhasil logout", "info");
+      setTimeout(() => { window.location.reload(); }, 800);
+    }
+
+    // --- 3. FETCH CORE ---
     function fetchGallery() {
       const cacheKey = 'axarifka_gallery_production';
       let cachedData = null;
-      
-      try {
-        cachedData = localStorage.getItem(cacheKey);
-      } catch (e) {
-        console.warn("Axa & Rifka System: LocalStorage terblokir.");
-      }
+      try { cachedData = localStorage.getItem(cacheKey); } catch (e) {}
 
       if (cachedData) {
-        document.getElementById('loader').classList.add('hidden');
-        renderGallery(JSON.parse(cachedData));
-        showUpdateIndicator(true);
+        currentGalleryData = JSON.parse(cachedData);
+        distributeRender(currentGalleryData);
+        if(!isAdminPage) showUpdateIndicator(true);
         fetchFromServer(true);
       } else {
-        document.getElementById('loader').classList.remove('hidden');
-        document.getElementById('gallery-container').classList.add('hidden');
+        if(!isAdminPage) document.getElementById('loader').classList.remove('hidden');
         fetchFromServer(false);
       }
     }
 
     function fetchFromServer(isBackgroundSync) {
       fetch(API_URL, { method: 'GET', redirect: 'follow' })
-      .then(response => {
-        if (!response.ok) throw new Error("Gagal menyambung ke server Google");
-        return response.text(); 
-      })
+      .then(res => res.text())
       .then(textData => {
         try {
           const res = JSON.parse(textData);
           if (res.status === 'success') {
+            currentGalleryData = res.data;
             try { localStorage.setItem('axarifka_gallery_production', JSON.stringify(res.data)); } catch (e) {}
-            renderGallery(res.data);
+            distributeRender(res.data);
           } else {
-            if(!isBackgroundSync) handleError(res.message);
+            if(!isBackgroundSync) showToast(res.message, "error");
           }
-        } catch(e) {
-          throw new Error("Respons server bukan JSON. Pastikan setelan Deploy API Google Anda = 'Siapa Saja' / 'Anyone'.");
-        }
+        } catch(e) { throw new Error("Respons server bukan JSON."); }
       })
-      .catch(error => {
-        if(!isBackgroundSync) handleError(error.message);
-      })
-      .finally(() => {
-        showUpdateIndicator(false);
-      });
+      .catch(error => { if(!isBackgroundSync) showToast(error.message, "error"); })
+      .finally(() => { if(!isAdminPage) showUpdateIndicator(false); });
     }
 
-    function showUpdateIndicator(show) {
-      const indicator = document.getElementById('update-indicator');
-      if (show) indicator.classList.remove('opacity-0', 'translate-y-[-10px]');
-      else indicator.classList.add('opacity-0', 'translate-y-[-10px]');
+    // Router Render: Mau render gallery publik atau admin grid?
+    function distributeRender(data) {
+      if (isAdminPage) {
+        renderAdminGrid(data);
+      } else {
+        renderPublicGallery(data);
+      }
     }
 
-    function renderGallery(data) {
+    // --- 4. RENDER PUBLIC GALLERY ---
+    function renderPublicGallery(data) {
       document.getElementById('loader').classList.add('hidden');
       const container = document.getElementById('gallery-container');
       const emptyState = document.getElementById('empty-state');
@@ -447,17 +574,11 @@
         const rotateClass = rotateClasses[index % rotateClasses.length];
         const delay = index * 0.15; 
         
-        // ZETTBOT FIX: GOOGLE DRIVE CDN BYPASS (Anti-Broken Image)
-        // Mengekstrak ID asli Google Drive dari database Anda
         let displayUrl = item.url;
         const driveIdMatch = item.url.match(/id=([a-zA-Z0-9_-]+)/);
         if (driveIdMatch && driveIdMatch[1]) {
-            const fileId = driveIdMatch[1];
-            // Merakit ulang URL menjadi format rahasia Google Image CDN (Sangat cepat & Anti-CORS)
-            displayUrl = `https://lh3.googleusercontent.com/d/${fileId}`;
+            displayUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
         }
-        
-        // Fallback jika lh3 tetap gagal (misal file dihapus dari drive)
         const fallbackImg = "https://ui-avatars.com/api/?name=Memori+Hilang&background=1e293b&color=cbd5e1&size=512";
         
         htmlBuilder += `
@@ -465,28 +586,17 @@
             <div class="polaroid-inner">
               <div class="polaroid-front">
                 <div class="polaroid-photo-wrapper relative group bg-slate-800 flex items-center justify-center">
-                  <!-- Tag img sudah menggunakan displayUrl hasil Bypass -->
-                  <img src="${displayUrl}" alt="Memori ${item.id}" loading="lazy" 
-                       onerror="this.onerror=null; this.src='${fallbackImg}';"
-                       class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                  <img src="${displayUrl}" alt="Memori ${item.id}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImg}';" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                 </div>
-                <div class="absolute bottom-5 left-0 right-0 text-center text-slate-800 font-handwriting text-2xl md:text-3xl px-2 truncate">
-                  ${item.lokasi}
-                </div>
+                <div class="absolute bottom-5 left-0 right-0 text-center text-slate-800 font-handwriting text-2xl md:text-3xl px-2 truncate">${item.lokasi}</div>
               </div>
               <div class="polaroid-back">
                 <div class="flex flex-col h-full w-full relative">
-                  <span class="text-green-600 font-bold text-xs md:text-sm tracking-widest uppercase border-b-2 border-green-200/50 pb-2 mb-4 w-full text-center">
-                    ${item.tanggal}
-                  </span>
+                  <span class="text-green-600 font-bold text-xs md:text-sm tracking-widest uppercase border-b-2 border-green-200/50 pb-2 mb-4 w-full text-center">${item.tanggal}</span>
                   <div class="flex-grow flex items-center justify-center">
-                    <p class="font-handwriting text-2xl md:text-3xl leading-relaxed text-slate-800 text-center px-2">
-                      "${item.pesan}"
-                    </p>
+                    <p class="font-handwriting text-2xl md:text-3xl leading-relaxed text-slate-800 text-center px-2">"${item.pesan}"</p>
                   </div>
-                  <div class="mt-4 text-[10px] md:text-xs text-slate-400 w-full text-right font-mono">
-                    ${item.id}
-                  </div>
+                  <div class="mt-4 text-[10px] md:text-xs text-slate-400 w-full text-right font-mono">${item.id}</div>
                 </div>
               </div>
             </div>
@@ -496,9 +606,86 @@
       container.innerHTML = htmlBuilder;
     }
 
-    function openModal() {
-      const modal = document.getElementById('upload-modal');
-      const panel = document.getElementById('modal-panel');
+    function showUpdateIndicator(show) {
+      const indicator = document.getElementById('update-indicator');
+      if (show) indicator.classList.remove('opacity-0', 'translate-y-[-10px]');
+      else indicator.classList.add('opacity-0', 'translate-y-[-10px]');
+    }
+    function toggleFlip(element) { element.classList.toggle('is-flipped'); }
+
+
+    // --- 5. RENDER ADMIN DASHBOARD ---
+    function renderAdminGrid(data) {
+      const grid = document.getElementById('admin-data-grid');
+      
+      if (!data || data.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400">Database Kosong.</div>`;
+        return;
+      }
+
+      let htmlBuilder = '';
+      data.forEach(item => {
+        let displayUrl = item.url;
+        const driveIdMatch = item.url.match(/id=([a-zA-Z0-9_-]+)/);
+        if (driveIdMatch && driveIdMatch[1]) displayUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
+        const fallbackImg = "https://ui-avatars.com/api/?name=MH&background=1e293b&color=cbd5e1&size=512";
+
+        htmlBuilder += `
+          <div class="admin-card rounded-xl overflow-hidden flex flex-col">
+            <div class="h-40 w-full overflow-hidden bg-slate-900 border-b border-slate-700 relative">
+               <img src="${displayUrl}" onerror="this.onerror=null; this.src='${fallbackImg}';" class="w-full h-full object-cover opacity-80">
+               <span class="absolute top-2 left-2 bg-slate-900/80 text-green-400 text-xs font-mono px-2 py-1 rounded border border-green-500/30">${item.id}</span>
+            </div>
+            <div class="p-4 flex-grow flex flex-col">
+               <h4 class="text-white font-bold mb-1">${item.lokasi}</h4>
+               <span class="text-slate-400 text-xs mb-2 block">${item.tanggal}</span>
+               <p class="text-slate-300 text-sm line-clamp-2 flex-grow">"${item.pesan}"</p>
+               <div class="flex gap-2 mt-4">
+                 <button onclick="openEditModal('${item.id}')" class="flex-1 py-2 bg-blue-500/20 text-blue-400 hover:bg-blue-500 hover:text-white rounded-lg transition-colors border border-blue-500/50 text-sm font-semibold">✏️ Edit</button>
+                 <button onclick="deleteMemory('${item.id}')" class="flex-1 py-2 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors border border-red-500/50 text-sm font-semibold">🗑️ Delete</button>
+               </div>
+            </div>
+          </div>
+        `;
+      });
+      grid.innerHTML = htmlBuilder;
+    }
+
+
+    // --- 6. FILE UPLOAD HANDLER ---
+    function handleFileSelect(event, previewId, promptId) {
+      const file = event.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) {
+        showToast("Ukuran file terlalu besar! Maksimal 5MB.", "error");
+        event.target.value = '';
+        return;
+      }
+      selectedFileName = file.name;
+      selectedFileMime = file.type;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        selectedFileBase64 = e.target.result;
+        document.getElementById(promptId).classList.add('hidden');
+        document.getElementById(previewId+'-container').classList.remove('hidden');
+        document.getElementById(previewId).src = selectedFileBase64;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function setupDragDrop(areaId) {
+      const dropArea = document.getElementById(areaId);
+      if(!dropArea) return;
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => { dropArea.addEventListener(eventName, e => {e.preventDefault(); e.stopPropagation();}, false); });
+      ['dragenter', 'dragover'].forEach(eventName => { dropArea.addEventListener(eventName, () => dropArea.classList.add('dragover'), false); });
+      ['dragleave', 'drop'].forEach(eventName => { dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragover'), false); });
+    }
+
+    // --- 7. MODAL UTILS ---
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      const panel = document.getElementById(modalId + '-panel');
       modal.classList.remove('opacity-0', 'pointer-events-none');
       requestAnimationFrame(() => {
         panel.classList.remove('scale-90', 'opacity-0');
@@ -506,46 +693,34 @@
       });
     }
 
-    function closeModal() {
-      const modal = document.getElementById('upload-modal');
-      const panel = document.getElementById('modal-panel');
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      const panel = document.getElementById(modalId + '-panel');
       panel.classList.remove('scale-100', 'opacity-100');
       panel.classList.add('scale-90', 'opacity-0');
       
       setTimeout(() => {
         modal.classList.add('opacity-0', 'pointer-events-none');
-        document.getElementById('upload-form').reset();
+        
+        // Reset specific forms
+        if (modalId === 'upload-modal') {
+          document.getElementById('upload-form').reset();
+          document.getElementById('prompt-add').classList.remove('hidden');
+          document.getElementById('preview-add-container').classList.add('hidden');
+        } else if (modalId === 'edit-modal') {
+          document.getElementById('edit-form').reset();
+          document.getElementById('prompt-edit').classList.remove('hidden');
+          document.getElementById('preview-edit-container').classList.add('hidden');
+        }
         selectedFileBase64 = null;
-        document.getElementById('upload-prompt').classList.remove('hidden');
-        document.getElementById('image-preview-container').classList.add('hidden');
-        document.getElementById('image-preview').src = '';
       }, 300);
     }
 
-    // SUBMIT VIA FETCH API
-    function submitMemory() {
-      if (!selectedFileBase64) {
-        showToast("Wajib memilih foto terlebih dahulu!", "error");
-        return;
-      }
 
-      const btn = document.getElementById('btn-submit');
-      const tanggal = document.getElementById('input-tanggal').value;
-      const lokasi = document.getElementById('input-lokasi').value;
-      const pesan = document.getElementById('input-pesan').value;
-
-      const originalBtnText = btn.innerHTML;
-      btn.innerHTML = `<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-slate-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Uploading...`;
-      btn.disabled = true;
-
-      const payload = {
-        base64Data: selectedFileBase64,
-        fileName: selectedFileName,
-        mimeType: selectedFileMime,
-        tanggal: tanggal,
-        lokasi: lokasi,
-        pesan: pesan
-      };
+    // --- 8. CRUD ACTIONS (POST TO GOOGLE API) ---
+    function executePost(payload, btnElement, loadingText, originalText, successCallback) {
+      btnElement.innerHTML = loadingText;
+      btnElement.disabled = true;
 
       fetch(API_URL, {
         method: 'POST',
@@ -553,44 +728,105 @@
         body: JSON.stringify(payload),
         redirect: 'follow'
       })
-      .then(response => {
-        if (!response.ok) throw new Error("Jaringan bermasalah atau Server Google menolak.");
-        return response.text(); 
-      })
+      .then(res => res.text())
       .then(textData => {
         try {
           const res = JSON.parse(textData);
           if (res.status === true) {
             try { localStorage.removeItem('axarifka_gallery_production'); } catch(e) {}
-            closeModal();
-            fetchGallery(); 
-            showToast("Memori berhasil disimpan!", "success");
+            showToast(res.message, "success");
+            successCallback();
           } else {
             showToast("Gagal: " + res.message, "error");
           }
         } catch (e) {
-          showToast("Gagal mengunggah: Respons server tidak valid. Pastikan Deploy API = 'Siapa Saja'.", "error");
+          showToast("Gagal. API menolak / tidak dikonfigurasi 'Siapa Saja'.", "error");
         }
       })
-      .catch(error => {
-        showToast("Terjadi Error: " + error.message, "error");
-      })
-      .finally(() => {
-        btn.innerHTML = originalBtnText;
-        btn.disabled = false;
+      .catch(error => showToast("Error Jaringan.", "error"))
+      .finally(() => { btnElement.innerHTML = originalText; btnElement.disabled = false; });
+    }
+
+    // [ADD] Public Add
+    function submitMemory() {
+      if (!selectedFileBase64) return showToast("Pilih foto terlebih dahulu!", "error");
+      
+      const payload = {
+        action: 'add',
+        base64Data: selectedFileBase64,
+        fileName: selectedFileName,
+        mimeType: selectedFileMime,
+        tanggal: document.getElementById('input-tanggal').value,
+        lokasi: document.getElementById('input-lokasi').value,
+        pesan: document.getElementById('input-pesan').value
+      };
+      const btn = document.getElementById('btn-submit');
+      executePost(payload, btn, "Uploading...", "Add to Scrapbook", () => {
+        closeModal('upload-modal');
+        fetchGallery();
       });
     }
 
-    function handleError(errorMsg) { 
-      console.warn("Axa & Rifka System Log:", errorMsg); 
-      showToast(errorMsg || 'Gagal tersambung ke server.', 'error');
-      document.getElementById('loader').classList.add('hidden');
-      document.getElementById('empty-state').classList.remove('hidden');
+    // [DELETE] Admin Delete
+    function deleteMemory(id) {
+      if (confirm(`Peringatan: Yakin ingin menghapus Foto ${id} secara permanen?`)) {
+        const payload = { action: 'delete', id: id };
+        // Gunakan Fake Button logic
+        const fakeBtn = { innerHTML: '', disabled: false }; 
+        executePost(payload, fakeBtn, "Menghapus...", "", () => {
+          fetchGallery(); // Refresh Dashboard Grid
+        });
+      }
     }
-    
-    function toggleFlip(element) {
-      element.classList.toggle('is-flipped');
+
+    // [EDIT] Open Modal & Populate Data
+    function openEditModal(id) {
+      const item = currentGalleryData.find(x => x.id === id);
+      if(!item) return showToast("Data tidak ditemukan!", "error");
+
+      // Format balik tanggal untuk input[type="date"] (dd MMMM yyyy -> YYYY-MM-DD)
+      // Catatan: Seringkali parsing tanggal bahasa Indonesia agak rumit di native JS.
+      // Jika parsing gagal, input date kosong, user wajib isi ulang.
+      let dtValue = "";
+      try {
+         const d = new Date(item.tanggal);
+         if (!isNaN(d)) dtValue = d.toISOString().split('T')[0];
+      } catch(e){}
+
+      document.getElementById('edit-id-asli').value = item.id;
+      document.getElementById('edit-id').value = item.id; // Field ID yang bisa diganti
+      document.getElementById('edit-tanggal').value = dtValue;
+      document.getElementById('edit-lokasi').value = item.lokasi;
+      document.getElementById('edit-pesan').value = item.pesan;
+
+      openModal('edit-modal');
     }
+
+    // [UPDATE] Admin Submit Edit
+    function submitEditMemory() {
+      const payload = {
+        action: 'update',
+        id: document.getElementById('edit-id-asli').value, // ID Target
+        newId: document.getElementById('edit-id').value,   // Request User (Bisa ubah ID)
+        tanggal: document.getElementById('edit-tanggal').value,
+        lokasi: document.getElementById('edit-lokasi').value,
+        pesan: document.getElementById('edit-pesan').value
+      };
+
+      // Jika ada file baru yang diselect
+      if (selectedFileBase64) {
+        payload.base64Data = selectedFileBase64;
+        payload.fileName = selectedFileName;
+        payload.mimeType = selectedFileMime;
+      }
+
+      const btn = document.getElementById('btn-submit-edit');
+      executePost(payload, btn, "Updating Database...", "Simpan Perubahan", () => {
+        closeModal('edit-modal');
+        fetchGallery(); // Refresh Dashboard Grid
+      });
+    }
+
   </script>
 </body>
 </html>
