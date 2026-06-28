@@ -29,7 +29,7 @@
       overflow-x: hidden;
       scroll-behavior: smooth;
       animation: morph20Colors 120s infinite alternate ease-in-out;
-      background-color: #0b0f19; /* Fallback */
+      background-color: #0b0f19; 
     }
 
     @keyframes morph20Colors {
@@ -65,7 +65,7 @@
     .font-hw-4 { font-family: 'Shadows Into Light', cursive; font-size: 1.05em; font-weight: bold; }
 
     /* =========================================
-       CSS3 INNOVATIONS: STARDUST, ORBS & ROMANTIC PARTICLES
+       CSS3 INNOVATIONS: FALLING SAKURA, STARDUST, ORBS
        ========================================= */
     .bg-orbs {
       position: fixed;
@@ -110,6 +110,18 @@
       user-select: none;
     }
 
+    /* Falling Sakura Effect */
+    .sakura-petal {
+      position: absolute;
+      background-color: #ffb7c5;
+      border-radius: 15px 0px 15px 0px;
+      opacity: 0.6;
+      box-shadow: 0 0 10px rgba(255, 183, 197, 0.5);
+      animation: fall linear infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     @keyframes drift {
       0% { transform: translateY(0) translateX(0); opacity: 0; }
       20% { opacity: 0.6; }
@@ -122,6 +134,13 @@
       10% { opacity: 0.4; }
       90% { opacity: 0.2; transform: translateY(-90vh) rotate(10deg) scale(1.1); }
       100% { transform: translateY(-110vh) rotate(15deg) scale(1); opacity: 0; }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; }
     }
 
     /* =========================================
@@ -354,18 +373,31 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.7);
       border-color: rgba(74, 222, 128, 0.5);
     }
+
+    /* MUSIC MARQUEE */
+    .music-marquee-container {
+      width: 120px;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+    .music-marquee-content {
+      display: inline-block;
+      animation: marquee 8s linear infinite;
+      padding-right: 100%;
+    }
+    @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
   </style>
 </head>
 <body class="p-4 md:p-8 relative">
 
   <!-- AUDIO PLAYER (BGM) -->
-  <audio id="bgm-player" loop>
-    <source id="bgm-source" src="/music/daisies.mp3" type="audio/mpeg">
+  <audio id="bgm-player">
+    <source id="bgm-source" src="" type="audio/mpeg">
   </audio>
 
   <!-- COVER OVERLAY FOR AUTOPLAY POLICY BYPASS (WEDDING INVITE STYLE) -->
   <div id="cover-overlay" class="fixed inset-0 z-[200] bg-[#0f1423] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
-    <!-- Subtle Orbs in Cover -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
        <div class="orb orb-1"></div>
        <div class="orb orb-2" style="background: rgba(168, 85, 247, 0.15)"></div>
@@ -377,7 +409,8 @@
        </div>
        <h1 class="font-bold tracking-tight text-white mb-2 flex items-center justify-center gap-3 flex-wrap">
          <span class="font-playfair text-white text-5xl font-bold tracking-wider italic">Axa</span>
-         <span class="font-playfair text-white text-4xl opacity-50 italic font-light transform -rotate-12 mx-1">&</span> 
+         <!-- UPGRADE TYPOGRAPHY "&" ELEGANT -->
+         <span class="font-playfair text-white text-4xl opacity-50 italic font-light transform -rotate-12 mx-1 drop-shadow-lg">&</span> 
          <span class="font-hw-0 text-green-400 text-5xl">Rifka</span>
        </h1>
        <p class="text-slate-400 mt-2 mb-10 font-light tracking-widest text-xs uppercase animate-pulse">Tap to open our journal</p>
@@ -387,26 +420,37 @@
     </div>
   </div>
 
-  <!-- MUSIC PLAYER BUTTON (BOTTOM LEFT) -->
-  <div id="music-player-btn" class="fixed bottom-4 left-4 z-[90] bg-slate-800/80 p-2.5 rounded-full border border-slate-600/50 backdrop-blur-md cursor-pointer flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 hidden" onclick="toggleMusic()">
-    <div id="music-disc" class="w-10 h-10 rounded-full border border-slate-700 bg-[radial-gradient(circle_at_center,_#334155_0%,_#0f172a_100%)] flex items-center justify-center shadow-inner relative overflow-hidden" style="animation: spin 3s linear infinite;">
-       <!-- Disc details -->
-       <div class="absolute inset-0 rounded-full border-[3px] border-slate-800"></div>
-       <div class="w-3 h-3 bg-green-400 rounded-full shadow-[0_0_10px_rgba(74,222,128,0.8)] border-2 border-slate-900 z-10"></div>
-       <!-- Shine -->
-       <div class="absolute w-1/2 h-full bg-white/10 left-1/2 transform origin-left rotate-45"></div>
+  <!-- MUSIC PLAYER BUTTON (WIDGET DENGAN MARQUEE) -->
+  <div id="music-player-btn" class="fixed bottom-4 left-4 z-[90] bg-slate-800/80 p-2 pl-3 rounded-full border border-slate-600/50 backdrop-blur-md flex items-center shadow-lg transition-transform duration-300 hidden max-w-[200px]">
+    
+    <!-- Info Marquee & Play/Pause Click Area -->
+    <div class="flex items-center gap-3 pr-2 cursor-pointer" onclick="toggleMusic()">
+      <div id="music-disc" class="w-8 h-8 rounded-full border border-slate-700 bg-[radial-gradient(circle_at_center,_#334155_0%,_#0f172a_100%)] flex shrink-0 items-center justify-center shadow-inner relative overflow-hidden" style="animation: spin 3s linear infinite;">
+         <div class="absolute inset-0 rounded-full border-[2px] border-slate-800"></div>
+         <div class="w-2.5 h-2.5 bg-green-400 rounded-full shadow-[0_0_8px_rgba(74,222,128,0.8)] border border-slate-900 z-10"></div>
+         <div class="absolute w-1/2 h-full bg-white/10 left-1/2 transform origin-left rotate-45"></div>
+      </div>
+      <div class="flex flex-col justify-center">
+         <span class="text-[9px] text-green-400 font-bold uppercase tracking-widest leading-none mb-0.5" id="music-status">Playing</span>
+         <div class="music-marquee-container text-xs text-slate-300">
+           <span class="music-marquee-content" id="music-title">Loading track...</span>
+         </div>
+      </div>
     </div>
-    <!-- Mini sound wave visualizer -->
-    <div id="music-wave" class="absolute -top-1 -right-1 bg-slate-900 p-1 rounded-full border border-slate-700 flex gap-0.5 opacity-80">
-      <div class="w-1 bg-green-400 rounded-full animate-[wave_1s_ease-in-out_infinite]"></div>
-      <div class="w-1 bg-green-400 rounded-full animate-[wave_1.2s_ease-in-out_infinite_0.2s]"></div>
-      <div class="w-1 bg-green-400 rounded-full animate-[wave_0.8s_ease-in-out_infinite_0.4s]"></div>
+    
+    <!-- Next Button -->
+    <div class="border-l border-slate-600/50 pl-2 ml-1 flex items-center">
+       <button onclick="nextTrack(event)" class="text-slate-400 hover:text-white p-1 rounded-full hover:bg-slate-700 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z" />
+          </svg>
+       </button>
     </div>
+
   </div>
   
   <style>
     @keyframes spin { 100% { transform: rotate(360deg); } }
-    @keyframes wave { 0%, 100% { height: 4px; } 50% { height: 10px; } }
   </style>
 
   <!-- Ambient Background Orbs & Romantic Particles -->
@@ -414,7 +458,7 @@
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
-    <!-- JS injected stardust & romantic icons here -->
+    <!-- JS injected stardust, sakura & romantic icons here -->
   </div>
 
   <!-- Toast Notification Container -->
@@ -525,7 +569,7 @@
           <h2 class="text-2xl font-bold text-white flex items-center gap-3 font-playfair italic">
             <span class="text-green-400 text-3xl not-italic">🛡️</span> Dashboard Editor
           </h2>
-          <p class="text-slate-400 text-sm mt-1">Kelola foto, BGM, hapus, atau ubah detail realtime.</p>
+          <p class="text-slate-400 text-sm mt-1">Kelola foto, hapus, atau ubah detail realtime.</p>
         </div>
         <div class="flex gap-3 mt-4 md:mt-0">
           <button onclick="logoutAdmin()" class="px-5 py-2.5 bg-red-500/10 text-red-400 border border-red-500/30 rounded-xl hover:bg-red-500 hover:border-red-500 hover:text-white transition-all font-semibold">Logout</button>
@@ -535,14 +579,32 @@
 
       <!-- Fitur Upload Lagu Admin -->
       <div class="w-full bg-slate-800/60 border border-purple-500/30 p-6 rounded-2xl mb-8 backdrop-blur-xl shadow-xl">
-        <h3 class="text-white font-bold text-lg mb-3 font-playfair italic"><span class="text-purple-400 not-italic">🎵</span> Auto-Play Background Music</h3>
-        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+        <h3 class="text-white font-bold text-lg mb-4 font-playfair italic"><span class="text-purple-400 not-italic">🎵</span> Playlist Manager (MP3)</h3>
+        
+        <!-- Form Upload -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 pb-6 border-b border-slate-700/50">
            <input type="file" id="bgm-upload-input" accept="audio/mpeg, audio/mp3" class="hidden" onchange="handleBgmSelect(event)">
-           <button onclick="document.getElementById('bgm-upload-input').click()" class="px-5 py-2.5 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-xl hover:bg-purple-500 hover:text-white transition-all text-sm font-semibold">Ganti Lagu (MP3)</button>
-           <span id="bgm-file-name" class="text-slate-400 text-sm truncate max-w-xs block">Tidak ada file baru dipilih</span>
+           <button onclick="document.getElementById('bgm-upload-input').click()" class="px-5 py-2.5 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-xl hover:bg-purple-500 hover:text-white transition-all text-sm font-semibold whitespace-nowrap">Tambah Lagu (+)</button>
+           <span id="bgm-file-name" class="text-slate-400 text-sm truncate max-w-xs block">Belum ada file dipilih</span>
            <button id="btn-upload-bgm" onclick="submitBgm()" class="hidden px-5 py-2.5 bg-green-500 hover:bg-green-400 text-slate-900 rounded-xl transition-all text-sm font-bold shadow-[0_0_15px_rgba(74,222,128,0.3)]">Upload & Save</button>
         </div>
-        <p class="text-slate-500 text-xs mt-3">Maksimal file audio mp3 sebesar 8MB.</p>
+
+        <!-- Tabel Playlist -->
+        <div class="overflow-x-auto">
+           <table class="w-full text-left text-sm text-slate-300">
+             <thead class="text-xs uppercase bg-slate-900/50 text-slate-400">
+                <tr>
+                   <th class="px-4 py-3 rounded-tl-lg">ID</th>
+                   <th class="px-4 py-3">Nama File</th>
+                   <th class="px-4 py-3">Tanggal Upload</th>
+                   <th class="px-4 py-3 rounded-tr-lg w-20 text-center">Aksi</th>
+                </tr>
+             </thead>
+             <tbody id="admin-music-list" class="divide-y divide-slate-700/50">
+                <!-- Music List Injected by JS -->
+             </tbody>
+           </table>
+        </div>
       </div>
 
       <!-- Grid Data Admin -->
@@ -670,14 +732,17 @@
     const fontClasses = ['font-hw-0', 'font-hw-1', 'font-hw-2', 'font-hw-3', 'font-hw-4'];
     
     // Global State
-    let selectedFileBase64 = null;
-    let selectedFileName = null;
-    let selectedFileMime = null;
+    let selectedFileBase64 = null, selectedFileName = null, selectedFileMime = null;
     let bgmBase64 = null, bgmFileName = null, bgmMime = null;
     
     let currentGalleryData = []; 
     let autoSyncInterval;
+    
+    // MUSIC PLAYLIST STATE (TERPISAH DARI SINKRONISASI DOM)
+    let currentMusicData = [];
+    let currentTrackIndex = 0;
     let isMusicPlaying = false;
+    let isInitialFetchDone = false; // Flag mencegah overwrite source pertama kali
 
     // Router Logic
     const urlParams = new URLSearchParams(window.location.search);
@@ -687,60 +752,123 @@
       generateBackgroundParticles(); 
       setupDragDrop('drop-area-add');
       setupDragDrop('drop-area-edit');
+      setupMusicPlayer();
       
       if (isAdminPage) {
-        document.getElementById('cover-overlay').remove(); // Jangan muncul di admin
+        document.getElementById('cover-overlay').remove(); 
         document.getElementById('btn-admin-entry').classList.add('hidden');
         document.getElementById('view-public').classList.add('hidden');
         document.getElementById('view-admin').classList.remove('hidden');
         document.getElementById('view-admin').classList.add('flex');
         checkAdminSession();
-      } else {
-        // Tahan render public view sampai user klik Open Journal
-      }
-
+      } 
       startAutoSync();
     });
 
-    // --- EFFECT: MUSIC PLAYER CONTROL ---
+    // --- EFFECT: MUSIC PLAYER CONTROL (PLAYLIST LOGIC) ---
+    function setupMusicPlayer() {
+       const player = document.getElementById('bgm-player');
+       player.onended = () => nextTrack(); // Play next song automatically
+    }
+
     function openJournal() {
       const cover = document.getElementById('cover-overlay');
       cover.classList.add('opacity-0', 'pointer-events-none');
       setTimeout(() => cover.remove(), 1000);
       
       document.getElementById('view-public').classList.remove('hidden');
-      fetchGallery(); // Load Data setelah diklik open
+      fetchGallery(); 
 
-      const player = document.getElementById('bgm-player');
-      player.volume = 0.6;
-      player.play().then(() => {
-        isMusicPlaying = true;
-        document.getElementById('music-player-btn').classList.remove('hidden');
-      }).catch(e => console.log("Music auto-play blocked by browser."));
+      // Putar musik jika data sudah ada
+      if (currentMusicData.length > 0) {
+         playTrack(0);
+      } else {
+         // Jika fetch belum selesai, mainkan default sambil loading
+         const player = document.getElementById('bgm-player');
+         player.volume = 0.6;
+         player.src = '/music/daisies.mp3'; 
+         player.play().then(() => updateMusicUI(true, 'daisies.mp3')).catch(e=>{});
+      }
+    }
+
+    function playTrack(index) {
+       if(currentMusicData.length === 0) return;
+       if(index >= currentMusicData.length) index = 0; // loop back
+       
+       currentTrackIndex = index;
+       const track = currentMusicData[index];
+       
+       let playUrl = track.url;
+       const driveIdMatch = playUrl.match(/id=([a-zA-Z0-9_-]+)/);
+       if (driveIdMatch && driveIdMatch[1]) playUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
+
+       const player = document.getElementById('bgm-player');
+       player.volume = 0.6;
+       player.src = playUrl;
+       player.play().then(() => {
+          updateMusicUI(true, track.fileName);
+       }).catch(e => console.log("Auto-play blocked", e));
+    }
+
+    function nextTrack(e) {
+       if(e) e.stopPropagation(); // Mencegah toggle pause
+       if(currentMusicData.length <= 1) return;
+       playTrack(currentTrackIndex + 1);
     }
 
     function toggleMusic() {
        const player = document.getElementById('bgm-player');
-       const disc = document.getElementById('music-disc');
-       const wave = document.getElementById('music-wave');
        if (isMusicPlaying) {
          player.pause();
-         disc.style.animationPlayState = 'paused';
-         wave.classList.add('opacity-30');
-         isMusicPlaying = false;
+         updateMusicUI(false);
        } else {
-         player.play();
-         disc.style.animationPlayState = 'running';
-         wave.classList.remove('opacity-30');
-         isMusicPlaying = true;
+         if(!player.src || player.src.includes(window.location.host + '/undefined')) playTrack(currentTrackIndex); // fallback
+         else player.play().then(() => updateMusicUI(true)).catch(e=>{});
        }
+    }
+
+    function updateMusicUI(playing, title = null) {
+       const disc = document.getElementById('music-disc');
+       const wave = document.getElementById('music-wave');
+       const status = document.getElementById('music-status');
+       const titleEl = document.getElementById('music-title');
+       const playerBtn = document.getElementById('music-player-btn');
+       
+       playerBtn.classList.remove('hidden');
+       isMusicPlaying = playing;
+       
+       if (playing) {
+         disc.style.animationPlayState = 'running';
+         status.innerText = "Playing";
+         status.classList.remove('text-slate-400');
+         status.classList.add('text-green-400');
+       } else {
+         disc.style.animationPlayState = 'paused';
+         status.innerText = "Paused";
+         status.classList.remove('text-green-400');
+         status.classList.add('text-slate-400');
+       }
+
+       if(title) titleEl.innerText = title;
     }
 
     // --- EFFECT: GENERATE PARTICLES ---
     function generateBackgroundParticles() {
       const container = document.getElementById('particles-container');
       
-      // Classic Stardust 
+      // Falling Sakura
+      for (let i = 0; i < 20; i++) {
+        let petal = document.createElement('div');
+        petal.classList.add('sakura-petal');
+        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.width = `${8 + Math.random() * 8}px`;
+        petal.style.height = `${8 + Math.random() * 8}px`;
+        petal.style.animationDuration = `${10 + Math.random() * 15}s`;
+        petal.style.animationDelay = `${Math.random() * -15}s`;
+        container.appendChild(petal);
+      }
+
+      // Classic Stardust & Icons
       for (let i = 0; i < 25; i++) {
         let star = document.createElement('div');
         star.classList.add('stardust');
@@ -751,8 +879,7 @@
         container.appendChild(star);
       }
 
-      // New Romantic Elements (Hati, Sakura, Cahaya, Gelembung)
-      const symbols = ['🤍', '✨', '🫧', '🦋', '🌸', '💮', '✦', '✧'];
+      const symbols = ['🤍', '✨', '🫧', '🦋', '✦', '✧'];
       for (let i = 0; i < 15; i++) {
         let el = document.createElement('div');
         el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
@@ -859,15 +986,22 @@
     function submitBgm() {
       if(!bgmBase64) return;
       const btn = document.getElementById('btn-upload-bgm');
-      executePost({ action: 'upload_bgm', base64Data: bgmBase64, fileName: bgmFileName, mimeType: bgmMime }, btn, "Uploading BGM...", "Upload & Save", () => {
+      executePost({ action: 'upload_bgm', base64Data: bgmBase64, fileName: bgmFileName, mimeType: bgmMime }, btn, "Uploading...", "Upload & Save", () => {
         btn.classList.add('hidden');
         document.getElementById('bgm-file-name').innerText = "Berhasil diupdate!";
         fetchFromServer(true, false);
       });
     }
 
+    function removeBgm(id) {
+      if(confirm(`Yakin ingin menghapus lagu ini dari playlist?`)) {
+        const fakeBtn = { innerHTML: '', disabled: false, classList: {add:()=>{}, remove:()=>{}} }; 
+        executePost({ action: 'delete_bgm', id: id }, fakeBtn, "Menghapus...", "", () => fetchFromServer(true, false));
+      }
+    }
 
-    // --- 3. FETCH CORE (AUTO SYNC) ---
+
+    // --- 3. FETCH CORE (AUTO SYNC ISOLATED FROM MUSIC) ---
     function fetchGallery() {
       const cacheKey = 'axarifka_gallery_production';
       let cachedData = null;
@@ -895,20 +1029,27 @@
       .then(res => {
         if (res.status === 'success') {
           
-          // SETTINGS / BGM UPDATE
-          if (res.settings && res.settings.bgm) {
-             let newUrl = res.settings.bgm;
-             const driveIdMatch = newUrl.match(/id=([a-zA-Z0-9_-]+)/);
-             if (driveIdMatch && driveIdMatch[1]) newUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
+          // === 1. MUSIC SYNC LOGIC (NON-INTERRUPTING) ===
+          if (res.music) {
+             const newMusicStr = JSON.stringify(res.music);
+             const oldMusicStr = JSON.stringify(currentMusicData);
              
-             const player = document.getElementById('bgm-player');
-             if(player.src !== newUrl && !newUrl.includes(window.location.host)) {
-                 player.src = newUrl;
-                 if (isMusicPlaying) player.play();
+             if(newMusicStr !== oldMusicStr) {
+               currentMusicData = res.music;
+               if(isAdminPage) renderAdminMusicList(); // Update UI tabel di admin
+               
+               // Inisiasi play pertama kali jika belum pernah sama sekali di public
+               if(!isAdminPage && !isInitialFetchDone && currentMusicData.length > 0) {
+                 isInitialFetchDone = true;
+                 const cover = document.getElementById('cover-overlay');
+                 if(cover.classList.contains('opacity-0')) { // Artinya cover sudah ditutup user
+                    playTrack(0);
+                 }
+               }
              }
           }
 
-          // GALLERY DATA SYNC
+          // === 2. GALLERY DATA SYNC LOGIC ===
           const newDataStr = JSON.stringify(res.data);
           const oldDataStr = JSON.stringify(currentGalleryData);
           if (newDataStr !== oldDataStr) {
@@ -976,7 +1117,6 @@
         if (driveIdMatch && driveIdMatch[1]) displayUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
         const fallbackImg = "https://ui-avatars.com/api/?name=Memori+Hilang&background=1e293b&color=cbd5e1&size=512";
         
-        // MENGHILANGKAN animate-staggered dan MENGGANTIKAN DENGAN scroll-reveal
         htmlBuilder += `
           <div class="polaroid-container ${rotateClass} scroll-reveal" onclick="toggleFlip(this)">
             <div class="polaroid-inner">
@@ -1058,6 +1198,29 @@
       });
       grid.innerHTML = htmlBuilder;
       setTimeout(() => setupScrollReveal(), 100);
+    }
+
+    function renderAdminMusicList() {
+      const tbody = document.getElementById('admin-music-list');
+      if(!currentMusicData || currentMusicData.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="px-4 py-4 text-center text-slate-500 border-t border-slate-700/50">Tidak ada lagu di Playlist</td></tr>`;
+        return;
+      }
+      
+      let html = '';
+      currentMusicData.forEach((song) => {
+        html += `
+          <tr class="hover:bg-slate-700/20 transition-colors">
+            <td class="px-4 py-3 font-mono text-xs text-green-400">${song.id}</td>
+            <td class="px-4 py-3 text-white truncate max-w-[150px] sm:max-w-[200px]" title="${song.fileName}">${song.fileName}</td>
+            <td class="px-4 py-3 text-slate-400 text-xs">${song.tanggal}</td>
+            <td class="px-4 py-3 text-center">
+              <button onclick="removeBgm('${song.id}')" class="text-red-400 hover:text-red-300 p-1.5 rounded bg-red-500/10 hover:bg-red-500/20 transition-colors" title="Hapus Lagu">🗑️</button>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
     }
 
 
