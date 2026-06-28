@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0b0f19">
   <title>Axa and Rifka's Scrapbook</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,12 +16,12 @@
   <style>
     :root {
       --neon-green: #4ade80;
-      --glass-bg: rgba(30, 41, 59, 0.55);
-      --glass-border: rgba(74, 222, 128, 0.25);
+      --glass-bg: rgba(20, 25, 40, 0.7); /* Optimized opacity for better rendering */
+      --glass-border: rgba(74, 222, 128, 0.2);
     }
     
     /* =========================================
-       CSS3 INNOVATION: 20 AESTHETIC COLORS BG ANIMATION
+       CSS3 INNOVATION: OPTIMIZED 20 COLORS BG
        ========================================= */
     body {
       font-family: 'Inter', sans-serif;
@@ -28,10 +29,11 @@
       color: #e2e8f0;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      animation: morph20Colors 120s infinite alternate ease-in-out;
+      animation: morph20Colors 150s infinite alternate ease-in-out;
       background-color: #0b0f19; 
     }
 
+    /* Menggunakan transisi warna solid untuk performa tinggi ketimbang gradien berat */
     @keyframes morph20Colors {
       0%   { background-color: #0b0f19; } 
       5%   { background-color: #0f1423; } 
@@ -65,7 +67,7 @@
     .font-hw-4 { font-family: 'Shadows Into Light', cursive; font-size: 1.05em; font-weight: bold; }
 
     /* =========================================
-       CSS3 INNOVATIONS: FALLING SAKURA, STARDUST, ORBS
+       CSS3 INNOVATIONS: PARTICLES (OPTIMIZED)
        ========================================= */
     .bg-orbs {
       position: fixed;
@@ -77,25 +79,26 @@
     .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.4;
-      animation: float 25s infinite ease-in-out alternate;
+      filter: blur(80px);
+      opacity: 0.3;
+      will-change: transform;
+      animation: float 30s infinite ease-in-out alternate;
     }
     .orb-1 { width: 450px; height: 450px; background: rgba(74, 222, 128, 0.1); top: -15%; left: -10%; animation-delay: 0s; }
     .orb-2 { width: 400px; height: 400px; background: rgba(56, 189, 248, 0.1); bottom: -15%; right: -10%; animation-delay: -5s; }
-    .orb-3 { width: 350px; height: 350px; background: rgba(168, 85, 247, 0.1); top: 35%; left: 35%; animation-delay: -10s; }
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, -40px) scale(1.05); }
+      50% { transform: translate(30px, -30px) scale(1.05); }
     }
 
+    /* Partikel Animasi Hardware Accelerated */
     .stardust {
       position: absolute;
       width: 2px; height: 2px;
       background: white;
       border-radius: 50%;
-      box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.8);
+      will-change: transform, opacity;
       animation: drift 15s infinite linear;
       opacity: 0;
     }
@@ -103,20 +106,19 @@
     .floating-romantic {
       position: absolute;
       opacity: 0.15;
-      filter: blur(1px) drop-shadow(0 0 5px rgba(255,255,255,0.3));
+      will-change: transform, opacity;
       animation: floatUp linear infinite;
       z-index: -1;
       pointer-events: none;
       user-select: none;
     }
 
-    /* Falling Sakura Effect */
     .sakura-petal {
       position: absolute;
       background-color: #ffb7c5;
       border-radius: 15px 0px 15px 0px;
-      opacity: 0.6;
-      box-shadow: 0 0 10px rgba(255, 183, 197, 0.5);
+      opacity: 0.5;
+      will-change: transform, opacity;
       animation: fall linear infinite;
       z-index: -1;
       pointer-events: none;
@@ -124,8 +126,8 @@
 
     @keyframes drift {
       0% { transform: translateY(0) translateX(0); opacity: 0; }
-      20% { opacity: 0.6; }
-      80% { opacity: 0.4; }
+      20% { opacity: 0.5; }
+      80% { opacity: 0.3; }
       100% { transform: translateY(-300px) translateX(80px); opacity: 0; }
     }
 
@@ -138,20 +140,20 @@
 
     @keyframes fall {
       0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.8; }
-      90% { opacity: 0.6; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.4; }
       100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; }
     }
 
     /* =========================================
-       CSS3 ANIMATIONS: TEXT GRADIENT & SCROLL REVEAL
+       CSS3 ANIMATIONS: TEXT GRADIENT & SCROLL
        ========================================= */
     .text-gradient-animated {
       background: linear-gradient(270deg, #4ade80, #38bdf8, #a855f7, #4ade80);
       background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientMove 6s ease infinite;
+      animation: gradientMove 8s ease infinite;
     }
     @keyframes gradientMove { 
       0% { background-position: 0% 50% } 
@@ -160,7 +162,7 @@
     }
 
     @keyframes cinematicEntrance {
-      from { opacity: 0; transform: translateY(60px) scale(0.85) rotateX(-15deg); filter: blur(10px); }
+      from { opacity: 0; transform: translateY(50px) scale(0.9) rotateX(-10deg); filter: blur(5px); }
       to { opacity: 1; transform: translateY(0) scale(1) rotateX(0); filter: blur(0); }
     }
 
@@ -170,31 +172,30 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* Trend Scroll Reveal Optimization (Bouncy Pop-Up) */
+    /* Optimized Scroll Reveal */
     .scroll-reveal {
       opacity: 0;
-      transform: translateY(80px) scale(0.8) rotateX(-10deg);
-      filter: blur(5px);
-      transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-      will-change: transform, opacity, filter;
+      transform: translateY(60px) scale(0.9);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      will-change: transform, opacity;
+      content-visibility: auto; /* PERFORMA: Mencegah render jika di luar layar */
     }
     .scroll-reveal.revealed {
       opacity: 1;
-      transform: translateY(0) scale(1) rotateX(0);
-      filter: blur(0);
+      transform: translateY(0) scale(1);
     }
 
     /* =========================================
        POLAROID 3D FLIP & GLOSSY GLARE MAGIC 
        ========================================= */
     .polaroid-container {
-      perspective: 2000px; 
+      perspective: 1500px; 
       width: 100%;
       max-width: 320px;
       margin: 0 auto;
       aspect-ratio: 3/4;
       cursor: pointer;
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.6s ease;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       transform: rotate(var(--rot));
     }
     
@@ -204,8 +205,7 @@
     .rotate-4 { --rot: 2deg; }
 
     .polaroid-container:hover, .polaroid-container:active {
-      transform: translateY(-20px) scale(1.08) rotate(calc(var(--rot) + 2deg));
-      filter: drop-shadow(0 35px 40px rgba(0, 0, 0, 0.6));
+      transform: translateY(-15px) scale(1.05) rotate(calc(var(--rot) + 1.5deg));
       z-index: 10;
     }
 
@@ -214,13 +214,10 @@
       width: 100%;
       height: 100%;
       text-align: center;
-      transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-style: preserve-3d;
     }
-
-    .polaroid-container.is-flipped .polaroid-inner {
-      transform: rotateY(180deg);
-    }
+    .polaroid-container.is-flipped .polaroid-inner { transform: rotateY(180deg); }
 
     .polaroid-front, .polaroid-back {
       position: absolute;
@@ -229,8 +226,9 @@
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       border-radius: 6px;
-      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255,255,255,0.3);
+      box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.5);
       overflow: hidden; 
+      will-change: transform;
     }
 
     .polaroid-front {
@@ -240,21 +238,18 @@
       flex-direction: column;
     }
 
-    /* GLOSSY GLARE */
+    /* GLOSSY GLARE (Optimized) */
     .polaroid-front::after {
       content: "";
       position: absolute;
       top: 0; left: -150%; width: 50%; height: 100%;
-      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
       transform: skewX(-25deg);
-      transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 20;
       pointer-events: none;
     }
-    .polaroid-container:hover .polaroid-front::after {
-      left: 200%;
-      transition: 0.9s ease-in-out;
-    }
+    .polaroid-container:hover .polaroid-front::after { left: 200%; }
 
     .polaroid-photo-wrapper {
       width: 100%;
@@ -262,30 +257,19 @@
       overflow: hidden;
       background-color: #1e293b;
       border-radius: 4px;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
       position: relative;
-    }
-    
-    .polaroid-photo-wrapper::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
-      pointer-events: none;
     }
 
     /* TAPE EFFECT */
     .polaroid-container::before {
       content: '';
       position: absolute;
-      top: -16px;
+      top: -14px;
       left: 50%;
-      width: 120px;
-      height: 38px;
+      width: 110px;
+      height: 35px;
       background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15), inset 0 0 12px rgba(255,255,255,0.5);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1), inset 0 0 8px rgba(255,255,255,0.3);
       transform: translateX(-50%) rotate(-2deg);
       z-index: 50;
       pointer-events: none;
@@ -295,7 +279,7 @@
     .polaroid-back {
       background-color: #fdfbf7;
       background-image: 
-        linear-gradient(rgba(74, 222, 128, 0.2) 1px, transparent 1px),
+        linear-gradient(rgba(74, 222, 128, 0.15) 1px, transparent 1px),
         linear-gradient(90deg, rgba(74, 222, 128, 0.1) 1px, transparent 1px);
       background-size: 24px 24px;
       color: #1e293b;
@@ -312,8 +296,8 @@
       overflow-x: hidden;
       width: 100%;
       padding-right: 6px;
-      mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
     }
     .caption-scroll-area::-webkit-scrollbar { width: 4px; }
     .caption-scroll-area::-webkit-scrollbar-track { background: transparent; }
@@ -328,12 +312,13 @@
       line-height: 1.1; 
     }
 
+    /* Optimized Blur for performance */
     .scrapbook-board {
       background: var(--glass-bg);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       border: 1px solid var(--glass-border);
-      box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(74, 222, 128, 0.08);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
       border-radius: 32px;
       position: relative;
     }
@@ -347,14 +332,13 @@
       padding: 24px;
       text-align: center;
       background: rgba(15, 23, 42, 0.5);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.3s ease;
       cursor: pointer;
       overflow: hidden;
     }
     .file-drop-area:hover, .file-drop-area.dragover {
       background: rgba(74, 222, 128, 0.15);
       border-color: var(--neon-green);
-      transform: scale(1.03);
     }
     .file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
     textarea::-webkit-scrollbar { width: 6px; }
@@ -366,11 +350,12 @@
     .admin-card {
       background: rgba(30, 41, 59, 0.8);
       border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      content-visibility: auto;
     }
     .admin-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
       border-color: rgba(74, 222, 128, 0.5);
     }
 
@@ -392,7 +377,7 @@
 <body class="p-4 md:p-8 relative">
 
   <!-- AUDIO PLAYER (BGM) -->
-  <audio id="bgm-player">
+  <audio id="bgm-player" preload="auto">
     <source id="bgm-source" src="" type="audio/mpeg">
   </audio>
 
@@ -457,7 +442,6 @@
   <div class="bg-orbs" id="particles-container">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
     <!-- JS injected stardust, sakura & romantic icons here -->
   </div>
 
@@ -474,7 +458,7 @@
   <!-- ========================================================================= -->
   <div id="view-public" class="w-full hidden">
     <header class="text-center mb-12 mt-6 relative z-20 flex flex-col items-center">
-      <h1 class="font-bold tracking-tight text-white mb-2 flex items-center justify-center gap-3 flex-wrap" style="animation: cinematicEntrance 1.5s ease forwards;">
+      <h1 class="font-bold tracking-tight text-white mb-2 flex items-center justify-center gap-3 flex-wrap" style="animation: cinematicEntrance 1.2s ease forwards;">
         <!-- TYPOGRAPHY AESTHETIC "AXA" DENGAN PLAYFAIR & "&" Cursive -->
         <span class="font-playfair text-white text-5xl md:text-7xl font-bold tracking-wider italic drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">Axa</span>
         
@@ -483,11 +467,11 @@
         <span class="font-hw-0 text-gradient-animated text-6xl md:text-8xl drop-shadow-[0_0_20px_rgba(74,222,128,0.3)] mt-2 md:mt-0">Rifka</span>
       </h1>
       <!-- Deskripsi Gen Z Cozy Romantic -->
-      <p class="text-slate-300 text-sm md:text-base max-w-lg mx-auto mb-10 font-light tracking-wide" style="animation: cinematicEntrance 1.8s ease forwards;">
+      <p class="text-slate-300 text-sm md:text-base max-w-lg mx-auto mb-10 font-light tracking-wide" style="animation: cinematicEntrance 1.5s ease forwards;">
         just a digital diary of us. late-night drives, random coffee dates, and everything in between 🤍✨
       </p>
       
-      <button onclick="openModal('upload-modal')" style="animation: popIn 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;" class="group relative flex items-center gap-3 px-8 py-4 bg-slate-800/80 border border-green-500/50 text-green-400 rounded-full font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(74,222,128,0.15)] hover:shadow-[0_0_40px_rgba(74,222,128,0.5)] hover:bg-green-400 hover:text-slate-900 transform hover:-translate-y-2 backdrop-blur-md overflow-hidden text-lg">
+      <button onclick="openModal('upload-modal')" style="animation: popIn 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;" class="group relative flex items-center gap-3 px-8 py-4 bg-slate-800/80 border border-green-500/50 text-green-400 rounded-full font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(74,222,128,0.15)] hover:shadow-[0_0_40px_rgba(74,222,128,0.5)] hover:bg-green-400 hover:text-slate-900 transform hover:-translate-y-2 backdrop-blur-md overflow-hidden text-lg">
         <div class="absolute inset-0 bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
@@ -738,11 +722,11 @@
     let currentGalleryData = []; 
     let autoSyncInterval;
     
-    // MUSIC PLAYLIST STATE (TERPISAH DARI SINKRONISASI DOM)
+    // MUSIC PLAYLIST STATE (ISOLATED)
     let currentMusicData = [];
     let currentTrackIndex = 0;
     let isMusicPlaying = false;
-    let isInitialFetchDone = false; // Flag mencegah overwrite source pertama kali
+    let isInitialFetchDone = false; 
 
     // Router Logic
     const urlParams = new URLSearchParams(window.location.search);
@@ -783,11 +767,11 @@
       if (currentMusicData.length > 0) {
          playTrack(0);
       } else {
-         // Jika fetch belum selesai, mainkan default sambil loading
+         // Default fallback jika data telat loading
          const player = document.getElementById('bgm-player');
          player.volume = 0.6;
-         player.src = '/music/daisies.mp3'; 
-         player.play().then(() => updateMusicUI(true, 'daisies.mp3')).catch(e=>{});
+         player.src = '/music/Justin Bieber - Daisies.mp3'; 
+         player.play().then(() => updateMusicUI(true, 'Justin Bieber - Daisies.mp3')).catch(e=>{});
       }
     }
 
@@ -811,7 +795,7 @@
     }
 
     function nextTrack(e) {
-       if(e) e.stopPropagation(); // Mencegah toggle pause
+       if(e) e.stopPropagation(); 
        if(currentMusicData.length <= 1) return;
        playTrack(currentTrackIndex + 1);
     }
@@ -822,14 +806,13 @@
          player.pause();
          updateMusicUI(false);
        } else {
-         if(!player.src || player.src.includes(window.location.host + '/undefined')) playTrack(currentTrackIndex); // fallback
+         if(!player.src || player.src.includes(window.location.host + '/undefined')) playTrack(currentTrackIndex); 
          else player.play().then(() => updateMusicUI(true)).catch(e=>{});
        }
     }
 
     function updateMusicUI(playing, title = null) {
        const disc = document.getElementById('music-disc');
-       const wave = document.getElementById('music-wave');
        const status = document.getElementById('music-status');
        const titleEl = document.getElementById('music-title');
        const playerBtn = document.getElementById('music-player-btn');
@@ -852,12 +835,13 @@
        if(title) titleEl.innerText = title;
     }
 
-    // --- EFFECT: GENERATE PARTICLES ---
+    // --- EFFECT: GENERATE PARTICLES (OPTIMIZED) ---
     function generateBackgroundParticles() {
       const container = document.getElementById('particles-container');
+      const isMobile = window.innerWidth < 768; // Deteksi perangkat
       
-      // Falling Sakura
-      for (let i = 0; i < 20; i++) {
+      const sakuraCount = isMobile ? 8 : 15;
+      for (let i = 0; i < sakuraCount; i++) {
         let petal = document.createElement('div');
         petal.classList.add('sakura-petal');
         petal.style.left = `${Math.random() * 100}vw`;
@@ -868,8 +852,8 @@
         container.appendChild(petal);
       }
 
-      // Classic Stardust & Icons
-      for (let i = 0; i < 25; i++) {
+      const stardustCount = isMobile ? 12 : 20;
+      for (let i = 0; i < stardustCount; i++) {
         let star = document.createElement('div');
         star.classList.add('stardust');
         star.style.left = `${Math.random() * 100}vw`;
@@ -880,7 +864,8 @@
       }
 
       const symbols = ['🤍', '✨', '🫧', '🦋', '✦', '✧'];
-      for (let i = 0; i < 15; i++) {
+      const symbolCount = isMobile ? 8 : 12;
+      for (let i = 0; i < symbolCount; i++) {
         let el = document.createElement('div');
         el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
         el.classList.add('floating-romantic');
@@ -968,7 +953,6 @@
       setTimeout(() => window.location.reload(), 800);
     }
 
-    // Handler Upload MP3 Admin
     function handleBgmSelect(event) {
       const file = event.target.files[0];
       if(!file) return;
@@ -1001,7 +985,7 @@
     }
 
 
-    // --- 3. FETCH CORE (AUTO SYNC ISOLATED FROM MUSIC) ---
+    // --- 3. FETCH CORE (AUTO SYNC ISOLATED FROM MUSIC PLAYING STATE) ---
     function fetchGallery() {
       const cacheKey = 'axarifka_gallery_production';
       let cachedData = null;
@@ -1036,13 +1020,14 @@
              
              if(newMusicStr !== oldMusicStr) {
                currentMusicData = res.music;
-               if(isAdminPage) renderAdminMusicList(); // Update UI tabel di admin
+               if(isAdminPage) renderAdminMusicList(); 
                
-               // Inisiasi play pertama kali jika belum pernah sama sekali di public
+               // Jika lagu di playlist saat ini dihapus admin & kita sedang memainkannya, skip ke track selanjutnya.
+               // Tapi ini tidak akan memotong play secara general.
                if(!isAdminPage && !isInitialFetchDone && currentMusicData.length > 0) {
                  isInitialFetchDone = true;
                  const cover = document.getElementById('cover-overlay');
-                 if(cover.classList.contains('opacity-0')) { // Artinya cover sudah ditutup user
+                 if(cover && cover.classList.contains('opacity-0')) { 
                     playTrack(0);
                  }
                }
