@@ -183,7 +183,7 @@
 </head>
 <body class="p-4 md:p-8 relative">
 
-  <!-- Toast Notification Container (ZettBOT Fix) -->
+  <!-- Toast Notification Container -->
   <div id="toast-container" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none"></div>
 
   <header class="text-center mb-8 mt-4 relative z-20 flex flex-col items-center">
@@ -294,10 +294,10 @@
   <script>
     // ==========================================
     // ZETTBOT PROTOCOL: API FETCH & SWR CACHING
-    // EXTERNAL GITHUB HOSTING SUPPORT (BULLETPROOF UPGRADE)
+    // EXTERNAL VERCEL/GITHUB HOSTING SUPPORT
     // ==========================================
 
-    // URL API dari Google Apps Script Anda (PASTIKAN URL INI BENAR & AKTIF)
+    // URL API (GANTI DENGAN URL DEPLOYMENT BARU ANDA)
     const API_URL = "https://script.google.com/macros/s/AKfycbxJB9eHWtzzCZdcxo5J-95wAH8J-6k7iyR7Ngg6hmMQGnDAyV0z42fnx5dFSXme6GQ/exec";
     const rotateClasses = ['rotate-1', 'rotate-2', 'rotate-3'];
     
@@ -305,7 +305,7 @@
     let selectedFileName = null;
     let selectedFileMime = null;
 
-    // --- ZETTBOT FIX: CUSTOM TOAST NOTIFICATION ---
+    // CUSTOM TOAST NOTIFICATION
     function showToast(message, type = 'error') {
       const toast = document.createElement('div');
       const bgColor = type === 'success' ? 'bg-green-500/90 border-green-400' : 'bg-red-500/90 border-red-400';
@@ -327,14 +327,12 @@
         setTimeout(() => toast.remove(), 300);
       }, 3500);
     }
-    // ----------------------------------------------
 
     document.addEventListener("DOMContentLoaded", () => {
       fetchGallery();
       setupDragDrop();
     });
 
-    // 1. UPLOAD FILE READER LOGIC
     function handleFileSelect(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -371,7 +369,7 @@
       });
     }
 
-    // 2. FETCH DATA VIA REST API (SAFE SWR CACHING)
+    // FETCH DATA VIA REST API (SAFE SWR CACHING)
     function fetchGallery() {
       const cacheKey = 'zettbos_gallery_production';
       let cachedData = null;
@@ -395,32 +393,22 @@
     }
 
     function fetchFromServer(isBackgroundSync) {
-      // ZETTBOT FIX: Tambahkan 'redirect: follow' untuk menangani URL GAS
-      fetch(API_URL, {
-        method: 'GET',
-        redirect: 'follow'
-      })
+      fetch(API_URL, { method: 'GET', redirect: 'follow' })
       .then(response => {
         if (!response.ok) throw new Error("Gagal menyambung ke server Google");
-        // ZETTBOT FIX: Parse sebagai TEXT dulu, bukan JSON langsung (Mencegah Fatal Error)
         return response.text(); 
       })
       .then(textData => {
         try {
-          // Parsing manual untuk menangkap error jika Google mengembalikan halaman HTML Login
           const res = JSON.parse(textData);
-          
           if (res.status === 'success') {
-            try {
-              localStorage.setItem('zettbos_gallery_production', JSON.stringify(res.data));
-            } catch (e) {}
-            
+            try { localStorage.setItem('zettbos_gallery_production', JSON.stringify(res.data)); } catch (e) {}
             renderGallery(res.data);
           } else {
             if(!isBackgroundSync) handleError(res.message);
           }
         } catch(e) {
-          throw new Error("Respons server bukan JSON (Terdeteksi HTML). Pastikan setelan Deploy API Google Anda = 'Siapa Saja' / 'Anyone'.");
+          throw new Error("Respons server bukan JSON. Pastikan setelan Deploy API Google Anda = 'Siapa Saja' / 'Anyone'.");
         }
       })
       .catch(error => {
@@ -456,12 +444,18 @@
         const rotateClass = rotateClasses[index % rotateClasses.length];
         const delay = index * 0.15; 
         
+        // ZETTBOT FIX: onerror placeholder untuk mencegah "ikon gambar pecah"
+        // Menggunakan desain estetis (Warna senada dengan dark mode scrapbook)
+        const fallbackImg = "https://ui-avatars.com/api/?name=Memori+Hilang&background=1e293b&color=cbd5e1&size=512";
+        
         htmlBuilder += `
           <div class="polaroid-container ${rotateClass} animate-staggered" style="animation-delay: ${delay}s" onclick="toggleFlip(this)">
             <div class="polaroid-inner">
               <div class="polaroid-front">
-                <div class="polaroid-photo-wrapper relative group">
-                  <img src="${item.url}" alt="Memori ${item.id}" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                <div class="polaroid-photo-wrapper relative group bg-slate-800 flex items-center justify-center">
+                  <img src="${item.url}" alt="Memori ${item.id}" loading="lazy" 
+                       onerror="this.onerror=null; this.src='${fallbackImg}';"
+                       class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                 </div>
                 <div class="absolute bottom-5 left-0 right-0 text-center text-slate-800 font-handwriting text-2xl md:text-3xl px-2 truncate">
                   ${item.lokasi}
@@ -489,7 +483,6 @@
       container.innerHTML = htmlBuilder;
     }
 
-    // 3. MODAL ANIMATION
     function openModal() {
       const modal = document.getElementById('upload-modal');
       const panel = document.getElementById('modal-panel');
@@ -516,7 +509,7 @@
       }, 300);
     }
 
-    // 4. SUBMIT VIA FETCH API (CORS BYPASS + BULLETPROOF)
+    // SUBMIT VIA FETCH API
     function submitMemory() {
       if (!selectedFileBase64) {
         showToast("Wajib memilih foto terlebih dahulu!", "error");
@@ -541,18 +534,14 @@
         pesan: pesan
       };
 
-      // ZETTBOT FIX: Tambahkan 'redirect: follow' untuk memastikan POST request sukses di Google Script
       fetch(API_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8', 
-        },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
         redirect: 'follow'
       })
       .then(response => {
         if (!response.ok) throw new Error("Jaringan bermasalah atau Server Google menolak.");
-        // ZETTBOT FIX: Parse sebagai TEXT untuk validasi error HTML
         return response.text(); 
       })
       .then(textData => {
@@ -580,7 +569,6 @@
     }
 
     function handleError(errorMsg) { 
-      // ZETTBOT FIX: Ganti console.error menjadi warn agar Canvas tidak crash memunculkan popup hitam
       console.warn("ZettBOT Log:", errorMsg); 
       showToast(errorMsg || 'Gagal tersambung ke server.', 'error');
       document.getElementById('loader').classList.add('hidden');
