@@ -4,34 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#0b0f19">
-  <title>Axa and Rifka's Scrapbook</title>
   
-  <!-- =========================================
-       SEO & META TAGS OPTIMIZATION (100% SEO)
-       ========================================= -->
-  <meta name="description" content="Axa and Rifka's Scrapbook. Just a digital diary of us. Late-night drives, random coffee dates, and everything in between 🤍✨.">
+  <!-- Primary Meta Tags -->
+  <title>Axa and Rifka's Scrapbook</title>
+  <meta name="title" content="Axa and Rifka's Scrapbook">
+  <meta name="description" content="Just a digital diary of us. Late-night drives, random coffee dates, and everything in between 🤍✨.">
   <meta name="keywords" content="Axa, Rifka, Scrapbook, Digital Diary, Couple Journal, Romance, Memories, Photobooth">
   <meta name="author" content="Axa & Rifka">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="Indonesian">
-  
-  <!-- Open Graph / Facebook / WhatsApp -->
+
+  <!-- =========================================
+       SEO & OPEN GRAPH (UNTUK PREVIEW SOSMED / CHAT WA & TELEGRAM)
+       Gunakan Absolute URL dan Dimensions agar dijamin muncul
+       ========================================= -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://galleryjournal.vercel.app/">
   <meta property="og:title" content="Axa and Rifka's Scrapbook">
   <meta property="og:description" content="Just a digital diary of us. Late-night drives, random coffee dates, and everything in between 🤍✨.">
-  <meta property="og:image" content="/axalogo.png">
+  <meta property="og:image" content="https://galleryjournal.vercel.app/axalogo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Axa and Rifka Logo">
   <meta property="og:site_name" content="Axa & Rifka's Scrapbook">
 
-  <!-- Twitter -->
+  <!-- Twitter / X Card -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://galleryjournal.vercel.app/">
   <meta property="twitter:title" content="Axa and Rifka's Scrapbook">
   <meta property="twitter:description" content="Just a digital diary of us. Late-night drives, random coffee dates, and everything in between 🤍✨.">
-  <meta property="twitter:image" content="/axalogo.png">
+  <meta property="twitter:image" content="https://galleryjournal.vercel.app/axalogo.png">
   
-  <!-- FAVICON / LOGO -->
-  <link rel="icon" href="/axalogo.png" type="image/png">
+  <!-- FAVICON / BROWSER TAB ICON MULTI-PLATFORM -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/axalogo.png">
+  <link rel="shortcut icon" href="/axalogo.png" type="image/png">
   <link rel="apple-touch-icon" href="/axalogo.png">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -59,7 +63,7 @@
       scroll-behavior: smooth;
       animation: morph20Colors 150s infinite alternate ease-in-out;
       background-color: #0b0f19; 
-      cursor: default; /* Sparkle cursor will be injected */
+      cursor: default;
     }
 
     @keyframes morph20Colors {
@@ -225,6 +229,12 @@
     @keyframes cinematicEntrance {
       from { opacity: 0; transform: translateY(50px) scale(0.9) rotateX(-10deg); filter: blur(5px); }
       to { opacity: 1; transform: translateY(0) scale(1) rotateX(0); filter: blur(0); }
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+      70% { opacity: 1; transform: scale(1.05) translateY(-5px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     /* Optimized Scroll Reveal */
@@ -474,7 +484,7 @@
     <div class="border-l border-slate-600/50 pl-2 ml-1 flex items-center">
        <button onclick="nextTrack(event)" class="text-slate-400 hover:text-white p-1 rounded-full hover:bg-slate-700 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z" />
+            <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z" />
           </svg>
        </button>
     </div>
