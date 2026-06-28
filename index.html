@@ -16,7 +16,7 @@
   <style>
     :root {
       --neon-green: #4ade80;
-      --glass-bg: rgba(20, 25, 40, 0.7); /* Optimized opacity for better rendering */
+      --glass-bg: rgba(20, 25, 40, 0.7); 
       --glass-border: rgba(74, 222, 128, 0.2);
     }
     
@@ -33,7 +33,6 @@
       background-color: #0b0f19; 
     }
 
-    /* Menggunakan transisi warna solid untuk performa tinggi ketimbang gradien berat */
     @keyframes morph20Colors {
       0%   { background-color: #0b0f19; } 
       5%   { background-color: #0f1423; } 
@@ -92,7 +91,6 @@
       50% { transform: translate(30px, -30px) scale(1.05); }
     }
 
-    /* Partikel Animasi Hardware Accelerated */
     .stardust {
       position: absolute;
       width: 2px; height: 2px;
@@ -178,7 +176,7 @@
       transform: translateY(60px) scale(0.9);
       transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
       will-change: transform, opacity;
-      content-visibility: auto; /* PERFORMA: Mencegah render jika di luar layar */
+      content-visibility: auto; 
     }
     .scroll-reveal.revealed {
       opacity: 1;
@@ -238,7 +236,6 @@
       flex-direction: column;
     }
 
-    /* GLOSSY GLARE (Optimized) */
     .polaroid-front::after {
       content: "";
       position: absolute;
@@ -260,7 +257,6 @@
       position: relative;
     }
 
-    /* TAPE EFFECT */
     .polaroid-container::before {
       content: '';
       position: absolute;
@@ -312,7 +308,6 @@
       line-height: 1.1; 
     }
 
-    /* Optimized Blur for performance */
     .scrapbook-board {
       background: var(--glass-bg);
       backdrop-filter: blur(15px);
@@ -376,7 +371,7 @@
 </head>
 <body class="p-4 md:p-8 relative">
 
-  <!-- AUDIO PLAYER (BGM) -->
+  <!-- AUDIO PLAYER (BGM) - Dipisahkan sepenuhnya logicnya -->
   <audio id="bgm-player" preload="auto">
     <source id="bgm-source" src="" type="audio/mpeg">
   </audio>
@@ -406,7 +401,7 @@
   </div>
 
   <!-- MUSIC PLAYER BUTTON (WIDGET DENGAN MARQUEE) -->
-  <div id="music-player-btn" class="fixed bottom-4 left-4 z-[90] bg-slate-800/80 p-2 pl-3 rounded-full border border-slate-600/50 backdrop-blur-md flex items-center shadow-lg transition-transform duration-300 hidden max-w-[200px]">
+  <div id="music-player-btn" class="fixed bottom-4 left-4 z-[90] bg-slate-800/90 p-2 pl-3 rounded-full border border-slate-600/50 backdrop-blur-xl flex items-center shadow-2xl transition-transform duration-300 hidden max-w-[200px]">
     
     <!-- Info Marquee & Play/Pause Click Area -->
     <div class="flex items-center gap-3 pr-2 cursor-pointer" onclick="toggleMusic()">
@@ -459,18 +454,13 @@
   <div id="view-public" class="w-full hidden">
     <header class="text-center mb-12 mt-6 relative z-20 flex flex-col items-center">
       <h1 class="font-bold tracking-tight text-white mb-2 flex items-center justify-center gap-3 flex-wrap" style="animation: cinematicEntrance 1.2s ease forwards;">
-        <!-- TYPOGRAPHY AESTHETIC "AXA" DENGAN PLAYFAIR & "&" Cursive -->
         <span class="font-playfair text-white text-5xl md:text-7xl font-bold tracking-wider italic drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">Axa</span>
-        
         <span class="font-playfair text-white text-4xl md:text-6xl opacity-60 italic font-light transform -rotate-12 mx-2 drop-shadow-md">&</span> 
-        
         <span class="font-hw-0 text-gradient-animated text-6xl md:text-8xl drop-shadow-[0_0_20px_rgba(74,222,128,0.3)] mt-2 md:mt-0">Rifka</span>
       </h1>
-      <!-- Deskripsi Gen Z Cozy Romantic -->
       <p class="text-slate-300 text-sm md:text-base max-w-lg mx-auto mb-10 font-light tracking-wide" style="animation: cinematicEntrance 1.5s ease forwards;">
         just a digital diary of us. late-night drives, random coffee dates, and everything in between 🤍✨
       </p>
-      
       <button onclick="openModal('upload-modal')" style="animation: popIn 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;" class="group relative flex items-center gap-3 px-8 py-4 bg-slate-800/80 border border-green-500/50 text-green-400 rounded-full font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(74,222,128,0.15)] hover:shadow-[0_0_40px_rgba(74,222,128,0.5)] hover:bg-green-400 hover:text-slate-900 transform hover:-translate-y-2 backdrop-blur-md overflow-hidden text-lg">
         <div class="absolute inset-0 bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -481,7 +471,6 @@
     </header>
 
     <main class="scrapbook-board max-w-7xl mx-auto p-6 md:p-14 relative z-10 min-h-[65vh]">
-      <!-- Sinkronisasi Indicator (Auto Sync Badge) -->
       <div id="update-indicator" class="absolute top-6 right-6 flex items-center gap-3 px-4 py-2 bg-slate-800/90 rounded-full border border-slate-600 opacity-0 transform translate-y-[-10px] pointer-events-none z-30 shadow-lg backdrop-blur-sm transition-all duration-300">
         <div class="relative flex h-3 w-3">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -490,7 +479,6 @@
         <span class="text-xs text-slate-300 font-mono font-medium tracking-wide" id="sync-text">Syncing...</span>
       </div>
 
-      <!-- Loading State -->
       <div id="loader" class="flex flex-col items-center justify-center h-72 space-y-6">
         <div class="relative w-20 h-20">
           <div class="absolute inset-0 border-4 border-slate-700/50 rounded-full"></div>
@@ -499,10 +487,8 @@
         <p class="text-green-400 font-medium animate-pulse tracking-widest font-mono text-sm">LOADING OUR MEMORIES...</p>
       </div>
 
-      <!-- Gallery Grid -->
       <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16 hidden mt-4"></div>
       
-      <!-- Empty State -->
       <div id="empty-state" class="hidden flex-col items-center justify-center h-72 space-y-4 text-center">
         <div class="text-7xl mb-4 opacity-40 drop-shadow-2xl animate-bounce" style="animation-duration: 2.5s;">📸</div>
         <h3 class="text-2xl text-white font-semibold font-playfair italic">It's a little quiet here</h3>
@@ -561,16 +547,27 @@
         </div>
       </div>
 
-      <!-- Fitur Upload Lagu Admin -->
+      <!-- Fitur Upload & Controller Loop Lagu Admin -->
       <div class="w-full bg-slate-800/60 border border-purple-500/30 p-6 rounded-2xl mb-8 backdrop-blur-xl shadow-xl">
         <h3 class="text-white font-bold text-lg mb-4 font-playfair italic"><span class="text-purple-400 not-italic">🎵</span> Playlist Manager (MP3)</h3>
         
-        <!-- Form Upload -->
-        <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 pb-6 border-b border-slate-700/50">
-           <input type="file" id="bgm-upload-input" accept="audio/mpeg, audio/mp3" class="hidden" onchange="handleBgmSelect(event)">
-           <button onclick="document.getElementById('bgm-upload-input').click()" class="px-5 py-2.5 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-xl hover:bg-purple-500 hover:text-white transition-all text-sm font-semibold whitespace-nowrap">Tambah Lagu (+)</button>
-           <span id="bgm-file-name" class="text-slate-400 text-sm truncate max-w-xs block">Belum ada file dipilih</span>
-           <button id="btn-upload-bgm" onclick="submitBgm()" class="hidden px-5 py-2.5 bg-green-500 hover:bg-green-400 text-slate-900 rounded-xl transition-all text-sm font-bold shadow-[0_0_15px_rgba(74,222,128,0.3)]">Upload & Save</button>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-6 pb-6 border-b border-slate-700/50">
+           <!-- Form Upload -->
+           <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+               <input type="file" id="bgm-upload-input" accept="audio/mpeg, audio/mp3" class="hidden" onchange="handleBgmSelect(event)">
+               <button onclick="document.getElementById('bgm-upload-input').click()" class="px-5 py-2.5 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-xl hover:bg-purple-500 hover:text-white transition-all text-sm font-semibold whitespace-nowrap shadow-sm">Tambah Lagu (+)</button>
+               <span id="bgm-file-name" class="text-slate-400 text-sm truncate max-w-xs block">Belum ada file dipilih</span>
+               <button id="btn-upload-bgm" onclick="submitBgm()" class="hidden px-5 py-2.5 bg-green-500 hover:bg-green-400 text-slate-900 rounded-xl transition-all text-sm font-bold shadow-[0_0_15px_rgba(74,222,128,0.3)]">Upload & Save</button>
+           </div>
+           
+           <!-- NEW: LOOP CONTROLLER -->
+           <div class="flex flex-col gap-1.5 sm:items-end">
+             <span class="text-[10px] text-slate-400 font-mono uppercase tracking-widest pl-1 sm:pl-0">Music Loop Mode</span>
+             <div class="flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-slate-700 shadow-inner">
+                 <button id="btn-loop-all" onclick="setLoopMode('all')" class="px-4 py-2 text-xs font-bold rounded-lg bg-purple-500 text-white shadow-md transition-all">Loop All</button>
+                 <button id="btn-loop-single" onclick="setLoopMode('single')" class="px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">Loop Single</button>
+             </div>
+           </div>
         </div>
 
         <!-- Tabel Playlist -->
@@ -736,7 +733,6 @@
       generateBackgroundParticles(); 
       setupDragDrop('drop-area-add');
       setupDragDrop('drop-area-edit');
-      setupMusicPlayer();
       
       if (isAdminPage) {
         document.getElementById('cover-overlay').remove(); 
@@ -745,14 +741,48 @@
         document.getElementById('view-admin').classList.remove('hidden');
         document.getElementById('view-admin').classList.add('flex');
         checkAdminSession();
+        updateLoopUI(); // Set UI untuk Loop Control
       } 
+      
+      setupMusicPlayer();
       startAutoSync();
     });
 
-    // --- EFFECT: MUSIC PLAYER CONTROL (PLAYLIST LOGIC) ---
+    // --- EFFECT: MUSIC PLAYER CONTROL (PLAYLIST LOGIC WITH LOOP MODE) ---
     function setupMusicPlayer() {
        const player = document.getElementById('bgm-player');
-       player.onended = () => nextTrack(); // Play next song automatically
+       
+       // Handle song ends
+       player.onended = () => {
+           const loopMode = localStorage.getItem('axarifka_loop_mode') || 'all';
+           if (loopMode === 'single') {
+               playTrack(currentTrackIndex); // Replay lagu yang sama
+           } else {
+               nextTrack(); // Putar lagu berikutnya (akan looping ke awal jika habis)
+           }
+       };
+    }
+
+    // Toggle Mode Looping: 'all' atau 'single'
+    function setLoopMode(mode) {
+      localStorage.setItem('axarifka_loop_mode', mode);
+      updateLoopUI();
+      showToast(`Mode Putar: ${mode === 'all' ? 'Loop Semua Playlist' : 'Loop Satu Lagu'}`, 'info');
+    }
+
+    function updateLoopUI() {
+      const mode = localStorage.getItem('axarifka_loop_mode') || 'all';
+      const btnAll = document.getElementById('btn-loop-all');
+      const btnSingle = document.getElementById('btn-loop-single');
+      if(!btnAll || !btnSingle) return;
+      
+      if(mode === 'all') {
+         btnAll.className = "px-4 py-2 text-xs font-bold rounded-lg bg-purple-500 text-white shadow-md transition-all";
+         btnSingle.className = "px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all";
+      } else {
+         btnSingle.className = "px-4 py-2 text-xs font-bold rounded-lg bg-purple-500 text-white shadow-md transition-all";
+         btnAll.className = "px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all";
+      }
     }
 
     function openJournal() {
@@ -777,7 +807,8 @@
 
     function playTrack(index) {
        if(currentMusicData.length === 0) return;
-       if(index >= currentMusicData.length) index = 0; // loop back
+       // Loop back ke 0 jika lagu sudah di ujung playlist
+       if(index >= currentMusicData.length) index = 0; 
        
        currentTrackIndex = index;
        const track = currentMusicData[index];
@@ -796,7 +827,13 @@
 
     function nextTrack(e) {
        if(e) e.stopPropagation(); 
-       if(currentMusicData.length <= 1) return;
+       if(currentMusicData.length === 0) {
+          // Fallback manual reload untuk github path default
+          const player = document.getElementById('bgm-player');
+          player.currentTime = 0;
+          player.play();
+          return;
+       }
        playTrack(currentTrackIndex + 1);
     }
 
@@ -1022,8 +1059,6 @@
                currentMusicData = res.music;
                if(isAdminPage) renderAdminMusicList(); 
                
-               // Jika lagu di playlist saat ini dihapus admin & kita sedang memainkannya, skip ke track selanjutnya.
-               // Tapi ini tidak akan memotong play secara general.
                if(!isAdminPage && !isInitialFetchDone && currentMusicData.length > 0) {
                  isInitialFetchDone = true;
                  const cover = document.getElementById('cover-overlay');
