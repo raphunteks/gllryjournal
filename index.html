@@ -33,27 +33,27 @@
     }
 
     @keyframes morph20Colors {
-      0%   { background-color: #0b0f19; } /* Deep Navy */
-      5%   { background-color: #0f1423; } /* Midnight Blue */
-      10%  { background-color: #111424; } /* Dark Indigo */
-      15%  { background-color: #131021; } /* Void Purple */
-      20%  { background-color: #160d1b; } /* Deep Mauve */
-      25%  { background-color: #180b16; } /* Dark Plum */
-      30%  { background-color: #1a0a13; } /* Black Cherry */
-      35%  { background-color: #180911; } /* Dark Rosewood */
-      40%  { background-color: #150912; } /* Shadow Maroon */
-      45%  { background-color: #120a13; } /* Deep Espresso */
-      50%  { background-color: #0f0b14; } /* Soft Charcoal */
-      55%  { background-color: #0c0e18; } /* Slate Night */
-      60%  { background-color: #0a111b; } /* Ocean Dark */
-      65%  { background-color: #08131d; } /* Deep Azure */
-      70%  { background-color: #06151c; } /* Twilight Cyan */
-      75%  { background-color: #05161a; } /* Dark Teal */
-      80%  { background-color: #051717; } /* Deep Emerald */
-      85%  { background-color: #061713; } /* Forest Night */
-      90%  { background-color: #08160f; } /* Dark Moss */
-      95%  { background-color: #091313; } /* Muted Jungle */
-      100% { background-color: #0b0f19; } /* Back to Deep Navy */
+      0%   { background-color: #0b0f19; } 
+      5%   { background-color: #0f1423; } 
+      10%  { background-color: #111424; } 
+      15%  { background-color: #131021; } 
+      20%  { background-color: #160d1b; } 
+      25%  { background-color: #180b16; } 
+      30%  { background-color: #1a0a13; } 
+      35%  { background-color: #180911; } 
+      40%  { background-color: #150912; } 
+      45%  { background-color: #120a13; } 
+      50%  { background-color: #0f0b14; } 
+      55%  { background-color: #0c0e18; } 
+      60%  { background-color: #0a111b; } 
+      65%  { background-color: #08131d; } 
+      70%  { background-color: #06151c; } 
+      75%  { background-color: #05161a; } 
+      80%  { background-color: #051717; } 
+      85%  { background-color: #061713; } 
+      90%  { background-color: #08160f; } 
+      95%  { background-color: #091313; } 
+      100% { background-color: #0b0f19; } 
     }
 
     /* TYPOGRAPHY CLASSES */
@@ -90,7 +90,6 @@
       50% { transform: translate(40px, -40px) scale(1.05); }
     }
 
-    /* Partikel Stardust Asli */
     .stardust {
       position: absolute;
       width: 2px; height: 2px;
@@ -101,7 +100,6 @@
       opacity: 0;
     }
     
-    /* Partikel Romantis Baru (Hati, Kupu-kupu, Gelembung) */
     .floating-romantic {
       position: absolute;
       opacity: 0.15;
@@ -120,14 +118,14 @@
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(0) rotate(-15deg); opacity: 0; }
-      10% { opacity: 0.25; }
-      90% { opacity: 0.2; }
-      100% { transform: translateY(-110vh) rotate(15deg); opacity: 0; }
+      0% { transform: translateY(0) rotate(-15deg) scale(0.8); opacity: 0; }
+      10% { opacity: 0.4; }
+      90% { opacity: 0.2; transform: translateY(-90vh) rotate(10deg) scale(1.1); }
+      100% { transform: translateY(-110vh) rotate(15deg) scale(1); opacity: 0; }
     }
 
     /* =========================================
-       CSS3 ANIMATIONS: TEXT GRADIENT & ENTRANCE
+       CSS3 ANIMATIONS: TEXT GRADIENT & SCROLL REVEAL
        ========================================= */
     .text-gradient-animated {
       background: linear-gradient(270deg, #4ade80, #38bdf8, #a855f7, #4ade80);
@@ -142,7 +140,6 @@
       100% { background-position: 0% 50% } 
     }
 
-    /* Animasi Baru yang lebih sinematik */
     @keyframes cinematicEntrance {
       from { opacity: 0; transform: translateY(60px) scale(0.85) rotateX(-15deg); filter: blur(10px); }
       to { opacity: 1; transform: translateY(0) scale(1) rotateX(0); filter: blur(0); }
@@ -154,17 +151,25 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .animate-staggered {
+    /* Trend Scroll Reveal Optimization (Bouncy Pop-Up) */
+    .scroll-reveal {
       opacity: 0;
-      animation: cinematicEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-      transform-origin: center bottom;
+      transform: translateY(80px) scale(0.8) rotateX(-10deg);
+      filter: blur(5px);
+      transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      will-change: transform, opacity, filter;
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0);
+      filter: blur(0);
     }
 
     /* =========================================
        POLAROID 3D FLIP & GLOSSY GLARE MAGIC 
        ========================================= */
     .polaroid-container {
-      perspective: 2000px; /* Lebih dalam lagi */
+      perspective: 2000px; 
       width: 100%;
       max-width: 320px;
       margin: 0 auto;
@@ -216,7 +221,7 @@
       flex-direction: column;
     }
 
-    /* EFEK PANTULAN CAHAYA (GLOSSY GLARE) YANG DIPERBAIKI */
+    /* GLOSSY GLARE */
     .polaroid-front::after {
       content: "";
       position: absolute;
@@ -242,7 +247,6 @@
       position: relative;
     }
     
-    /* Inner Glow di foto */
     .polaroid-photo-wrapper::after {
       content: '';
       position: absolute;
@@ -283,9 +287,6 @@
       align-items: center;
     }
 
-    /* =========================================
-       SOLUSI TEXT OFFSIDE & TERPOTONG 
-       ========================================= */
     .caption-scroll-area {
       max-height: 180px; 
       overflow-y: auto;
@@ -295,13 +296,9 @@
       mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
       -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
     }
-
     .caption-scroll-area::-webkit-scrollbar { width: 4px; }
     .caption-scroll-area::-webkit-scrollbar-track { background: transparent; }
-    .caption-scroll-area::-webkit-scrollbar-thumb { 
-      background: rgba(74, 222, 128, 0.5); 
-      border-radius: 10px; 
-    }
+    .caption-scroll-area::-webkit-scrollbar-thumb { background: rgba(74, 222, 128, 0.5); border-radius: 10px; }
     .caption-scroll-area::-webkit-scrollbar-thumb:hover { background: rgba(74, 222, 128, 0.8); }
 
     .text-clamp-2 {
@@ -312,9 +309,6 @@
       line-height: 1.1; 
     }
 
-    /* =========================================
-       GLASSMORPHISM BOARD
-       ========================================= */
     .scrapbook-board {
       background: var(--glass-bg);
       backdrop-filter: blur(30px);
@@ -343,21 +337,12 @@
       border-color: var(--neon-green);
       transform: scale(1.03);
     }
-    .file-input {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0; cursor: pointer; z-index: 10;
-    }
-
+    .file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
     textarea::-webkit-scrollbar { width: 6px; }
     textarea::-webkit-scrollbar-thumb { background-color: var(--neon-green); border-radius: 4px; }
     
     #update-indicator { transition: opacity 0.5s ease, transform 0.5s ease; }
-    
-    .sync-glow {
-      box-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
-      border-color: rgba(74, 222, 128, 0.8);
-    }
+    .sync-glow { box-shadow: 0 0 15px rgba(74, 222, 128, 0.5); border-color: rgba(74, 222, 128, 0.8); }
 
     .admin-card {
       background: rgba(30, 41, 59, 0.8);
@@ -373,12 +358,63 @@
 </head>
 <body class="p-4 md:p-8 relative">
 
+  <!-- AUDIO PLAYER (BGM) -->
+  <audio id="bgm-player" loop>
+    <source id="bgm-source" src="/music/daisies.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- COVER OVERLAY FOR AUTOPLAY POLICY BYPASS (WEDDING INVITE STYLE) -->
+  <div id="cover-overlay" class="fixed inset-0 z-[200] bg-[#0f1423] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
+    <!-- Subtle Orbs in Cover -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+       <div class="orb orb-1"></div>
+       <div class="orb orb-2" style="background: rgba(168, 85, 247, 0.15)"></div>
+    </div>
+    
+    <div class="text-center z-10 p-6 flex flex-col items-center">
+       <div class="w-20 h-20 bg-slate-800/50 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(74,222,128,0.2)] border border-green-500/30">
+          <span class="text-4xl">💌</span>
+       </div>
+       <h1 class="font-bold tracking-tight text-white mb-2 flex items-center justify-center gap-3 flex-wrap">
+         <span class="font-playfair text-white text-5xl font-bold tracking-wider italic">Axa</span>
+         <span class="font-playfair text-white text-4xl opacity-50 italic font-light transform -rotate-12 mx-1">&</span> 
+         <span class="font-hw-0 text-green-400 text-5xl">Rifka</span>
+       </h1>
+       <p class="text-slate-400 mt-2 mb-10 font-light tracking-widest text-xs uppercase animate-pulse">Tap to open our journal</p>
+       <button onclick="openJournal()" class="group relative px-10 py-3.5 bg-green-500/10 border border-green-500 text-green-400 rounded-full font-semibold transition-all duration-300 hover:bg-green-500 hover:text-slate-900 shadow-[0_0_20px_rgba(74,222,128,0.2)] transform hover:scale-105">
+          Open Scrapbook
+       </button>
+    </div>
+  </div>
+
+  <!-- MUSIC PLAYER BUTTON (BOTTOM LEFT) -->
+  <div id="music-player-btn" class="fixed bottom-4 left-4 z-[90] bg-slate-800/80 p-2.5 rounded-full border border-slate-600/50 backdrop-blur-md cursor-pointer flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 hidden" onclick="toggleMusic()">
+    <div id="music-disc" class="w-10 h-10 rounded-full border border-slate-700 bg-[radial-gradient(circle_at_center,_#334155_0%,_#0f172a_100%)] flex items-center justify-center shadow-inner relative overflow-hidden" style="animation: spin 3s linear infinite;">
+       <!-- Disc details -->
+       <div class="absolute inset-0 rounded-full border-[3px] border-slate-800"></div>
+       <div class="w-3 h-3 bg-green-400 rounded-full shadow-[0_0_10px_rgba(74,222,128,0.8)] border-2 border-slate-900 z-10"></div>
+       <!-- Shine -->
+       <div class="absolute w-1/2 h-full bg-white/10 left-1/2 transform origin-left rotate-45"></div>
+    </div>
+    <!-- Mini sound wave visualizer -->
+    <div id="music-wave" class="absolute -top-1 -right-1 bg-slate-900 p-1 rounded-full border border-slate-700 flex gap-0.5 opacity-80">
+      <div class="w-1 bg-green-400 rounded-full animate-[wave_1s_ease-in-out_infinite]"></div>
+      <div class="w-1 bg-green-400 rounded-full animate-[wave_1.2s_ease-in-out_infinite_0.2s]"></div>
+      <div class="w-1 bg-green-400 rounded-full animate-[wave_0.8s_ease-in-out_infinite_0.4s]"></div>
+    </div>
+  </div>
+  
+  <style>
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes wave { 0%, 100% { height: 4px; } 50% { height: 10px; } }
+  </style>
+
   <!-- Ambient Background Orbs & Romantic Particles -->
   <div class="bg-orbs" id="particles-container">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
-    <!-- JS injected stardust & hearts here -->
+    <!-- JS injected stardust & romantic icons here -->
   </div>
 
   <!-- Toast Notification Container -->
@@ -392,22 +428,22 @@
   <!-- ========================================================================= -->
   <!-- PUBLIC GALLERY VIEW -->
   <!-- ========================================================================= -->
-  <div id="view-public" class="w-full">
+  <div id="view-public" class="w-full hidden">
     <header class="text-center mb-12 mt-6 relative z-20 flex flex-col items-center">
-      <h1 class="font-bold tracking-tight text-white mb-2 flex items-center justify-center gap-3 flex-wrap" style="animation: cinematicEntrance 1s ease forwards;">
-        <!-- TYPOGRAPHY AESTHETIC "AXA" DENGAN PLAYFAIR DISPLAY -->
+      <h1 class="font-bold tracking-tight text-white mb-2 flex items-center justify-center gap-3 flex-wrap" style="animation: cinematicEntrance 1.5s ease forwards;">
+        <!-- TYPOGRAPHY AESTHETIC "AXA" DENGAN PLAYFAIR & "&" Cursive -->
         <span class="font-playfair text-white text-5xl md:text-7xl font-bold tracking-wider italic drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">Axa</span>
         
-        <span class="text-white text-3xl md:text-5xl opacity-40 font-light">&</span> 
+        <span class="font-playfair text-white text-4xl md:text-6xl opacity-60 italic font-light transform -rotate-12 mx-2 drop-shadow-md">&</span> 
         
         <span class="font-hw-0 text-gradient-animated text-6xl md:text-8xl drop-shadow-[0_0_20px_rgba(74,222,128,0.3)] mt-2 md:mt-0">Rifka</span>
       </h1>
       <!-- Deskripsi Gen Z Cozy Romantic -->
-      <p class="text-slate-300 text-sm md:text-base max-w-lg mx-auto mb-10 font-light tracking-wide" style="animation: cinematicEntrance 1.2s ease forwards;">
+      <p class="text-slate-300 text-sm md:text-base max-w-lg mx-auto mb-10 font-light tracking-wide" style="animation: cinematicEntrance 1.8s ease forwards;">
         just a digital diary of us. late-night drives, random coffee dates, and everything in between 🤍✨
       </p>
       
-      <button onclick="openModal('upload-modal')" style="animation: popIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;" class="group relative flex items-center gap-3 px-8 py-4 bg-slate-800/80 border border-green-500/50 text-green-400 rounded-full font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(74,222,128,0.15)] hover:shadow-[0_0_40px_rgba(74,222,128,0.5)] hover:bg-green-400 hover:text-slate-900 transform hover:-translate-y-2 backdrop-blur-md overflow-hidden text-lg">
+      <button onclick="openModal('upload-modal')" style="animation: popIn 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;" class="group relative flex items-center gap-3 px-8 py-4 bg-slate-800/80 border border-green-500/50 text-green-400 rounded-full font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(74,222,128,0.15)] hover:shadow-[0_0_40px_rgba(74,222,128,0.5)] hover:bg-green-400 hover:text-slate-900 transform hover:-translate-y-2 backdrop-blur-md overflow-hidden text-lg">
         <div class="absolute inset-0 bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
@@ -480,7 +516,6 @@
     <!-- Bagian 2: DASHBOARD UTAMA -->
     <div id="admin-dashboard-box" class="w-full max-w-6xl hidden flex-col">
       <div class="flex flex-col md:flex-row justify-between items-center bg-slate-800/80 border border-green-500/30 p-6 rounded-2xl mb-8 backdrop-blur-xl shadow-xl relative">
-        <!-- Dashboard Auto Sync Indicator -->
         <div id="admin-sync-indicator" class="absolute top-2 right-2 flex items-center gap-2 opacity-0 transition-opacity">
            <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
            <span class="text-[10px] text-green-400 font-mono">Live Sync Active</span>
@@ -490,12 +525,24 @@
           <h2 class="text-2xl font-bold text-white flex items-center gap-3 font-playfair italic">
             <span class="text-green-400 text-3xl not-italic">🛡️</span> Dashboard Editor
           </h2>
-          <p class="text-slate-400 text-sm mt-1">Kelola foto, hapus, atau ubah detail secara realtime.</p>
+          <p class="text-slate-400 text-sm mt-1">Kelola foto, BGM, hapus, atau ubah detail realtime.</p>
         </div>
         <div class="flex gap-3 mt-4 md:mt-0">
           <button onclick="logoutAdmin()" class="px-5 py-2.5 bg-red-500/10 text-red-400 border border-red-500/30 rounded-xl hover:bg-red-500 hover:border-red-500 hover:text-white transition-all font-semibold">Logout</button>
           <a href="?" class="px-5 py-2.5 bg-slate-700/80 text-white rounded-xl hover:bg-slate-600 border border-slate-600 transition-all shadow-md font-semibold">Lihat Web</a>
         </div>
+      </div>
+
+      <!-- Fitur Upload Lagu Admin -->
+      <div class="w-full bg-slate-800/60 border border-purple-500/30 p-6 rounded-2xl mb-8 backdrop-blur-xl shadow-xl">
+        <h3 class="text-white font-bold text-lg mb-3 font-playfair italic"><span class="text-purple-400 not-italic">🎵</span> Auto-Play Background Music</h3>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+           <input type="file" id="bgm-upload-input" accept="audio/mpeg, audio/mp3" class="hidden" onchange="handleBgmSelect(event)">
+           <button onclick="document.getElementById('bgm-upload-input').click()" class="px-5 py-2.5 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-xl hover:bg-purple-500 hover:text-white transition-all text-sm font-semibold">Ganti Lagu (MP3)</button>
+           <span id="bgm-file-name" class="text-slate-400 text-sm truncate max-w-xs block">Tidak ada file baru dipilih</span>
+           <button id="btn-upload-bgm" onclick="submitBgm()" class="hidden px-5 py-2.5 bg-green-500 hover:bg-green-400 text-slate-900 rounded-xl transition-all text-sm font-bold shadow-[0_0_15px_rgba(74,222,128,0.3)]">Upload & Save</button>
+        </div>
+        <p class="text-slate-500 text-xs mt-3">Maksimal file audio mp3 sebesar 8MB.</p>
       </div>
 
       <!-- Grid Data Admin -->
@@ -626,37 +673,74 @@
     let selectedFileBase64 = null;
     let selectedFileName = null;
     let selectedFileMime = null;
+    let bgmBase64 = null, bgmFileName = null, bgmMime = null;
+    
     let currentGalleryData = []; 
     let autoSyncInterval;
+    let isMusicPlaying = false;
 
     // Router Logic
     const urlParams = new URLSearchParams(window.location.search);
     const isAdminPage = urlParams.get('page') === 'admin';
 
     document.addEventListener("DOMContentLoaded", () => {
-      generateBackgroundParticles(); // Kombinasi Stardust & Romantic Elements
+      generateBackgroundParticles(); 
       setupDragDrop('drop-area-add');
       setupDragDrop('drop-area-edit');
       
       if (isAdminPage) {
+        document.getElementById('cover-overlay').remove(); // Jangan muncul di admin
         document.getElementById('btn-admin-entry').classList.add('hidden');
         document.getElementById('view-public').classList.add('hidden');
         document.getElementById('view-admin').classList.remove('hidden');
         document.getElementById('view-admin').classList.add('flex');
         checkAdminSession();
       } else {
-        fetchGallery(); // Load Public
+        // Tahan render public view sampai user klik Open Journal
       }
 
-      // START AUTO SYNC (Setiap 10 Detik)
       startAutoSync();
     });
 
-    // --- EFFECT: GENERATE STARDUST & ROMANTIC PARTICLES ---
+    // --- EFFECT: MUSIC PLAYER CONTROL ---
+    function openJournal() {
+      const cover = document.getElementById('cover-overlay');
+      cover.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => cover.remove(), 1000);
+      
+      document.getElementById('view-public').classList.remove('hidden');
+      fetchGallery(); // Load Data setelah diklik open
+
+      const player = document.getElementById('bgm-player');
+      player.volume = 0.6;
+      player.play().then(() => {
+        isMusicPlaying = true;
+        document.getElementById('music-player-btn').classList.remove('hidden');
+      }).catch(e => console.log("Music auto-play blocked by browser."));
+    }
+
+    function toggleMusic() {
+       const player = document.getElementById('bgm-player');
+       const disc = document.getElementById('music-disc');
+       const wave = document.getElementById('music-wave');
+       if (isMusicPlaying) {
+         player.pause();
+         disc.style.animationPlayState = 'paused';
+         wave.classList.add('opacity-30');
+         isMusicPlaying = false;
+       } else {
+         player.play();
+         disc.style.animationPlayState = 'running';
+         wave.classList.remove('opacity-30');
+         isMusicPlaying = true;
+       }
+    }
+
+    // --- EFFECT: GENERATE PARTICLES ---
     function generateBackgroundParticles() {
       const container = document.getElementById('particles-container');
       
-      // 1. Generate Classic Stardust (Debu Bintang)
+      // Classic Stardust 
       for (let i = 0; i < 25; i++) {
         let star = document.createElement('div');
         star.classList.add('stardust');
@@ -667,9 +751,9 @@
         container.appendChild(star);
       }
 
-      // 2. Generate Romantic Elements (Hati, Sparkles, dll)
-      const symbols = ['🤍', '✨', '🫧', '🦋', '💫'];
-      for (let i = 0; i < 12; i++) {
+      // New Romantic Elements (Hati, Sakura, Cahaya, Gelembung)
+      const symbols = ['🤍', '✨', '🫧', '🦋', '🌸', '💮', '✦', '✧'];
+      for (let i = 0; i < 15; i++) {
         let el = document.createElement('div');
         el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
         el.classList.add('floating-romantic');
@@ -677,17 +761,29 @@
         el.style.bottom = `-10vh`;
         el.style.fontSize = `${0.8 + Math.random() * 1.5}rem`;
         el.style.animationDuration = `${15 + Math.random() * 25}s`;
-        el.style.animationDelay = `${Math.random() * 10}s`;
+        el.style.animationDelay = `${Math.random() * 15}s`;
         container.appendChild(el);
       }
+    }
+
+    // --- SCROLL REVEAL OPTIMIZATION ---
+    function setupScrollReveal() {
+       const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+             if(entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+             }
+          });
+       }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+       
+       document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
     }
 
     // --- AUTO SYNC LOGIC ---
     function startAutoSync() {
       if(autoSyncInterval) clearInterval(autoSyncInterval);
-      autoSyncInterval = setInterval(() => {
-        fetchFromServer(true, true); // isBackground = true, isAutoSync = true
-      }, 10000); // 10 Detik
+      autoSyncInterval = setInterval(() => fetchFromServer(true, true), 10000); 
     }
 
     // --- 1. TOAST & UTILS ---
@@ -711,7 +807,7 @@
       }, 3500);
     }
 
-    // --- 2. ADMIN AUTHENTICATION ---
+    // --- 2. ADMIN AUTH & BGM UPLOAD ---
     function checkAdminSession() {
       const token = localStorage.getItem('axarifka_admin_token');
       if (token) {
@@ -728,30 +824,50 @@
       const btn = document.getElementById('btn-login');
       btn.innerHTML = "Memverifikasi..."; btn.disabled = true;
 
-      const payload = { action: 'login', username: user, password: pass };
-
-      fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), redirect: 'follow' })
+      fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'login', username: user, password: pass }) })
       .then(res => res.json())
       .then(res => {
         if (res.status) {
           localStorage.setItem('axarifka_admin_token', res.token);
           showToast(res.message, "success");
           checkAdminSession();
-        } else {
-          showToast(res.message, "error");
-        }
-      })
-      .catch(err => showToast("Gagal menyambung ke server.", "error"))
-      .finally(() => { btn.innerHTML = "Login ke Server"; btn.disabled = false; });
+        } else showToast(res.message, "error");
+      }).finally(() => { btn.innerHTML = "Login ke Server"; btn.disabled = false; });
     }
 
     function logoutAdmin() {
       localStorage.removeItem('axarifka_admin_token');
       showToast("Berhasil logout", "info");
-      setTimeout(() => { window.location.reload(); }, 800);
+      setTimeout(() => window.location.reload(), 800);
     }
 
-    // --- 3. FETCH CORE (MODIFIED FOR AUTO SYNC) ---
+    // Handler Upload MP3 Admin
+    function handleBgmSelect(event) {
+      const file = event.target.files[0];
+      if(!file) return;
+      if (file.size > 8 * 1024 * 1024) return showToast("Ukuran MP3 maksimal 8MB", "error");
+      bgmFileName = file.name;
+      bgmMime = file.type;
+      document.getElementById('bgm-file-name').innerText = file.name;
+      document.getElementById('btn-upload-bgm').classList.remove('hidden');
+
+      const reader = new FileReader();
+      reader.onload = e => bgmBase64 = e.target.result;
+      reader.readAsDataURL(file);
+    }
+
+    function submitBgm() {
+      if(!bgmBase64) return;
+      const btn = document.getElementById('btn-upload-bgm');
+      executePost({ action: 'upload_bgm', base64Data: bgmBase64, fileName: bgmFileName, mimeType: bgmMime }, btn, "Uploading BGM...", "Upload & Save", () => {
+        btn.classList.add('hidden');
+        document.getElementById('bgm-file-name').innerText = "Berhasil diupdate!";
+        fetchFromServer(true, false);
+      });
+    }
+
+
+    // --- 3. FETCH CORE (AUTO SYNC) ---
     function fetchGallery() {
       const cacheKey = 'axarifka_gallery_production';
       let cachedData = null;
@@ -775,35 +891,45 @@
       }
 
       fetch(API_URL, { method: 'GET', redirect: 'follow' })
-      .then(res => res.text())
-      .then(textData => {
-        try {
-          const res = JSON.parse(textData);
-          if (res.status === 'success') {
-            
-            const newDataStr = JSON.stringify(res.data);
-            const oldDataStr = JSON.stringify(currentGalleryData);
-            
-            if (newDataStr !== oldDataStr) {
-              currentGalleryData = res.data;
-              try { localStorage.setItem('axarifka_gallery_production', newDataStr); } catch (e) {}
-              
-              if(isAutoSync) {
-                const syncText = document.getElementById('sync-text');
-                const indicator = document.getElementById('update-indicator');
-                if(syncText && !isAdminPage) {
-                   syncText.innerHTML = "Memories Updated! ✨";
-                   indicator.classList.add('sync-glow');
-                }
-              }
-              distributeRender(res.data);
-            }
-          } else {
-            if(!isBackgroundSync) showToast(res.message, "error");
+      .then(res => res.json())
+      .then(res => {
+        if (res.status === 'success') {
+          
+          // SETTINGS / BGM UPDATE
+          if (res.settings && res.settings.bgm) {
+             let newUrl = res.settings.bgm;
+             const driveIdMatch = newUrl.match(/id=([a-zA-Z0-9_-]+)/);
+             if (driveIdMatch && driveIdMatch[1]) newUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
+             
+             const player = document.getElementById('bgm-player');
+             if(player.src !== newUrl && !newUrl.includes(window.location.host)) {
+                 player.src = newUrl;
+                 if (isMusicPlaying) player.play();
+             }
           }
-        } catch(e) { throw new Error("Respons server bukan JSON."); }
+
+          // GALLERY DATA SYNC
+          const newDataStr = JSON.stringify(res.data);
+          const oldDataStr = JSON.stringify(currentGalleryData);
+          if (newDataStr !== oldDataStr) {
+            currentGalleryData = res.data;
+            try { localStorage.setItem('axarifka_gallery_production', newDataStr); } catch (e) {}
+            
+            if(isAutoSync) {
+              const syncText = document.getElementById('sync-text');
+              const indicator = document.getElementById('update-indicator');
+              if(syncText && !isAdminPage) {
+                 syncText.innerHTML = "Memories Updated! ✨";
+                 indicator.classList.add('sync-glow');
+              }
+            }
+            distributeRender(res.data);
+          }
+        } else {
+          if(!isBackgroundSync) showToast(res.message, "error");
+        }
       })
-      .catch(error => { if(!isBackgroundSync) showToast(error.message, "error"); })
+      .catch(error => { if(!isBackgroundSync) showToast("Network Error", "error"); })
       .finally(() => { 
         if(isAutoSync) {
            setTimeout(() => {
@@ -821,14 +947,11 @@
     }
 
     function distributeRender(data) {
-      if (isAdminPage) {
-        renderAdminGrid(data);
-      } else {
-        renderPublicGallery(data);
-      }
+      if (isAdminPage) renderAdminGrid(data);
+      else renderPublicGallery(data);
     }
 
-    // --- 4. RENDER PUBLIC GALLERY ---
+    // --- 4. RENDER PUBLIC GALLERY (SCROLL REVEAL ENABLED) ---
     function renderPublicGallery(data) {
       document.getElementById('loader').classList.add('hidden');
       const container = document.getElementById('gallery-container');
@@ -847,17 +970,15 @@
       data.forEach((item, index) => {
         const rotateClass = rotateClasses[index % rotateClasses.length];
         const fontClass = fontClasses[index % fontClasses.length]; 
-        const delay = index * 0.15; 
         
         let displayUrl = item.url;
         const driveIdMatch = item.url.match(/id=([a-zA-Z0-9_-]+)/);
-        if (driveIdMatch && driveIdMatch[1]) {
-            displayUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
-        }
+        if (driveIdMatch && driveIdMatch[1]) displayUrl = `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
         const fallbackImg = "https://ui-avatars.com/api/?name=Memori+Hilang&background=1e293b&color=cbd5e1&size=512";
         
+        // MENGHILANGKAN animate-staggered dan MENGGANTIKAN DENGAN scroll-reveal
         htmlBuilder += `
-          <div class="polaroid-container ${rotateClass} animate-staggered" style="animation-delay: ${delay}s" onclick="toggleFlip(this)">
+          <div class="polaroid-container ${rotateClass} scroll-reveal" onclick="toggleFlip(this)">
             <div class="polaroid-inner">
               <div class="polaroid-front">
                 <div class="polaroid-photo-wrapper relative group bg-slate-800 flex items-center justify-center">
@@ -885,14 +1006,15 @@
         `;
       });
       container.innerHTML = htmlBuilder;
+      
+      // Attach Observer
+      setTimeout(() => setupScrollReveal(), 100);
     }
 
     function showUpdateIndicator(show, isAutoSyncMode) {
       const indicator = document.getElementById('update-indicator');
       const syncText = document.getElementById('sync-text');
-      
       if(syncText) syncText.innerHTML = isAutoSyncMode ? "Live Sync..." : "Checking data...";
-
       if (show) indicator.classList.remove('opacity-0', 'translate-y-[-10px]');
       else indicator.classList.add('opacity-0', 'translate-y-[-10px]');
     }
@@ -916,7 +1038,7 @@
         const fallbackImg = "https://ui-avatars.com/api/?name=MH&background=1e293b&color=cbd5e1&size=512";
 
         htmlBuilder += `
-          <div class="admin-card rounded-2xl overflow-hidden flex flex-col relative group animate-staggered" style="animation-delay: ${index * 0.05}s">
+          <div class="admin-card rounded-2xl overflow-hidden flex flex-col relative group scroll-reveal">
             <div class="h-44 w-full overflow-hidden bg-slate-900 border-b border-slate-700 relative">
                <img src="${displayUrl}" onerror="this.onerror=null; this.src='${fallbackImg}';" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500">
                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
@@ -935,6 +1057,7 @@
         `;
       });
       grid.innerHTML = htmlBuilder;
+      setTimeout(() => setupScrollReveal(), 100);
     }
 
 
@@ -942,11 +1065,8 @@
     function handleFileSelect(event, previewId, promptId) {
       const file = event.target.files[0];
       if (!file) return;
-      if (file.size > 5 * 1024 * 1024) {
-        showToast("Ukuran file terlalu besar! Maksimal 5MB.", "error");
-        event.target.value = '';
-        return;
-      }
+      if (file.size > 5 * 1024 * 1024) return showToast("Maksimal 5MB.", "error");
+      
       selectedFileName = file.name;
       selectedFileMime = file.type;
 
@@ -968,7 +1088,6 @@
       ['dragleave', 'drop'].forEach(eventName => { dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragover'), false); });
     }
 
-    // --- 7. MODAL UTILS ---
     function openModal(modalId) {
       const modal = document.getElementById(modalId);
       const panel = document.getElementById(modalId + '-panel');
@@ -987,7 +1106,6 @@
       
       setTimeout(() => {
         modal.classList.add('opacity-0', 'pointer-events-none');
-        
         if (modalId === 'upload-modal') {
           document.getElementById('upload-form').reset();
           document.getElementById('prompt-add').classList.remove('hidden');
@@ -1007,76 +1125,45 @@
       btnElement.disabled = true;
       btnElement.classList.add('opacity-70', 'cursor-not-allowed');
 
-      fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
-        redirect: 'follow'
-      })
-      .then(res => res.text())
-      .then(textData => {
-        try {
-          const res = JSON.parse(textData);
-          if (res.status === true) {
-            try { localStorage.removeItem('axarifka_gallery_production'); } catch(e) {}
-            showToast(res.message, "success");
-            successCallback();
-          } else {
-            showToast("Gagal: " + res.message, "error");
-          }
-        } catch (e) {
-          showToast("Gagal. API menolak / belum disetting 'Siapa Saja'.", "error");
-        }
-      })
-      .catch(error => showToast("Error Jaringan.", "error"))
-      .finally(() => { 
+      fetch(API_URL, { method: 'POST', body: JSON.stringify(payload) })
+      .then(res => res.json())
+      .then(res => {
+        if (res.status === true) {
+          try { localStorage.removeItem('axarifka_gallery_production'); } catch(e) {}
+          showToast(res.message, "success");
+          successCallback();
+        } else showToast("Gagal: " + res.message, "error");
+      }).finally(() => { 
         btnElement.innerHTML = originalText; 
         btnElement.disabled = false; 
         btnElement.classList.remove('opacity-70', 'cursor-not-allowed');
       });
     }
 
-    // [ADD] Public Add
     function submitMemory() {
       if (!selectedFileBase64) return showToast("Pilih foto terlebih dahulu!", "error");
-      
-      const payload = {
-        action: 'add',
-        base64Data: selectedFileBase64,
-        fileName: selectedFileName,
-        mimeType: selectedFileMime,
-        tanggal: document.getElementById('input-tanggal').value,
-        lokasi: document.getElementById('input-lokasi').value,
-        pesan: document.getElementById('input-pesan').value
-      };
       const btn = document.getElementById('btn-submit');
-      executePost(payload, btn, "Uploading Memory...", "Add to Scrapbook", () => {
+      executePost({
+        action: 'add', base64Data: selectedFileBase64, fileName: selectedFileName, mimeType: selectedFileMime,
+        tanggal: document.getElementById('input-tanggal').value, lokasi: document.getElementById('input-lokasi').value, pesan: document.getElementById('input-pesan').value
+      }, btn, "Uploading Memory...", "Add to Scrapbook", () => {
         closeModal('upload-modal');
-        fetchFromServer(false, false); // Fetch instant setelah add
+        fetchFromServer(false, false); 
       });
     }
 
-    // [DELETE] Admin Delete
     function deleteMemory(id) {
       if (confirm(`Peringatan: Yakin ingin menghapus Foto ${id} secara permanen?`)) {
-        const payload = { action: 'delete', id: id };
         const fakeBtn = { innerHTML: '', disabled: false, classList: {add:()=>{}, remove:()=>{}} }; 
-        executePost(payload, fakeBtn, "Menghapus...", "", () => {
-          fetchFromServer(false, false); // Fetch instant setelah delete
-        });
+        executePost({ action: 'delete', id: id }, fakeBtn, "Menghapus...", "", () => fetchFromServer(false, false));
       }
     }
 
-    // [EDIT] Open Modal & Populate
     function openEditModal(id) {
       const item = currentGalleryData.find(x => x.id === id);
       if(!item) return showToast("Data tidak ditemukan!", "error");
-
       let dtValue = "";
-      try {
-         const d = new Date(item.tanggal);
-         if (!isNaN(d)) dtValue = d.toISOString().split('T')[0];
-      } catch(e){}
+      try { const d = new Date(item.tanggal); if (!isNaN(d)) dtValue = d.toISOString().split('T')[0]; } catch(e){}
 
       document.getElementById('edit-id-asli').value = item.id;
       document.getElementById('edit-id').value = item.id; 
@@ -1087,30 +1174,19 @@
       openModal('edit-modal');
     }
 
-    // [UPDATE] Admin Submit Edit
     function submitEditMemory() {
       const payload = {
-        action: 'update',
-        id: document.getElementById('edit-id-asli').value,
-        newId: document.getElementById('edit-id').value,   
-        tanggal: document.getElementById('edit-tanggal').value,
-        lokasi: document.getElementById('edit-lokasi').value,
-        pesan: document.getElementById('edit-pesan').value
+        action: 'update', id: document.getElementById('edit-id-asli').value, newId: document.getElementById('edit-id').value,   
+        tanggal: document.getElementById('edit-tanggal').value, lokasi: document.getElementById('edit-lokasi').value, pesan: document.getElementById('edit-pesan').value
       };
-
       if (selectedFileBase64) {
-        payload.base64Data = selectedFileBase64;
-        payload.fileName = selectedFileName;
-        payload.mimeType = selectedFileMime;
+        payload.base64Data = selectedFileBase64; payload.fileName = selectedFileName; payload.mimeType = selectedFileMime;
       }
-
       const btn = document.getElementById('btn-submit-edit');
       executePost(payload, btn, "Updating Database...", "Simpan Perubahan", () => {
-        closeModal('edit-modal');
-        fetchFromServer(false, false); // Fetch instant setelah edit
+        closeModal('edit-modal'); fetchFromServer(false, false); 
       });
     }
-
   </script>
 </body>
 </html>
