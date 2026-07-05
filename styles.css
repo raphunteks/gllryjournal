@@ -42,13 +42,48 @@ body {
   100% { background-color: #0b0f19; } 
 }
 
-/* TYPOGRAPHY CLASSES */
+/* =========================================
+   NEW: 20 ELEGANT & AESTHETIC FONTS (NOT BOLD)
+   ========================================= */
 .font-playfair { font-family: 'Playfair Display', serif; }
-.font-hw-0 { font-family: 'Caveat', cursive; font-size: 1.1em; }
-.font-hw-1 { font-family: 'Dancing Script', cursive; font-size: 1.15em; }
-.font-hw-2 { font-family: 'Pacifico', cursive; font-size: 0.85em; line-height: 1.6; }
-.font-hw-3 { font-family: 'Kalam', cursive; font-size: 0.9em; }
-.font-hw-4 { font-family: 'Shadows Into Light', cursive; font-size: 1.05em; font-weight: bold; }
+.font-hw-0 { font-family: 'Caveat', cursive; }
+.font-hw-1 { font-family: 'Dancing Script', cursive; }
+
+/* The 20 new elegant fonts */
+.font-lora { font-family: 'Lora', serif; font-weight: 400; }
+.font-merriweather { font-family: 'Merriweather', serif; font-weight: 300; }
+.font-cormorant { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+.font-ebgaramond { font-family: 'EB Garamond', serif; font-weight: 400; }
+.font-crimson { font-family: 'Crimson Text', serif; font-weight: 400; }
+.font-alice { font-family: 'Alice', serif; font-weight: 400; }
+.font-josefin { font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
+.font-quicksand { font-family: 'Quicksand', sans-serif; font-weight: 400; }
+.font-nunito { font-family: 'Nunito', sans-serif; font-weight: 300; }
+.font-raleway { font-family: 'Raleway', sans-serif; font-weight: 300; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; font-weight: 300; }
+.font-lato { font-family: 'Lato', sans-serif; font-weight: 300; }
+.font-outfit { font-family: 'Outfit', sans-serif; font-weight: 300; }
+.font-dmsans { font-family: 'DM Sans', sans-serif; font-weight: 400; }
+.font-work { font-family: 'Work Sans', sans-serif; font-weight: 300; }
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
+.font-inter-reg { font-family: 'Inter', sans-serif; font-weight: 400; }
+.font-roboto { font-family: 'Roboto', sans-serif; font-weight: 300; }
+.font-poppins { font-family: 'Poppins', sans-serif; font-weight: 300; }
+.font-opensans { font-family: 'Open Sans', sans-serif; font-weight: 300; }
+
+/* Custom Select Dropdown Styling */
+select { appearance: none; -webkit-appearance: none; }
+.custom-select-wrapper { position: relative; }
+.custom-select-wrapper::after {
+  content: '▼';
+  position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+  color: #4ade80; font-size: 10px; pointer-events: none;
+}
+.font-preview-box {
+  background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4);
+  border-radius: 8px; padding: 12px; text-align: center; margin-top: 8px;
+  color: #fff; font-size: 1.1rem; transition: all 0.3s ease;
+}
 
 /* =========================================
    CSS3 INNOVATIONS: PARALLAX, SPARKLES, SAKURA
@@ -167,7 +202,6 @@ body {
   100% { background-position: 0% 50% } 
 }
 
-/* Theatrical Iris Cover Reveal */
 .iris-reveal {
   animation: irisOpen 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
   pointer-events: none;
@@ -189,7 +223,6 @@ body {
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Optimized Scroll Reveal */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(60px) scale(0.9);
@@ -203,7 +236,7 @@ body {
 }
 
 /* =========================================
-   POLAROID 3D FLIP & GLOSSY GLARE MAGIC 
+   POLAROID 3D FLIP & GRID MAGIC 
    ========================================= */
 .polaroid-container {
   perspective: 1500px; 
@@ -255,6 +288,7 @@ body {
   flex-direction: column;
 }
 
+/* The Shine Effect */
 .polaroid-front::after {
   content: "";
   position: absolute;
@@ -276,6 +310,27 @@ body {
   position: relative;
 }
 
+/* =========================================
+   NEW: DYNAMIC CSS GRID FOR MULTI-PHOTOS
+   ========================================= */
+.photo-grid {
+  display: grid; gap: 4px; width: 100%; height: 100%;
+}
+.photo-grid img {
+  width: 100%; height: 100%; object-fit: cover; 
+  transition: transform 1s ease;
+}
+.polaroid-front:hover .photo-grid img { transform: scale(1.05); }
+
+.grid-cols-1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+.grid-cols-2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+.grid-cols-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.grid-cols-3 img:first-child { grid-column: span 2; }
+.grid-cols-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.grid-cols-more { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; } /* limits visual to 4 max safely */
+
+
+/* Polaroid Tape */
 .polaroid-container::before {
   content: '';
   position: absolute;
@@ -355,6 +410,12 @@ body {
   border-color: var(--neon-green);
 }
 .file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
+
+/* Grid Upload Preview */
+.upload-preview-grid {
+  display: grid; gap: 4px; width: 100%; height: 100%;
+}
+
 textarea::-webkit-scrollbar { width: 6px; }
 textarea::-webkit-scrollbar-thumb { background-color: var(--neon-green); border-radius: 4px; }
 
@@ -373,7 +434,6 @@ textarea::-webkit-scrollbar-thumb { background-color: var(--neon-green); border-
   border-color: rgba(74, 222, 128, 0.5);
 }
 
-/* MUSIC MARQUEE */
 .music-marquee-container {
   width: 120px;
   overflow: hidden;
