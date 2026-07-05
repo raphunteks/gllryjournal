@@ -43,33 +43,56 @@ body {
 }
 
 /* =========================================
-   NEW: 20 ELEGANT & AESTHETIC FONTS (NOT BOLD)
+   AESTHETIC FONTS (LOKASI) - GEN Z TYPOGRAPHY
    ========================================= */
-.font-playfair { font-family: 'Playfair Display', serif; }
-.font-hw-0 { font-family: 'Caveat', cursive; }
-.font-hw-1 { font-family: 'Dancing Script', cursive; }
-
-/* The 20 new elegant fonts */
-.font-lora { font-family: 'Lora', serif; font-weight: 400; }
-.font-merriweather { font-family: 'Merriweather', serif; font-weight: 300; }
+.font-hw-0 { font-family: 'Caveat', cursive; font-weight: 400; }
+.font-hw-1 { font-family: 'Dancing Script', cursive; font-weight: 400; }
+.font-playfair { font-family: 'Playfair Display', serif; font-weight: 400; }
+.font-cinzel { font-family: 'Cinzel', serif; font-weight: 400; }
 .font-cormorant { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
-.font-ebgaramond { font-family: 'EB Garamond', serif; font-weight: 400; }
-.font-crimson { font-family: 'Crimson Text', serif; font-weight: 400; }
-.font-alice { font-family: 'Alice', serif; font-weight: 400; }
-.font-josefin { font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
-.font-quicksand { font-family: 'Quicksand', sans-serif; font-weight: 400; }
-.font-nunito { font-family: 'Nunito', sans-serif; font-weight: 300; }
-.font-raleway { font-family: 'Raleway', sans-serif; font-weight: 300; }
-.font-montserrat { font-family: 'Montserrat', sans-serif; font-weight: 300; }
-.font-lato { font-family: 'Lato', sans-serif; font-weight: 300; }
-.font-outfit { font-family: 'Outfit', sans-serif; font-weight: 300; }
-.font-dmsans { font-family: 'DM Sans', sans-serif; font-weight: 400; }
-.font-work { font-family: 'Work Sans', sans-serif; font-weight: 300; }
-.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
-.font-inter-reg { font-family: 'Inter', sans-serif; font-weight: 400; }
+.font-bodoni { font-family: 'Bodoni Moda', serif; font-weight: 400; }
+.font-prata { font-family: 'Prata', serif; font-weight: 400; }
+.font-italiana { font-family: 'Italiana', serif; font-weight: 400; }
+.font-yeseva { font-family: 'Yeseva One', serif; font-weight: 400; }
+.font-tenor { font-family: 'Tenor Sans', sans-serif; font-weight: 400; }
+.font-gilda { font-family: 'Gilda Display', serif; font-weight: 400; }
+.font-oranienbaum { font-family: 'Oranienbaum', serif; font-weight: 400; }
+.font-dmserif { font-family: 'DM Serif Display', serif; font-weight: 400; }
+.font-abril { font-family: 'Abril Fatface', serif; font-weight: 400; }
+.font-marcellus { font-family: 'Marcellus', serif; font-weight: 400; }
+.font-forum { font-family: 'Forum', cursive; font-weight: 400; }
+.font-instrument { font-family: 'Instrument Serif', serif; font-weight: 400; }
+.font-gloock { font-family: 'Gloock', serif; font-weight: 400; }
+.font-castoro { font-family: 'Castoro', serif; font-weight: 400; }
+.font-viaoda { font-family: 'Viaoda Libre', serif; font-weight: 400; }
+.font-federo { font-family: 'Federo', sans-serif; font-weight: 400; }
+.font-rozha { font-family: 'Rozha One', serif; font-weight: 400; }
+
+/* =========================================
+   SIMPLE FONTS (DESKRIPSI) - CLEAN & ELEGANT
+   ========================================= */
+.font-inter { font-family: 'Inter', sans-serif; font-weight: 300; }
 .font-roboto { font-family: 'Roboto', sans-serif; font-weight: 300; }
-.font-poppins { font-family: 'Poppins', sans-serif; font-weight: 300; }
 .font-opensans { font-family: 'Open Sans', sans-serif; font-weight: 300; }
+.font-lato { font-family: 'Lato', sans-serif; font-weight: 300; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; font-weight: 300; }
+.font-nunito { font-family: 'Nunito', sans-serif; font-weight: 300; }
+.font-poppins { font-family: 'Poppins', sans-serif; font-weight: 300; }
+.font-quicksand { font-family: 'Quicksand', sans-serif; font-weight: 400; }
+.font-worksans { font-family: 'Work Sans', sans-serif; font-weight: 300; }
+.font-dmsans { font-family: 'DM Sans', sans-serif; font-weight: 400; }
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
+.font-manrope { font-family: 'Manrope', sans-serif; font-weight: 300; }
+.font-outfit { font-family: 'Outfit', sans-serif; font-weight: 300; }
+.font-urbanist { font-family: 'Urbanist', sans-serif; font-weight: 300; }
+.font-mulish { font-family: 'Mulish', sans-serif; font-weight: 300; }
+.font-space { font-family: 'Space Grotesk', sans-serif; font-weight: 300; }
+.font-figtree { font-family: 'Figtree', sans-serif; font-weight: 300; }
+.font-schibsted { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 400; }
+.font-karla { font-family: 'Karla', sans-serif; font-weight: 300; }
+.font-sen { font-family: 'Sen', sans-serif; font-weight: 400; }
+/* Maintain fallback classes from V1 */
+.font-inter-reg { font-family: 'Inter', sans-serif; font-weight: 400; }
 
 /* Custom Select Dropdown Styling */
 select { appearance: none; -webkit-appearance: none; }
@@ -83,6 +106,7 @@ select { appearance: none; -webkit-appearance: none; }
   background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4);
   border-radius: 8px; padding: 12px; text-align: center; margin-top: 8px;
   color: #fff; font-size: 1.1rem; transition: all 0.3s ease;
+  word-wrap: break-word; overflow-wrap: break-word; /* Mencegah teks offside */
 }
 
 /* =========================================
@@ -236,7 +260,7 @@ select { appearance: none; -webkit-appearance: none; }
 }
 
 /* =========================================
-   POLAROID 3D FLIP & GRID MAGIC 
+   POLAROID 3D FLIP MAGIC 
    ========================================= */
 .polaroid-container {
   perspective: 1500px; 
@@ -305,29 +329,37 @@ select { appearance: none; -webkit-appearance: none; }
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #1e293b;
+  background-color: #e2e8f0;
   border-radius: 4px;
   position: relative;
 }
 
 /* =========================================
-   NEW: DYNAMIC CSS GRID FOR MULTI-PHOTOS
+   DYNAMICS PHOTOBOOTH GRID (PRESISI TINGGI)
    ========================================= */
 .photo-grid {
   display: grid; gap: 4px; width: 100%; height: 100%;
 }
 .photo-grid img {
-  width: 100%; height: 100%; object-fit: cover; 
+  width: 100%; height: 100%; 
+  object-fit: cover; object-position: center; /* Memastikan muka/fokus terlihat di tengah */
   transition: transform 1s ease;
 }
 .polaroid-front:hover .photo-grid img { transform: scale(1.05); }
 
+/* GRID 1 FOTO: Full */
 .grid-cols-1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
-.grid-cols-2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+
+/* GRID 2 FOTO: Ala Photobooth (Vertikal presisi atas-bawah) */
+.grid-cols-2 { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+
+/* GRID 3 FOTO: 1 Besar atas, 2 kecil bawah */
 .grid-cols-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-.grid-cols-3 img:first-child { grid-column: span 2; }
+.grid-cols-3 img:first-child { grid-column: span 2; grid-row: span 1; }
+
+/* GRID 4 FOTO: Kotak 2x2 */
 .grid-cols-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-.grid-cols-more { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; } /* limits visual to 4 max safely */
+.grid-cols-more { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
 
 
 /* Polaroid Tape */
@@ -380,6 +412,7 @@ select { appearance: none; -webkit-appearance: none; }
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.1; 
+  word-wrap: break-word; /* Mencegah font offside */
 }
 
 .scrapbook-board {
