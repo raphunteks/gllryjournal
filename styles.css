@@ -19,64 +19,57 @@ body {
 }
 
 @keyframes morph20Colors {
-  0%   { background-color: #0b0f19; } 5%   { background-color: #0f1423; } 10%  { background-color: #111424; } 15%  { background-color: #131021; } 
-  20%  { background-color: #160d1b; } 25%  { background-color: #180b16; } 30%  { background-color: #1a0a13; } 35%  { background-color: #180911; } 
-  40%  { background-color: #150912; } 45%  { background-color: #120a13; } 50%  { background-color: #0f0b14; } 55%  { background-color: #0c0e18; } 
-  60%  { background-color: #0a111b; } 65%  { background-color: #08131d; } 70%  { background-color: #06151c; } 75%  { background-color: #05161a; } 
-  80%  { background-color: #051717; } 85%  { background-color: #061713; } 90%  { background-color: #08160f; } 95%  { background-color: #091313; } 
+  0%   { background-color: #0b0f19; } 
+  5%   { background-color: #0f1423; } 
+  10%  { background-color: #111424; } 
+  15%  { background-color: #131021; } 
+  20%  { background-color: #160d1b; } 
+  25%  { background-color: #180b16; } 
+  30%  { background-color: #1a0a13; } 
+  35%  { background-color: #180911; } 
+  40%  { background-color: #150912; } 
+  45%  { background-color: #120a13; } 
+  50%  { background-color: #0f0b14; } 
+  55%  { background-color: #0c0e18; } 
+  60%  { background-color: #0a111b; } 
+  65%  { background-color: #08131d; } 
+  70%  { background-color: #06151c; } 
+  75%  { background-color: #05161a; } 
+  80%  { background-color: #051717; } 
+  85%  { background-color: #061713; } 
+  90%  { background-color: #08160f; } 
+  95%  { background-color: #091313; } 
   100% { background-color: #0b0f19; } 
 }
 
 /* =========================================
    AESTHETIC FONTS (LOKASI) - GEN Z TYPOGRAPHY
    ========================================= */
+.font-playfair { font-family: 'Playfair Display', serif; font-weight: 400; }
 .font-hw-0 { font-family: 'Caveat', cursive; font-weight: 400; }
 .font-hw-1 { font-family: 'Dancing Script', cursive; font-weight: 400; }
-.font-playfair { font-family: 'Playfair Display', serif; font-weight: 400; }
-.font-cinzel { font-family: 'Cinzel', serif; font-weight: 400; }
-.font-cormorant { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
-.font-bodoni { font-family: 'Bodoni Moda', serif; font-weight: 400; }
-.font-prata { font-family: 'Prata', serif; font-weight: 400; }
-.font-italiana { font-family: 'Italiana', serif; font-weight: 400; }
-.font-yeseva { font-family: 'Yeseva One', serif; font-weight: 400; }
-.font-tenor { font-family: 'Tenor Sans', sans-serif; font-weight: 400; }
-.font-gilda { font-family: 'Gilda Display', serif; font-weight: 400; }
-.font-oranienbaum { font-family: 'Oranienbaum', serif; font-weight: 400; }
-.font-dmserif { font-family: 'DM Serif Display', serif; font-weight: 400; }
-.font-abril { font-family: 'Abril Fatface', serif; font-weight: 400; }
-.font-marcellus { font-family: 'Marcellus', serif; font-weight: 400; }
-.font-forum { font-family: 'Forum', cursive; font-weight: 400; }
-.font-instrument { font-family: 'Instrument Serif', serif; font-weight: 400; }
-.font-gloock { font-family: 'Gloock', serif; font-weight: 400; }
-.font-castoro { font-family: 'Castoro', serif; font-weight: 400; }
-.font-viaoda { font-family: 'Viaoda Libre', serif; font-weight: 400; }
-.font-federo { font-family: 'Federo', sans-serif; font-weight: 400; }
-.font-rozha { font-family: 'Rozha One', serif; font-weight: 400; }
 
-/* =========================================
-   SIMPLE FONTS (DESKRIPSI) - CLEAN & ELEGANT
-   ========================================= */
-.font-inter { font-family: 'Inter', sans-serif; font-weight: 300; }
-.font-roboto { font-family: 'Roboto', sans-serif; font-weight: 300; }
-.font-opensans { font-family: 'Open Sans', sans-serif; font-weight: 300; }
-.font-lato { font-family: 'Lato', sans-serif; font-weight: 300; }
-.font-montserrat { font-family: 'Montserrat', sans-serif; font-weight: 300; }
-.font-nunito { font-family: 'Nunito', sans-serif; font-weight: 300; }
-.font-poppins { font-family: 'Poppins', sans-serif; font-weight: 300; }
+/* The 20 new elegant fonts */
+.font-lora { font-family: 'Lora', serif; font-weight: 400; }
+.font-merriweather { font-family: 'Merriweather', serif; font-weight: 300; }
+.font-cormorant { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+.font-ebgaramond { font-family: 'EB Garamond', serif; font-weight: 400; }
+.font-crimson { font-family: 'Crimson Text', serif; font-weight: 400; }
+.font-alice { font-family: 'Alice', serif; font-weight: 400; }
+.font-josefin { font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
 .font-quicksand { font-family: 'Quicksand', sans-serif; font-weight: 400; }
-.font-worksans { font-family: 'Work Sans', sans-serif; font-weight: 300; }
-.font-dmsans { font-family: 'DM Sans', sans-serif; font-weight: 400; }
-.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
-.font-manrope { font-family: 'Manrope', sans-serif; font-weight: 300; }
+.font-nunito { font-family: 'Nunito', sans-serif; font-weight: 300; }
+.font-raleway { font-family: 'Raleway', sans-serif; font-weight: 300; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; font-weight: 300; }
+.font-lato { font-family: 'Lato', sans-serif; font-weight: 300; }
 .font-outfit { font-family: 'Outfit', sans-serif; font-weight: 300; }
-.font-urbanist { font-family: 'Urbanist', sans-serif; font-weight: 300; }
-.font-mulish { font-family: 'Mulish', sans-serif; font-weight: 300; }
-.font-space { font-family: 'Space Grotesk', sans-serif; font-weight: 300; }
-.font-figtree { font-family: 'Figtree', sans-serif; font-weight: 300; }
-.font-schibsted { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 400; }
-.font-karla { font-family: 'Karla', sans-serif; font-weight: 300; }
-.font-sen { font-family: 'Sen', sans-serif; font-weight: 400; }
+.font-dmsans { font-family: 'DM Sans', sans-serif; font-weight: 400; }
+.font-work { font-family: 'Work Sans', sans-serif; font-weight: 300; }
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
 .font-inter-reg { font-family: 'Inter', sans-serif; font-weight: 400; }
+.font-roboto { font-family: 'Roboto', sans-serif; font-weight: 300; }
+.font-poppins { font-family: 'Poppins', sans-serif; font-weight: 300; }
+.font-opensans { font-family: 'Open Sans', sans-serif; font-weight: 300; }
 
 /* Custom Select Dropdown Styling */
 select { appearance: none; -webkit-appearance: none; }
@@ -90,11 +83,29 @@ select { appearance: none; -webkit-appearance: none; }
 .font-preview-box {
   background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4);
   border-radius: 8px; 
-  padding: 8px; /* Diperkecil agar form tidak terlalu panjang */
+  padding: 6px 8px; /* Diperkecil agar form tidak terlalu panjang */
   text-align: center; 
   margin-top: 4px; /* Margin dipersempit */
-  color: #fff; font-size: 1rem; transition: all 0.3s ease;
+  color: #fff; font-size: 0.9rem; transition: all 0.3s ease;
   word-wrap: break-word; overflow-wrap: break-word; /* Mencegah teks offside */
+}
+
+/* =========================================
+   FIX: UI COMPACT OVERRIDES (FORMS & LAYOUTS)
+   ========================================= */
+#upload-form > div + div,
+#edit-form > div + div {
+  margin-top: 12px !important; /* Paksa jarak antar baris grup form menjadi lebih sempit & presisi */
+}
+
+#upload-form label,
+#edit-form label {
+  margin-bottom: 4px !important; /* Merapatkan teks Label dengan kotaknya */
+}
+
+#upload-form .grid,
+#edit-form .grid {
+  gap: 12px !important; /* Rapatkan gap kolom grid di form (tanggal/lokasi, font1/font2) */
 }
 
 /* =========================================
@@ -111,14 +122,20 @@ select { appearance: none; -webkit-appearance: none; }
 .orb-1 { width: 450px; height: 450px; background: rgba(74, 222, 128, 0.1); top: -15%; left: -10%; animation-delay: 0s; }
 .orb-2 { width: 400px; height: 400px; background: rgba(56, 189, 248, 0.1); bottom: -15%; right: -10%; animation-delay: -5s; }
 
-@keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.05); } }
+@keyframes float { 
+  0%, 100% { transform: translate(0, 0) scale(1); } 
+  50% { transform: translate(30px, -30px) scale(1.05); } 
+}
 
 .cursor-sparkle {
   position: fixed; width: 4px; height: 4px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.8), 0 0 20px 5px rgba(74, 222, 128, 0.5);
   animation: sparkleFade 1s forwards cubic-bezier(0.2, 1, 0.3, 1);
 }
-@keyframes sparkleFade { 0% { transform: scale(1) translateY(0); opacity: 1; } 100% { transform: scale(0) translateY(-20px); opacity: 0; } }
+@keyframes sparkleFade { 
+  0% { transform: scale(1) translateY(0); opacity: 1; } 
+  100% { transform: scale(0) translateY(-20px); opacity: 0; } 
+}
 
 .magnetic-btn { transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform; }
 
@@ -207,8 +224,20 @@ select { appearance: none; -webkit-appearance: none; }
 textarea::-webkit-scrollbar { width: 6px; } textarea::-webkit-scrollbar-thumb { background: var(--neon-green); border-radius: 4px; }
 #update-indicator { transition: opacity 0.5s ease, transform 0.5s ease; } .sync-glow { box-shadow: 0 0 15px rgba(74, 222, 128, 0.5); border-color: rgba(74, 222, 128, 0.8); }
 
+/* =========================================
+   FIX: ADMIN CARD COMPACT
+   ========================================= */
 .admin-card { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; content-visibility: auto; }
 .admin-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); border-color: rgba(74, 222, 128, 0.5); }
+
+/* Override p-5 Tailwind padding yang kegemukan */
+.admin-card > div:nth-child(2) {
+  padding: 14px 16px !important;
+}
+/* Menempelkan tombol admin */
+.admin-card > div:nth-child(2) > div.flex.gap-3.mt-auto {
+  margin-top: 10px !important;
+}
 
 .music-marquee-container { width: 120px; overflow: hidden; white-space: nowrap; position: relative; }
 .music-marquee-content { display: inline-block; animation: marquee 8s linear infinite; padding-right: 100%; }
