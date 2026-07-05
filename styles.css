@@ -105,7 +105,7 @@ select { appearance: none; -webkit-appearance: none; }
 .font-preview-box {
   background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4);
   border-radius: 8px; padding: 12px; text-align: center; margin-top: 8px;
-  color: #fff; font-size: 1.1rem; transition: all 0.3s ease;
+  color: #fff; transition: all 0.3s ease;
   word-wrap: break-word; overflow-wrap: break-word; /* Mencegah teks offside */
 }
 
@@ -224,16 +224,6 @@ select { appearance: none; -webkit-appearance: none; }
   0% { background-position: 0% 50% } 
   50% { background-position: 100% 50% } 
   100% { background-position: 0% 50% } 
-}
-
-/* BUG FIX: SAFE CINEMATIC FADE RENDER (No more clipping bug) */
-.iris-reveal {
-  animation: cinematicFadeOut 1s cubic-bezier(0.76, 0, 0.24, 1) forwards;
-  pointer-events: none;
-}
-@keyframes cinematicFadeOut {
-  0% { opacity: 1; transform: scale(1); filter: blur(0px); }
-  100% { opacity: 0; transform: scale(1.1); filter: blur(10px); visibility: hidden; }
 }
 
 @keyframes cinematicEntrance {
