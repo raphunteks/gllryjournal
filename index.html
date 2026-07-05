@@ -54,8 +54,8 @@
   <!-- AUDIO PLAYER (BGM) -->
   <audio id="bgm-player" preload="auto"></audio>
 
-  <!-- COVER OVERLAY (THEATRICAL CINEMATIC REVEAL - UPGRADED SAFE RENDER) -->
-  <div id="cover-overlay" class="fixed inset-0 z-[200] bg-[#0f1423] flex flex-col items-center justify-center transition-all duration-1000">
+  <!-- COVER OVERLAY (THEATRICAL CINEMATIC REVEAL - UPGRADED SAFE RENDER ANTI-STUCK) -->
+  <div id="cover-overlay" class="fixed inset-0 z-[200] bg-[#0f1423] flex flex-col items-center justify-center">
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
        <div class="orb orb-1"></div>
        <div class="orb orb-2" style="background: rgba(168, 85, 247, 0.15)"></div>
@@ -599,29 +599,37 @@
     }
 
     // ==========================================
-    // OPEN JOURNAL SCRIPT (SUPER SAFE ANTI-STUCK)
+    // BUG FIX: OPEN JOURNAL SCRIPT (SUPER SAFE ANTI-STUCK)
     // ==========================================
     function openJournal() {
       try {
         const cover = document.getElementById('cover-overlay');
         const viewPublic = document.getElementById('view-public');
         
-        // 1. Eksekusi Animasi CSS Baru
+        // 1. Eksekusi Animasi CSS Baru (Transisi Native JS - Solusi Stuck Bug)
         if(cover) {
-           cover.classList.add('iris-reveal');
-           cover.style.pointerEvents = 'none'; // Matikan interaksi segera
+           cover.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out';
+           cover.style.opacity = '0';
+           cover.style.transform = 'scale(1.1)';
+           cover.style.filter = 'blur(10px)';
+           cover.style.pointerEvents = 'none'; 
            
-           // 2. Hancurkan DOM secara aman setelah animasi selesai
+           // Hancurkan DOM secara aman setelah animasi selesai
            setTimeout(() => {
-               cover.style.opacity = '0';
-               cover.style.visibility = 'hidden';
                cover.style.display = 'none'; 
-           }, 1000); // Sinkron dengan 1s animasi di CSS
+               try { cover.remove(); } catch(e) {}
+           }, 850); 
         }
         
-        // 3. Tampilkan Galeri & Load Data
+        // 2. Tampilkan Galeri Dasar (Struktur)
         if(viewPublic) viewPublic.classList.remove('hidden');
-        fetchGallery(); 
+        
+        // 3. DEFER RENDER: Ini adalah KUNCI dari fix ini.
+        // Merender ratusan elemen DOM langsung membuat HP freeze dan animasi CSS terhenti.
+        // Dengan memberikan delay 100ms, kita membiarkan browser menjalankan animasi transisi Cover terlebih dahulu dengan mulus.
+        setTimeout(() => {
+            fetchGallery(); 
+        }, 100);
         
         // 4. Play Audio secara aman menggunakan delay kecil (Mencegah thread crash)
         setTimeout(() => {
@@ -648,8 +656,11 @@
       } catch (err) {
         console.error("Open Journal Error:", err);
         // Fallback Kasar jika terjadi error kritis di browser pengguna
-        document.getElementById('cover-overlay').style.display = 'none';
-        document.getElementById('view-public').classList.remove('hidden');
+        const cv = document.getElementById('cover-overlay');
+        if(cv) { cv.style.display = 'none'; try{cv.remove();}catch(e){} }
+        const vp = document.getElementById('view-public');
+        if(vp) vp.classList.remove('hidden');
+        setTimeout(() => fetchGallery(), 100);
       }
     }
 
