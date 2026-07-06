@@ -1,7 +1,7 @@
 :root {
   --neon-green: #4ade80;
-  --glass-bg: rgba(20, 25, 40, 0.7); 
-  --glass-border: rgba(74, 222, 128, 0.2);
+  --glass-bg: rgba(15, 23, 42, 0.4); 
+  --glass-border: rgba(74, 222, 128, 0.3);
 }
 
 /* =========================================
@@ -75,25 +75,33 @@ body {
 .font-sen { font-family: 'Sen', sans-serif; font-weight: 400; }
 .font-inter-reg { font-family: 'Inter', sans-serif; font-weight: 400; }
 
-/* Custom Select Dropdown Styling */
 select { appearance: none; -webkit-appearance: none; }
 .custom-select-wrapper { position: relative; }
-.custom-select-wrapper::after { content: '▼'; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #4ade80; font-size: 10px; pointer-events: none; }
+.custom-select-wrapper::after { content: '▼'; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #4ade80; font-size: 10px; pointer-events: none; }
 
-/* FIX: SPACING UI PREVIEW SUPER COMPACT */
+/* FIX: SPACING UI PREVIEW SUPER COMPACT & PRESISI */
 .font-preview-box {
-  background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4); border-radius: 8px; 
-  padding: 4px 6px; text-align: center; margin-top: 2px; color: #fff; font-size: 0.85rem; transition: all 0.3s ease;
+  background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4); border-radius: 6px; 
+  padding: 4px; text-align: center; margin-top: 4px; color: #fff; font-size: 12px; transition: all 0.3s ease;
   word-wrap: break-word; overflow-wrap: break-word; 
 }
 
 /* =========================================
-   SUPER FIX: FORM COMPACT OVERRIDES
+   SUPER FIX: ULTRA COMPACT OVERRIDES FOR MODALS
+   (Membunuh semua spasi longgar bawaan browser/Tailwind)
    ========================================= */
-#upload-form, #edit-form { display: flex !important; flex-direction: column !important; gap: 6px !important; }
+#upload-form, #edit-form { display: flex !important; flex-direction: column !important; gap: 8px !important; }
 #upload-form > div, #edit-form > div, #upload-form > div + div, #edit-form > div + div { margin-top: 0px !important; margin-bottom: 0px !important; }
-#upload-form label, #edit-form label { margin-bottom: 2px !important; padding-bottom: 0px !important; line-height: 1.2 !important; }
+#upload-form label, #edit-form label { margin-bottom: 2px !important; padding-bottom: 0px !important; line-height: 1.1 !important; font-size: 11px !important;}
 #upload-form .grid, #edit-form .grid { gap: 8px !important; margin: 0px !important; }
+
+/* Presisi Input Box */
+#upload-form input, #edit-form input, #upload-form select, #edit-form select, #upload-form textarea, #edit-form textarea {
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+  border-radius: 6px !important;
+  min-height: unset !important;
+}
 
 /* =========================================
    CSS3 INNOVATIONS: PARALLAX, SPARKLES, SAKURA
@@ -102,7 +110,6 @@ select { appearance: none; -webkit-appearance: none; }
 .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; will-change: transform; animation: float 30s infinite ease-in-out alternate; }
 .orb-1 { width: 450px; height: 450px; background: rgba(74, 222, 128, 0.1); top: -15%; left: -10%; animation-delay: 0s; }
 .orb-2 { width: 400px; height: 400px; background: rgba(56, 189, 248, 0.1); bottom: -15%; right: -10%; animation-delay: -5s; }
-
 @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.05); } }
 .cursor-sparkle { position: fixed; width: 4px; height: 4px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; box-shadow: 0 0 10px 2px rgba(255,255,255,0.8), 0 0 20px 5px rgba(74, 222, 128, 0.5); animation: sparkleFade 1s forwards cubic-bezier(0.2, 1, 0.3, 1); }
 @keyframes sparkleFade { 0% { transform: scale(1) translateY(0); opacity: 1; } 100% { transform: scale(0) translateY(-20px); opacity: 0; } }
@@ -128,146 +135,151 @@ select { appearance: none; -webkit-appearance: none; }
 .scroll-reveal.revealed { opacity: 1; transform: translateY(0) scale(1); }
 
 /* =========================================
-   TORN PAPER SCRAPBOOK MAGIC (NEW OPSI 8)
-   Desain kertas jurnal artistik pengganti Polaroid
+   VINTAGE CINEMATIC FILM STRIP MAGIC (OPSI 7)
    ========================================= */
-.scrapbook-paper-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 340px;
+.film-frame-wrapper {
   margin: 0 auto;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
-  transform: rotate(var(--rot));
-  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.3));
+  max-width: 360px;
+  width: 100%;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+  cursor: pointer;
 }
 
-.rotate-1 { --rot: -2.5deg; } .rotate-2 { --rot: 3.5deg; } .rotate-3 { --rot: -1.5deg; } .rotate-4 { --rot: 2.5deg; }
-
-/* Interaksi Hover: Kertas seperti terangkat mendekat */
-.scrapbook-paper-wrapper:hover {
-  transform: translateY(-15px) scale(1.03) rotate(calc(var(--rot) + 2deg));
+.film-frame-wrapper:hover {
+  transform: translateY(-8px) scale(1.02);
+  filter: drop-shadow(0 25px 35px rgba(0,0,0,0.7));
   z-index: 10;
-  filter: drop-shadow(0 25px 30px rgba(0,0,0,0.5));
 }
 
-/* WASHI TAPE (Selotip Transparan Ala Jurnal) */
-.washi-tape {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-3deg);
-  width: 130px;
-  height: 35px;
-  background: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1), inset 0 0 5px rgba(255,255,255,0.4);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  z-index: 20;
-  /* Membuat pinggiran selotip terlihat bergerigi/sobek kasar */
-  clip-path: polygon(1% 4%, 99% 0%, 98% 96%, 0% 100%);
-}
-/* Variasi Washi Tape pada urutan genap agar natural */
-.scrapbook-paper-wrapper:nth-child(even) .washi-tape {
-  transform: translateX(-50%) rotate(4deg);
-  background: rgba(74, 222, 128, 0.15); /* Hint warna hijau neon */
-}
-
-/* KERTAS JURNAL TORN PAPER */
-.scrapbook-paper {
-  background-color: #fdfbf7;
-  /* Tekstur titik/garis halus ala kertas buku jurnal */
-  background-image: 
-      linear-gradient(rgba(74, 222, 128, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(74, 222, 128, 0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
-  padding: 18px 18px 26px 18px;
-  /* Membuat ujung kertas terlihat sobek/tidak sempurna (handmade) */
-  border-radius: 2px 3px 2px 4px / 3px 2px 4px 2px; 
+/* Kerangka Hitam Film Analog */
+.film-frame {
+  background-color: #121212; 
+  /* Padding ekstra di kiri kanan untuk lubang sprocket dan teks Kodak */
+  padding: 30px 40px 24px 40px;
+  border-radius: 6px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(0,0,0,0.05);
 }
 
-.photo-wrapper {
+/* Lubang Klise Film (Sprocket Holes) */
+.film-frame::before, .film-frame::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  width: 16px;
+  /* Membuat lubang transparan dengan trik radial gradient ke warna body background */
+  background-image: radial-gradient(circle at center, #0b0f19 5px, transparent 6px);
+  background-size: 100% 32px;
+  z-index: 5;
+}
+.film-frame::before { left: 4px; }
+.film-frame::after { right: 4px; }
+
+/* Detail Teks Pinggiran Film (KODAK / Frame Number) */
+.film-edge-text {
+  position: absolute;
+  color: #fbbf24; /* Kuning vintage Kodak */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+.film-edge-text.left {
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+.film-edge-text.right {
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Wadah Foto Dalam Klise */
+.film-photo-wrapper {
   width: 100%;
   border-radius: 4px;
   overflow: hidden;
-  background-color: #1e293b;
-  margin-bottom: 16px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  background-color: #000;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8); /* Vignette tipis */
+  margin-bottom: 20px;
+  border: 1px solid #2a2a2a; /* Garis pemisah klise */
 }
 
 /* =========================================
    DYNAMICS PHOTOBOOTH GRID & ANTI-MIRROR FIX
    ========================================= */
 .photo-grid { display: grid; gap: 4px; width: 100%; height: 100%; }
+
 .photo-grid img, .upload-preview-grid img { 
   width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 1s ease; 
-  /* FIX 100% ANTI MIRRORING: Menggunakan EXIF Asli bawaan Kamera */
+  /* SUPER FIX 100% ANTI MIRRORING: Mematuhi Orientasi Metadata EXIF Kamera Asli! */
   image-orientation: from-image !important; 
 }
-.scrapbook-paper-wrapper:hover .photo-grid img { transform: scale(1.05); }
+.film-frame-wrapper:hover .photo-grid img { transform: scale(1.05); }
 
 .grid-cols-1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
 .grid-cols-2 { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
 .grid-cols-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
 .grid-cols-3 img:first-child { grid-column: span 2; grid-row: span 1; }
 .grid-cols-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-.grid-cols-more { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
 
-/* KONTEN KERTAS (LOKASI, TANGGAL, CAPTION) DI DEPAN SEMUA */
-.paper-content {
+/* KONTEN TEKS DALAM KLISE */
+.film-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-grow: 1;
+  z-index: 10;
 }
 
-.location-title {
-  color: #0f172a;
-  font-size: 1.7rem;
-  font-weight: bold;
+.film-location {
+  color: #facc15; /* Spidol kuning vintage */
+  font-size: 1.8rem;
   text-align: center;
   line-height: 1.2;
   margin-bottom: 8px;
   word-wrap: break-word;
+  text-shadow: 0 0 5px rgba(250, 204, 21, 0.3); /* Sedikit neon glow */
 }
 
-.date-badge {
-  color: #16a34a;
-  font-size: 0.65rem;
-  font-weight: 700;
+.film-date {
+  color: #ef4444; /* Angka merah klise */
+  font-family: monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-bottom: 2px dashed rgba(74, 222, 128, 0.5);
-  padding-bottom: 4px;
-  margin-bottom: 14px;
-  font-family: 'Inter', sans-serif;
 }
 
-.caption-area {
-  max-height: 120px; 
-  overflow-y: auto; overflow-x: hidden; 
-  width: 100%; text-align: center; margin-bottom: 12px; padding-right: 4px;
+.caption-scroll-area {
+  max-height: 180px; overflow-y: auto; overflow-x: hidden; width: 100%; padding-right: 6px;
+  mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent); 
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
 }
-.caption-area::-webkit-scrollbar { width: 4px; } 
-.caption-area::-webkit-scrollbar-track { background: transparent; } 
-.caption-area::-webkit-scrollbar-thumb { background: rgba(74, 222, 128, 0.4); border-radius: 10px; }
-.caption-area::-webkit-scrollbar-thumb:hover { background: rgba(74, 222, 128, 0.8); }
+.caption-scroll-area::-webkit-scrollbar { width: 4px; } 
+.caption-scroll-area::-webkit-scrollbar-track { background: transparent; } 
+.caption-scroll-area::-webkit-scrollbar-thumb { background: rgba(250, 204, 21, 0.5); border-radius: 10px; }
 
-.caption-text {
-  color: #334155;
+.film-caption {
+  color: #e5e7eb;
   font-size: 1.15rem;
   line-height: 1.5;
-  word-wrap: break-word; overflow-wrap: break-word; 
+  text-align: center;
+  word-wrap: break-word; 
+  padding-bottom: 8px;
 }
 
-.id-badge {
-  margin-top: auto;
-  font-size: 0.6rem;
-  color: #94a3b8;
+.film-id {
+  color: #4b5563;
   font-family: monospace;
+  font-size: 0.65rem;
   align-self: flex-end;
+  margin-top: 10px;
 }
 
 /* =========================================
@@ -275,7 +287,12 @@ select { appearance: none; -webkit-appearance: none; }
    ========================================= */
 .scrapbook-board { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5); border-radius: 32px; position: relative; }
 .z-safe-layer { z-index: -10; }
-.file-drop-area { position: relative; border: 2px dashed rgba(74, 222, 128, 0.4); border-radius: 16px; padding: 10px !important; text-align: center; background: rgba(15, 23, 42, 0.5); transition: all 0.3s ease; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+.file-drop-area { 
+  position: relative; border: 2px dashed rgba(74, 222, 128, 0.4); border-radius: 12px; 
+  padding: 8px !important; text-align: center; background: rgba(15, 23, 42, 0.5); transition: all 0.3s ease; cursor: pointer; overflow: hidden; 
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
 .file-drop-area:hover, .file-drop-area.dragover { background: rgba(74, 222, 128, 0.15); border-color: var(--neon-green); }
 .file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
 .upload-preview-grid { display: grid; gap: 4px; width: 100%; height: 100%; }
@@ -283,10 +300,11 @@ select { appearance: none; -webkit-appearance: none; }
 textarea::-webkit-scrollbar { width: 6px; } textarea::-webkit-scrollbar-thumb { background: var(--neon-green); border-radius: 4px; }
 #update-indicator { transition: opacity 0.5s ease, transform 0.5s ease; } .sync-glow { box-shadow: 0 0 15px rgba(74, 222, 128, 0.5); border-color: rgba(74, 222, 128, 0.8); }
 
+/* FIX: ADMIN CARD COMPACT & PRESISI */
 .admin-card { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; content-visibility: auto; }
 .admin-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); border-color: rgba(74, 222, 128, 0.5); }
 .admin-card > div:nth-child(2) { padding: 12px 14px !important; }
-.admin-card > div:nth-child(2) > div.flex.gap-3.mt-auto { margin-top: 10px !important; }
+.admin-card > div:nth-child(2) > div.flex.gap-3.mt-auto { margin-top: 8px !important; }
 
 .music-marquee-container { width: 120px; overflow: hidden; white-space: nowrap; position: relative; }
 .music-marquee-content { display: inline-block; animation: marquee 8s linear infinite; padding-right: 100%; }
