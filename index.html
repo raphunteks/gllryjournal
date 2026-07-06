@@ -226,6 +226,7 @@
           </div>
         </div>
 
+        <!-- DUAL FONT DROPDOWN -->
         <div class="grid grid-cols-2 gap-2">
            <div>
              <label class="block text-[10px] font-medium text-green-300 mb-1">Font Lokasi (Aesthetic)</label>
@@ -323,8 +324,11 @@
 
 
   <script>
+    // ==========================================
+    // AXA & RIFKA PROTOCOL: ROUTING & API MANAGER
+    // ==========================================
+
     const API_URL = "https://script.google.com/macros/s/AKfycbxnt-Y3nVAEjcwor2GsSUVnX_iSqsu-Q6ycJEoQLgwRPNSxZpeA3BXssj9IV2vvQSc/exec";
-    const rotateClasses = ['rotate-1', 'rotate-2', 'rotate-3', 'rotate-4'];
     
     let selectedFilesArray = []; 
     let bgmBase64 = null, bgmFileName = null, bgmMime = null;
@@ -621,7 +625,6 @@
 
       let htmlBuilder = '';
       data.forEach((item, index) => {
-        const rotateClass = rotateClasses[index % rotateClasses.length];
         const fontLok = item.fontLokasi || 'font-playfair'; const fontPes = item.fontPesan || 'font-inter'; 
         let rawUrls = item.url ? item.url.split('|') : []; let gridHtml = ''; let gridClass = 'grid-cols-1';
         if(rawUrls.length === 2) gridClass = 'grid-cols-2'; else if (rawUrls.length === 3) gridClass = 'grid-cols-3'; else if (rawUrls.length >= 4) gridClass = 'grid-cols-4'; 
@@ -634,26 +637,20 @@
         });
         
         htmlBuilder += `
-          <div class="polaroid-container scroll-reveal" onclick="toggleFlip(this)">
-            <div class="polaroid-inner">
-              <div class="polaroid-front">
-                <div class="polaroid-photo-wrapper relative group bg-slate-800">
-                  <div class="photo-grid ${gridClass}">${gridHtml}</div>
-                </div>
-                <div class="absolute bottom-2.5 left-0 right-0 h-[60px] flex items-center justify-center px-4">
-                  <div class="text-center text-slate-800 ${fontLok} text-[1.5rem] md:text-3xl text-clamp-2 font-bold">${item.lokasi}</div>
-                </div>
+          <div class="film-frame-wrapper scroll-reveal">
+            <div class="film-frame">
+              <div class="film-edge-text left">KODAK PORTRA 400</div>
+              <div class="film-edge-text right">▶ ${index + 1}A</div>
+              <div class="film-photo-wrapper">
+                <div class="photo-grid ${gridClass}">${gridHtml}</div>
               </div>
-              <div class="polaroid-back">
-                <div class="flex flex-col h-full w-full relative">
-                  <span class="text-green-600 font-bold text-xs md:text-[11px] tracking-widest uppercase border-b-2 border-green-300/40 pb-2 mb-3 w-full text-center shrink-0 font-sans">${item.tanggal}</span>
-                  <div class="flex-grow flex items-center justify-center w-full my-2 overflow-hidden">
-                    <div class="caption-scroll-area w-full">
-                      <p class="${fontPes} leading-relaxed text-slate-800 text-center px-1 text-xl md:text-2xl break-words whitespace-normal">"${item.pesan}"</p>
-                    </div>
-                  </div>
-                  <div class="mt-auto pt-3 text-[10px] md:text-[11px] text-slate-400 w-full text-right font-mono shrink-0">${item.id}</div>
+              <div class="film-content">
+                <div class="film-date">${item.tanggal}</div>
+                <h3 class="film-location ${fontLok}">${item.lokasi}</h3>
+                <div class="caption-scroll-area w-full">
+                  <p class="film-caption ${fontPes}">"${item.pesan}"</p>
                 </div>
+                <div class="film-id">${item.id}</div>
               </div>
             </div>
           </div>
@@ -667,7 +664,6 @@
       if(syncText) syncText.innerHTML = isAutoSyncMode ? "Live Sync..." : "Checking data...";
       if(indicator) { if (show) indicator.classList.remove('opacity-0', 'translate-y-[-10px]'); else indicator.classList.add('opacity-0', 'translate-y-[-10px]'); }
     }
-    function toggleFlip(element) { element.classList.toggle('is-flipped'); }
 
     // --- ADMIN DASHBOARD CARD ---
     function renderAdminGrid(data) {
