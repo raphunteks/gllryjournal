@@ -191,7 +191,7 @@
     </div>
   </div>
 
-  <!-- UPLOAD MODAL -->
+  <!-- UPLOAD MODAL (UI COMPACT PRESISI) -->
   <div id="upload-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500 z-50">
     <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md z-safe-layer transition-opacity" onclick="closeModal('upload-modal')"></div>
     
@@ -202,36 +202,35 @@
 
       <h2 class="text-lg font-bold text-white mb-2 flex items-center gap-2 font-playfair italic"><span class="text-green-400 text-xl not-italic">🖼️</span> Save a Memory</h2>
       
-      <form id="upload-form" onsubmit="event.preventDefault(); submitMemory();" class="space-y-2 mt-2">
+      <form id="upload-form" onsubmit="event.preventDefault(); submitMemory();" class="flex flex-col gap-2 mt-2 w-full">
         <div class="w-full">
           <label class="block text-[11px] font-medium text-slate-300 mb-1">Pick photos (Grid auto)</label>
-          <div class="file-drop-area group !p-2" id="drop-area-add">
+          <div class="file-drop-area group" id="drop-area-add">
             <input type="file" id="input-file" accept="image/*" multiple class="file-input" required onchange="handleFileSelect(event, 'preview-add-container', 'prompt-add')">
-            <div id="prompt-add" class="flex flex-col items-center justify-center space-y-1 pointer-events-none transition-transform group-hover:scale-105">
+            <div id="prompt-add" class="flex flex-col items-center justify-center pointer-events-none transition-transform group-hover:scale-105">
               <span class="text-2xl drop-shadow-lg mb-1">📷</span>
-              <p class="text-slate-300 text-[10px]">Click or Drag & Drop Photos</p>
+              <p class="text-slate-300 text-[10px]">Click or Drag & Drop</p>
             </div>
-            <div id="preview-add-container" class="hidden relative w-full h-28 rounded-xl overflow-hidden border border-slate-600 bg-slate-900"></div>
+            <div id="preview-add-container" class="hidden relative w-full h-24 rounded-xl overflow-hidden border border-slate-600 bg-slate-900"></div>
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-2">
+        <div class="grid grid-cols-2 gap-2 w-full">
           <div>
             <label class="block text-[11px] font-medium text-slate-300 mb-1">Date</label>
-            <input type="date" id="input-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1 text-white [&::-webkit-calendar-picker-indicator]:invert text-xs shadow-inner focus:border-green-400 focus:outline-none">
+            <input type="date" id="input-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white [&::-webkit-calendar-picker-indicator]:invert text-xs shadow-inner focus:border-green-400 focus:outline-none">
           </div>
           <div>
             <label class="block text-[11px] font-medium text-slate-300 mb-1">Location</label>
-            <input type="text" id="input-lokasi" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1 text-white text-xs shadow-inner focus:border-green-400 focus:outline-none">
+            <input type="text" id="input-lokasi" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white text-xs shadow-inner focus:border-green-400 focus:outline-none">
           </div>
         </div>
 
-        <!-- DUAL FONT DROPDOWN -->
-        <div class="grid grid-cols-2 gap-2">
+        <div class="grid grid-cols-2 gap-2 w-full">
            <div>
              <label class="block text-[10px] font-medium text-green-300 mb-1">Font Lokasi (Aesthetic)</label>
              <div class="custom-select-wrapper">
-               <select id="input-font-lokasi" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1 text-white shadow-inner focus:border-green-400 focus:outline-none appearance-none text-[10px]" onchange="updateFontPreview(this.value, 'font-preview-lokasi')">
+               <select id="input-font-lokasi" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white shadow-inner focus:border-green-400 focus:outline-none appearance-none text-[10px]" onchange="updateFontPreview(this.value, 'font-preview-lokasi')">
                  <option value="font-playfair">Playfair Display</option><option value="font-cinzel">Cinzel</option><option value="font-cormorant">Cormorant Garamond</option><option value="font-bodoni">Bodoni Moda</option><option value="font-prata">Prata</option><option value="font-italiana">Italiana</option><option value="font-yeseva">Yeseva One</option><option value="font-tenor">Tenor Sans</option><option value="font-gilda">Gilda Display</option><option value="font-oranienbaum">Oranienbaum</option><option value="font-dmserif">DM Serif</option><option value="font-abril">Abril Fatface</option><option value="font-marcellus">Marcellus</option><option value="font-forum">Forum</option><option value="font-instrument">Instrument Serif</option><option value="font-gloock">Gloock</option><option value="font-castoro">Castoro</option><option value="font-viaoda">Viaoda Libre</option><option value="font-federo">Federo</option><option value="font-rozha">Rozha One</option>
                </select>
              </div>
@@ -241,7 +240,7 @@
            <div>
              <label class="block text-[10px] font-medium text-blue-300 mb-1">Font Deskripsi (Simple)</label>
              <div class="custom-select-wrapper">
-               <select id="input-font-pesan" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1 text-white shadow-inner focus:border-blue-400 focus:outline-none appearance-none text-[10px]" onchange="updateFontPreview(this.value, 'font-preview-pesan')">
+               <select id="input-font-pesan" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white shadow-inner focus:border-blue-400 focus:outline-none appearance-none text-[10px]" onchange="updateFontPreview(this.value, 'font-preview-pesan')">
                  <option value="font-inter">Inter (Default)</option><option value="font-roboto">Roboto</option><option value="font-opensans">Open Sans</option><option value="font-lato">Lato</option><option value="font-montserrat">Montserrat</option><option value="font-nunito">Nunito</option><option value="font-poppins">Poppins</option><option value="font-quicksand">Quicksand</option><option value="font-worksans">Work Sans</option><option value="font-dmsans">DM Sans</option><option value="font-jakarta">Jakarta Sans</option><option value="font-manrope">Manrope</option><option value="font-outfit">Outfit</option><option value="font-urbanist">Urbanist</option><option value="font-mulish">Mulish</option><option value="font-space">Space Grotesk</option><option value="font-figtree">Figtree</option><option value="font-schibsted">Schibsted</option><option value="font-karla">Karla</option><option value="font-sen">Sen</option>
                </select>
              </div>
@@ -249,7 +248,7 @@
            </div>
         </div>
 
-        <div>
+        <div class="w-full">
           <label class="block text-[11px] font-medium text-slate-300 mb-1">Caption / Deskripsi</label>
           <textarea id="input-pesan" required rows="2" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1.5 text-white resize-none shadow-inner focus:border-green-400 focus:outline-none text-xs"></textarea>
         </div>
@@ -258,17 +257,17 @@
     </div>
   </div>
 
-  <!-- EDIT MODAL -->
+  <!-- EDIT MODAL (FIX: MENGGUNAKAN FLEX GAP) -->
   <div id="edit-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500 z-50">
     <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md z-safe-layer transition-opacity" onclick="closeModal('edit-modal')"></div>
-    <div class="relative w-full max-w-[400px] bg-slate-800 border border-blue-500/30 rounded-3xl shadow-2xl p-4 transform scale-95 opacity-0 transition-all duration-500 ease-out max-h-[90vh] overflow-y-auto" id="edit-modal-panel">
+    <div class="relative w-full max-w-[400px] bg-slate-800 border border-blue-500/30 rounded-3xl shadow-2xl p-5 transform scale-95 opacity-0 transition-all duration-500 ease-out max-h-[90vh] overflow-y-auto" id="edit-modal-panel">
       <button type="button" onclick="closeModal('edit-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-full transition-colors z-20">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
 
       <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2 font-playfair italic"><span class="text-blue-400 text-xl not-italic">✏️</span> Edit Memory</h2>
       
-      <form id="edit-form" onsubmit="event.preventDefault(); submitEditMemory();">
+      <form id="edit-form" onsubmit="event.preventDefault(); submitEditMemory();" class="flex flex-col gap-2 mt-2 w-full">
         <input type="hidden" id="edit-id-asli">
         <div class="w-full">
           <label class="block text-[10px] font-medium text-blue-300 mb-1">Ganti Foto Baru (Kosongkan jika tidak diubah)</label>
@@ -281,14 +280,14 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 w-full">
+        <div class="grid grid-cols-2 gap-2 w-full">
           <div><label class="block text-[11px] font-medium text-slate-300 mb-1">ID Foto</label><input type="text" id="edit-id" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white font-mono text-xs shadow-inner focus:border-blue-400 focus:outline-none"></div>
           <div><label class="block text-[11px] font-medium text-slate-300 mb-1">Tanggal</label><input type="date" id="edit-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white [&::-webkit-calendar-picker-indicator]:invert text-xs shadow-inner focus:border-blue-400 focus:outline-none"></div>
         </div>
         
         <div class="w-full"><label class="block text-[11px] font-medium text-slate-300 mb-1">Lokasi</label><input type="text" id="edit-lokasi" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1.5 text-white text-xs shadow-inner focus:border-blue-400 focus:outline-none"></div>
 
-        <div class="grid grid-cols-2 w-full">
+        <div class="grid grid-cols-2 gap-2 w-full">
            <div>
              <label class="block text-[10px] font-medium text-green-300 mb-1">Font Lokasi</label>
              <div class="custom-select-wrapper">
@@ -324,7 +323,12 @@
 
 
   <script>
+    // ==========================================
+    // AXA & RIFKA PROTOCOL: ROUTING & API MANAGER
+    // ==========================================
+
     const API_URL = "https://script.google.com/macros/s/AKfycbxnt-Y3nVAEjcwor2GsSUVnX_iSqsu-Q6ycJEoQLgwRPNSxZpeA3BXssj9IV2vvQSc/exec";
+    const rotateClasses = ['rotate-1', 'rotate-2', 'rotate-3', 'rotate-4'];
     
     let selectedFilesArray = []; 
     let bgmBase64 = null, bgmFileName = null, bgmMime = null;
@@ -403,6 +407,9 @@
       }
     }
 
+    // ==========================================
+    // JS NATIVE OPACITY TRANSITION (ANTI-STUCK FIX)
+    // ==========================================
     function openJournal() {
       try {
         const cover = document.getElementById('cover-overlay'); 
@@ -633,26 +640,20 @@
         });
         
         htmlBuilder += `
-          <div class="polaroid-container scroll-reveal" onclick="toggleFlip(this)">
-            <div class="polaroid-inner">
-              <div class="polaroid-front">
-                <div class="polaroid-photo-wrapper relative group bg-slate-800">
-                  <div class="photo-grid ${gridClass}">${gridHtml}</div>
-                </div>
-                <div class="absolute bottom-2.5 left-0 right-0 h-[60px] flex items-center justify-center px-4">
-                  <div class="text-center text-slate-800 ${fontLok} text-[1.5rem] md:text-3xl text-clamp-2 font-bold">${item.lokasi}</div>
-                </div>
+          <div class="film-frame-wrapper scroll-reveal">
+            <div class="film-frame">
+              <div class="film-edge-text left">KODAK PORTRA 400</div>
+              <div class="film-edge-text right">▶ ${index + 1}A</div>
+              <div class="film-photo-wrapper">
+                <div class="photo-grid ${gridClass}">${gridHtml}</div>
               </div>
-              <div class="polaroid-back">
-                <div class="flex flex-col h-full w-full relative">
-                  <span class="text-green-600 font-bold text-xs md:text-[11px] tracking-widest uppercase border-b-2 border-green-300/40 pb-2 mb-3 w-full text-center shrink-0 font-sans">${item.tanggal}</span>
-                  <div class="flex-grow flex items-center justify-center w-full my-2 overflow-hidden">
-                    <div class="caption-scroll-area w-full">
-                      <p class="${fontPes} leading-relaxed text-slate-800 text-center px-1 text-xl md:text-2xl break-words whitespace-normal">"${item.pesan}"</p>
-                    </div>
-                  </div>
-                  <div class="mt-auto pt-3 text-[10px] md:text-[11px] text-slate-400 w-full text-right font-mono shrink-0">${item.id}</div>
+              <div class="film-content">
+                <div class="film-date">${item.tanggal}</div>
+                <h3 class="film-location ${fontLok}">${item.lokasi}</h3>
+                <div class="caption-scroll-area w-full">
+                  <p class="film-caption ${fontPes}">"${item.pesan}"</p>
                 </div>
+                <div class="film-id">${item.id}</div>
               </div>
             </div>
           </div>
@@ -666,7 +667,6 @@
       if(syncText) syncText.innerHTML = isAutoSyncMode ? "Live Sync..." : "Checking data...";
       if(indicator) { if (show) indicator.classList.remove('opacity-0', 'translate-y-[-10px]'); else indicator.classList.add('opacity-0', 'translate-y-[-10px]'); }
     }
-    function toggleFlip(element) { element.classList.toggle('is-flipped'); }
 
     // --- ADMIN DASHBOARD CARD ---
     function renderAdminGrid(data) {
