@@ -66,40 +66,62 @@ select { appearance: none; -webkit-appearance: none; }
 
 /* =========================================
    SUPER FIX: FORM COMPACT OVERRIDES & SPACING PRESISI
-   (Solusi agar layout Modal Upload & Edit mepet dan tidak renggang)
+   (Solusi agar layout Modal Upload & Edit SANGAT mepet dan tidak renggang)
    ========================================= */
 #upload-form, #edit-form {
   display: flex !important;
   flex-direction: column !important;
-  gap: 6px !important; /* Jarak vertikal absolut sangat mepet/presisi */
+  gap: 12px !important; /* Jarak proporsional antar grup secara absolut */
 }
 
-#upload-form > div, #edit-form > div,
-#upload-form > div + div, #edit-form > div + div {
-  margin-top: 0px !important; /* Membunuh semua margin tak kasat mata dari Tailwind */
-  margin-bottom: 0px !important;
+/* Target SEMUA element anak langsung untuk membunuh margin tak kasat mata Tailwind */
+#upload-form > *, #edit-form > * {
+  margin: 0px !important; 
 }
 
 #upload-form label, #edit-form label {
-  margin-bottom: 2px !important; /* Menempelkan Teks Label pas di atas kotak Input */
-  padding-bottom: 0px !important;
-  line-height: 1.2 !important;
+  margin-bottom: 4px !important; /* Merapatkan Teks Label pas di atas kotak Input */
+  font-size: 11px !important;
+  line-height: 1 !important;
+  display: block !important;
 }
 
+/* Rapatkan grid (kolom sebelahan) agar presisi */
 #upload-form .grid, #edit-form .grid {
-  gap: 8px !important; /* Jarak Kiri-Kanan antar kolom Date/Location & Dropdown */
+  gap: 10px !important; 
   margin: 0px !important;
 }
 
-/* Kotak Preview Font agar lebih compact */
+/* Padatkan ukuran Input, Select, Textarea agar form sangat compact */
+#upload-form input, #edit-form input,
+#upload-form select, #edit-form select,
+#upload-form textarea, #edit-form textarea {
+  padding: 6px 12px !important;
+  font-size: 12px !important;
+  border-radius: 8px !important;
+}
+
+/* Area drop file dipress ukurannya */
+.file-drop-area {
+  padding: 12px !important;
+  min-height: 70px !important;
+  border-radius: 12px !important;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.file-drop-area span.text-2xl {
+  font-size: 24px !important;
+  margin-bottom: 2px !important;
+}
+
+/* Kotak Preview Font agar mepet presisi */
 .font-preview-box {
   background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4);
-  border-radius: 6px; 
-  padding: 4px; /* Super mepet */
+  border-radius: 6px !important; 
+  padding: 6px !important; 
   text-align: center; 
-  margin-top: 4px !important; /* Presisi jarak dari dropdown ke kotak preview */
-  color: #fff; font-size: 0.85rem; transition: all 0.3s ease;
-  word-wrap: break-word; overflow-wrap: break-word; /* Mencegah teks offside */
+  margin-top: 6px !important; /* Presisi jarak dari dropdown ke kotak preview */
+  color: #fff; font-size: 12px !important; transition: all 0.3s ease;
+  word-wrap: break-word; overflow-wrap: break-word; 
 }
 
 /* =========================================
@@ -166,8 +188,8 @@ select { appearance: none; -webkit-appearance: none; }
 .photo-grid img, .upload-preview-grid img { 
   width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 1s ease; 
   
-  /* SUPER FIX 100% ANTI MIRRORING: Abaikan EXIF Kamera HP yang sengaja nge-flip gambar selfie */
-  image-orientation: none !important; 
+  /* SUPER FIX 100% ANTI MIRRORING: Gunakan orientasi EXIF asli bawaan kamera agar foto tidak terbalik */
+  image-orientation: from-image !important; 
 }
 .polaroid-front:hover .photo-grid img { transform: scale(1.05); }
 
@@ -188,13 +210,7 @@ select { appearance: none; -webkit-appearance: none; }
 
 .scrapbook-board { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5); border-radius: 32px; position: relative; }
 .z-safe-layer { z-index: -10; }
-
-.file-drop-area { 
-  position: relative; border: 2px dashed rgba(74, 222, 128, 0.4); border-radius: 16px; 
-  padding: 8px !important; /* FIX: Area drop ditekan agar form tidak membengkak panjang */
-  text-align: center; background: rgba(15, 23, 42, 0.5); transition: all 0.3s ease; cursor: pointer; overflow: hidden; 
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
+.file-drop-area { position: relative; border: 2px dashed rgba(74, 222, 128, 0.4); border-radius: 16px; padding: 24px; text-align: center; background: rgba(15, 23, 42, 0.5); transition: all 0.3s ease; cursor: pointer; overflow: hidden; }
 .file-drop-area:hover, .file-drop-area.dragover { background: rgba(74, 222, 128, 0.15); border-color: var(--neon-green); }
 .file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
 .upload-preview-grid { display: grid; gap: 4px; width: 100%; height: 100%; }
@@ -202,13 +218,8 @@ select { appearance: none; -webkit-appearance: none; }
 textarea::-webkit-scrollbar { width: 6px; } textarea::-webkit-scrollbar-thumb { background: var(--neon-green); border-radius: 4px; }
 #update-indicator { transition: opacity 0.5s ease, transform 0.5s ease; } .sync-glow { box-shadow: 0 0 15px rgba(74, 222, 128, 0.5); border-color: rgba(74, 222, 128, 0.8); }
 
-/* FIX: ADMIN CARD COMPACT */
 .admin-card { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; content-visibility: auto; }
 .admin-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); border-color: rgba(74, 222, 128, 0.5); }
-
-/* Override p-5 Tailwind padding yang kegemukan di kotak admin */
-.admin-card > div:nth-child(2) { padding: 12px 14px !important; }
-.admin-card > div:nth-child(2) > div.flex.gap-3.mt-auto { margin-top: 10px !important; }
 
 .music-marquee-container { width: 120px; overflow: hidden; white-space: nowrap; position: relative; }
 .music-marquee-content { display: inline-block; animation: marquee 8s linear infinite; padding-right: 100%; }
