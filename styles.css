@@ -79,14 +79,14 @@ select { appearance: none; -webkit-appearance: none; }
   color: #4ade80; font-size: 10px; pointer-events: none;
 }
 
-/* FIX: SPACING UI PREVIEW LEBIH COMPACT */
+/* FIX: SPACING UI PREVIEW SUPER COMPACT */
 .font-preview-box {
   background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4);
   border-radius: 8px; 
-  padding: 6px 8px; /* Diperkecil agar form tidak terlalu panjang */
+  padding: 4px 6px; /* Diperkecil maksimal agar form presisi */
   text-align: center; 
-  margin-top: 4px; /* Margin dipersempit */
-  color: #fff; font-size: 0.9rem; transition: all 0.3s ease;
+  margin-top: 2px; /* Margin dipersempit maksimal */
+  color: #fff; font-size: 0.85rem; transition: all 0.3s ease;
   word-wrap: break-word; overflow-wrap: break-word; /* Mencegah teks offside */
 }
 
@@ -95,17 +95,17 @@ select { appearance: none; -webkit-appearance: none; }
    ========================================= */
 #upload-form > div + div,
 #edit-form > div + div {
-  margin-top: 12px !important; /* Paksa jarak antar baris grup form menjadi lebih sempit & presisi */
+  margin-top: 8px !important; /* Paksa jarak antar baris grup form menjadi SANGAT presisi (8px) */
 }
 
 #upload-form label,
 #edit-form label {
-  margin-bottom: 4px !important; /* Merapatkan teks Label dengan kotaknya */
+  margin-bottom: 2px !important; /* Merapatkan teks Label dengan kotaknya secara ekstrem */
 }
 
 #upload-form .grid,
 #edit-form .grid {
-  gap: 12px !important; /* Rapatkan gap kolom grid di form (tanggal/lokasi, font1/font2) */
+  gap: 8px !important; /* Rapatkan gap antar kolom menjadi hanya 8px */
 }
 
 /* =========================================
@@ -180,10 +180,14 @@ select { appearance: none; -webkit-appearance: none; }
 .polaroid-photo-wrapper { width: 100%; height: 100%; overflow: hidden; background-color: #e2e8f0; border-radius: 4px; position: relative; }
 
 /* =========================================
-   DYNAMICS PHOTOBOOTH GRID (PRESISI TINGGI)
+   DYNAMICS PHOTOBOOTH GRID & ANTI-MIRROR FIX
    ========================================= */
 .photo-grid { display: grid; gap: 4px; width: 100%; height: 100%; }
-.photo-grid img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 1s ease; }
+.photo-grid img, .upload-preview-grid img { 
+  width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 1s ease; 
+  /* FIX 100% ANTI MIRRORING: Memaksa browser tunduk pada orientasi EXIF Asli bawaan Kamera */
+  image-orientation: from-image;
+}
 .polaroid-front:hover .photo-grid img { transform: scale(1.05); }
 
 .grid-cols-1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
