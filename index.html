@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#0b0f19">
   
-  <!-- Primary Meta Tags -->
   <title>Axa and Rifka's Scrapbook</title>
   <meta name="title" content="Axa and Rifka's Scrapbook">
   <meta name="description" content="Just a digital diary of us. Late-night drives, random coffee dates, and everything in between 🤍✨.">
@@ -168,7 +167,6 @@
           <a href="?" class="px-5 py-2.5 bg-slate-700/80 text-white rounded-xl hover:bg-slate-600 border border-slate-600 transition-all shadow-md font-semibold">Lihat Web</a>
         </div>
       </div>
-
       <div class="w-full bg-slate-800/60 border border-purple-500/30 p-6 rounded-2xl mb-8 backdrop-blur-xl shadow-xl">
         <h3 class="text-white font-bold text-lg mb-4 font-playfair italic"><span class="text-purple-400 not-italic">🎵</span> Playlist Manager</h3>
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-6 pb-6 border-b border-slate-700/50">
@@ -200,45 +198,44 @@
   <!-- UPLOAD MODAL (UI DITATA ULANG LEBIH COMPACT/RAPAT) -->
   <div id="upload-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500 z-50">
     <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md z-safe-layer transition-opacity" onclick="closeModal('upload-modal')"></div>
-    <!-- PADDING DIKURANGI DARI p-8 -> p-5, UKURAN MAKS DIKURANGI max-w-md -> max-w-[400px] AGAR COMPACT -->
-    <div class="relative w-full max-w-[400px] bg-slate-800 border border-green-500/30 rounded-3xl shadow-2xl p-5 transform scale-95 opacity-0 transition-all duration-500 max-h-[90vh] overflow-y-auto" id="upload-modal-panel">
+    
+    <div class="relative w-full max-w-[400px] bg-slate-800 border border-green-500/30 rounded-3xl shadow-2xl p-4 transform scale-95 opacity-0 transition-all duration-500 max-h-[90vh] overflow-y-auto" id="upload-modal-panel">
       <button type="button" onclick="closeModal('upload-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-full transition-colors z-20">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
 
-      <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2 font-playfair italic"><span class="text-green-400 text-2xl not-italic">🖼️</span> Save a Memory</h2>
+      <h2 class="text-lg font-bold text-white mb-2 flex items-center gap-2 font-playfair italic"><span class="text-green-400 text-xl not-italic">🖼️</span> Save a Memory</h2>
       
-      <!-- JARAK ANTAR ELEMEN DIKURANGI DARI space-y-4 -> space-y-3 -->
-      <form id="upload-form" onsubmit="event.preventDefault(); submitMemory();" class="space-y-3">
+      <form id="upload-form" onsubmit="event.preventDefault(); submitMemory();" class="space-y-2 mt-2">
         <div>
-          <label class="block text-xs font-medium text-slate-300 mb-1">Pick photos (Grid auto)</label>
-          <div class="file-drop-area group !p-4" id="drop-area-add">
+          <label class="block text-[11px] font-medium text-slate-300 mb-1">Pick photos (Grid auto)</label>
+          <div class="file-drop-area group !p-2" id="drop-area-add">
             <input type="file" id="input-file" accept="image/*" multiple class="file-input" required onchange="handleFileSelect(event, 'preview-add-container', 'prompt-add')">
-            <div id="prompt-add" class="flex flex-col items-center justify-center space-y-2 pointer-events-none transition-transform group-hover:scale-105">
-              <span class="text-3xl drop-shadow-lg">📷</span>
-              <p class="text-slate-300 text-[11px]">Click or Drag & Drop Photos</p>
+            <div id="prompt-add" class="flex flex-col items-center justify-center space-y-1 pointer-events-none transition-transform group-hover:scale-105">
+              <span class="text-2xl drop-shadow-lg">📷</span>
+              <p class="text-slate-300 text-[10px]">Click or Drag & Drop Photos</p>
             </div>
-            <div id="preview-add-container" class="hidden relative w-full h-32 rounded-xl overflow-hidden border border-slate-600 bg-slate-900"></div>
+            <div id="preview-add-container" class="hidden relative w-full h-28 rounded-xl overflow-hidden border border-slate-600 bg-slate-900"></div>
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-2">
           <div>
-            <label class="block text-xs font-medium text-slate-300 mb-1">Date</label>
-            <input type="date" id="input-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-1.5 text-white [&::-webkit-calendar-picker-indicator]:invert text-sm shadow-inner focus:border-green-400 focus:outline-none">
+            <label class="block text-[11px] font-medium text-slate-300 mb-1">Date</label>
+            <input type="date" id="input-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1 text-white [&::-webkit-calendar-picker-indicator]:invert text-xs shadow-inner focus:border-green-400 focus:outline-none">
           </div>
           <div>
-            <label class="block text-xs font-medium text-slate-300 mb-1">Location</label>
-            <input type="text" id="input-lokasi" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-1.5 text-white text-sm shadow-inner focus:border-green-400 focus:outline-none">
+            <label class="block text-[11px] font-medium text-slate-300 mb-1">Location</label>
+            <input type="text" id="input-lokasi" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1 text-white text-xs shadow-inner focus:border-green-400 focus:outline-none">
           </div>
         </div>
 
         <!-- DUAL FONT DROPDOWN -->
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-2">
            <div>
-             <label class="block text-[11px] font-medium text-green-300 mb-1">Font Lokasi (Aesthetic)</label>
+             <label class="block text-[10px] font-medium text-green-300 mb-1">Font Lokasi (Aesthetic)</label>
              <div class="custom-select-wrapper">
-               <select id="input-font-lokasi" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white shadow-inner focus:border-green-400 focus:outline-none appearance-none text-[11px]" onchange="updateFontPreview(this.value, 'font-preview-lokasi')">
+               <select id="input-font-lokasi" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1 text-white shadow-inner focus:border-green-400 focus:outline-none appearance-none text-[10px]" onchange="updateFontPreview(this.value, 'font-preview-lokasi')">
                  <option value="font-playfair">Playfair Display</option><option value="font-cinzel">Cinzel</option><option value="font-cormorant">Cormorant Garamond</option><option value="font-bodoni">Bodoni Moda</option><option value="font-prata">Prata</option><option value="font-italiana">Italiana</option><option value="font-yeseva">Yeseva One</option><option value="font-tenor">Tenor Sans</option><option value="font-gilda">Gilda Display</option><option value="font-oranienbaum">Oranienbaum</option><option value="font-dmserif">DM Serif</option><option value="font-abril">Abril Fatface</option><option value="font-marcellus">Marcellus</option><option value="font-forum">Forum</option><option value="font-instrument">Instrument Serif</option><option value="font-gloock">Gloock</option><option value="font-castoro">Castoro</option><option value="font-viaoda">Viaoda Libre</option><option value="font-federo">Federo</option><option value="font-rozha">Rozha One</option>
                </select>
              </div>
@@ -246,9 +243,9 @@
            </div>
 
            <div>
-             <label class="block text-[11px] font-medium text-blue-300 mb-1">Font Deskripsi (Simple)</label>
+             <label class="block text-[10px] font-medium text-blue-300 mb-1">Font Deskripsi (Simple)</label>
              <div class="custom-select-wrapper">
-               <select id="input-font-pesan" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white shadow-inner focus:border-blue-400 focus:outline-none appearance-none text-[11px]" onchange="updateFontPreview(this.value, 'font-preview-pesan')">
+               <select id="input-font-pesan" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1 text-white shadow-inner focus:border-blue-400 focus:outline-none appearance-none text-[10px]" onchange="updateFontPreview(this.value, 'font-preview-pesan')">
                  <option value="font-inter">Inter (Default)</option><option value="font-roboto">Roboto</option><option value="font-opensans">Open Sans</option><option value="font-lato">Lato</option><option value="font-montserrat">Montserrat</option><option value="font-nunito">Nunito</option><option value="font-poppins">Poppins</option><option value="font-quicksand">Quicksand</option><option value="font-worksans">Work Sans</option><option value="font-dmsans">DM Sans</option><option value="font-jakarta">Jakarta Sans</option><option value="font-manrope">Manrope</option><option value="font-outfit">Outfit</option><option value="font-urbanist">Urbanist</option><option value="font-mulish">Mulish</option><option value="font-space">Space Grotesk</option><option value="font-figtree">Figtree</option><option value="font-schibsted">Schibsted</option><option value="font-karla">Karla</option><option value="font-sen">Sen</option>
                </select>
              </div>
@@ -257,10 +254,10 @@
         </div>
 
         <div>
-          <label class="block text-xs font-medium text-slate-300 mb-1">Caption / Deskripsi</label>
-          <textarea id="input-pesan" required rows="2" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-1.5 text-white resize-none shadow-inner focus:border-green-400 focus:outline-none text-sm"></textarea>
+          <label class="block text-[11px] font-medium text-slate-300 mb-1">Caption / Deskripsi</label>
+          <textarea id="input-pesan" required rows="2" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1 text-white resize-none shadow-inner focus:border-green-400 focus:outline-none text-xs"></textarea>
         </div>
-        <button type="submit" id="btn-submit" class="w-full py-2.5 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(74,222,128,0.2)] transition-all mt-1 text-base">Add to Scrapbook</button>
+        <button type="submit" id="btn-submit" class="w-full py-2 bg-green-500 hover:bg-green-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(74,222,128,0.2)] transition-all mt-1 text-sm">Add to Scrapbook</button>
       </form>
     </div>
   </div>
@@ -268,47 +265,46 @@
   <!-- EDIT MODAL (UI DITATA ULANG LEBIH COMPACT) -->
   <div id="edit-modal" class="fixed inset-0 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500 z-50">
     <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md z-safe-layer transition-opacity" onclick="closeModal('edit-modal')"></div>
-    <!-- PADDING DAN SIZE COMPACT -->
-    <div class="relative w-full max-w-[400px] bg-slate-800 border border-blue-500/30 rounded-3xl shadow-2xl p-5 transform scale-95 opacity-0 transition-all duration-500 ease-out max-h-[90vh] overflow-y-auto" id="edit-modal-panel">
+    <div class="relative w-full max-w-[400px] bg-slate-800 border border-blue-500/30 rounded-3xl shadow-2xl p-4 transform scale-95 opacity-0 transition-all duration-500 ease-out max-h-[90vh] overflow-y-auto" id="edit-modal-panel">
       <button type="button" onclick="closeModal('edit-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-full transition-colors z-20">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
 
-      <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2 font-playfair italic"><span class="text-blue-400 text-2xl not-italic">✏️</span> Edit Memory</h2>
-      <form id="edit-form" onsubmit="event.preventDefault(); submitEditMemory();" class="space-y-3">
+      <h2 class="text-lg font-bold text-white mb-2 flex items-center gap-2 font-playfair italic"><span class="text-blue-400 text-xl not-italic">✏️</span> Edit Memory</h2>
+      <form id="edit-form" onsubmit="event.preventDefault(); submitEditMemory();" class="space-y-2 mt-2">
         <input type="hidden" id="edit-id-asli">
         <div>
-          <label class="block text-[11px] font-medium text-blue-300 mb-1">Ganti Foto Baru (Kosongkan jika tidak diubah)</label>
-          <div class="file-drop-area !border-blue-500/40 !p-3 hover:!bg-blue-500/10 group" id="drop-area-edit">
+          <label class="block text-[10px] font-medium text-blue-300 mb-1">Ganti Foto Baru (Kosongkan jika tidak diubah)</label>
+          <div class="file-drop-area !border-blue-500/40 !p-2 hover:!bg-blue-500/10 group" id="drop-area-edit">
             <input type="file" id="edit-file" accept="image/*" multiple class="file-input" onchange="handleFileSelect(event, 'preview-edit-container', 'prompt-edit')">
             <div id="prompt-edit" class="flex flex-col items-center justify-center pointer-events-none transition-transform group-hover:scale-105">
-               <span class="text-white text-[11px] bg-slate-700/80 px-3 py-1.5 rounded-full border border-slate-600">Pilih Foto Baru</span>
+               <span class="text-white text-[10px] bg-slate-700/80 px-2.5 py-1 rounded-full border border-slate-600">Pilih Foto Baru</span>
             </div>
             <div id="preview-edit-container" class="hidden relative w-full h-24 rounded-xl overflow-hidden border border-slate-600 bg-slate-900"></div>
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
-          <div><label class="block text-xs font-medium text-slate-300 mb-1">ID Foto</label><input type="text" id="edit-id" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white font-mono text-sm shadow-inner focus:border-blue-400 focus:outline-none"></div>
-          <div><label class="block text-xs font-medium text-slate-300 mb-1">Tanggal</label><input type="date" id="edit-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white [&::-webkit-calendar-picker-indicator]:invert text-sm shadow-inner focus:border-blue-400 focus:outline-none"></div>
+        <div class="grid grid-cols-2 gap-2">
+          <div><label class="block text-[11px] font-medium text-slate-300 mb-1">ID Foto</label><input type="text" id="edit-id" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1 text-white font-mono text-xs shadow-inner focus:border-blue-400 focus:outline-none"></div>
+          <div><label class="block text-[11px] font-medium text-slate-300 mb-1">Tanggal</label><input type="date" id="edit-tanggal" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1 text-white [&::-webkit-calendar-picker-indicator]:invert text-xs shadow-inner focus:border-blue-400 focus:outline-none"></div>
         </div>
         
-        <div><label class="block text-xs font-medium text-slate-300 mb-1">Lokasi</label><input type="text" id="edit-lokasi" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-1.5 text-white text-sm shadow-inner focus:border-blue-400 focus:outline-none"></div>
+        <div><label class="block text-[11px] font-medium text-slate-300 mb-1">Lokasi</label><input type="text" id="edit-lokasi" required class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1 text-white text-xs shadow-inner focus:border-blue-400 focus:outline-none"></div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-2">
            <div>
-             <label class="block text-[11px] font-medium text-green-300 mb-1">Font Lokasi</label>
+             <label class="block text-[10px] font-medium text-green-300 mb-1">Font Lokasi</label>
              <div class="custom-select-wrapper">
-               <select id="edit-font-lokasi" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white shadow-inner focus:border-green-400 focus:outline-none appearance-none text-[11px]" onchange="updateFontPreview(this.value, 'font-preview-edit-lokasi')">
+               <select id="edit-font-lokasi" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1 text-white shadow-inner focus:border-green-400 focus:outline-none appearance-none text-[10px]" onchange="updateFontPreview(this.value, 'font-preview-edit-lokasi')">
                  <option value="font-playfair">Playfair Display</option><option value="font-cinzel">Cinzel</option><option value="font-cormorant">Cormorant Garamond</option><option value="font-bodoni">Bodoni Moda</option><option value="font-prata">Prata</option><option value="font-italiana">Italiana</option><option value="font-yeseva">Yeseva One</option><option value="font-tenor">Tenor Sans</option><option value="font-gilda">Gilda Display</option><option value="font-oranienbaum">Oranienbaum</option><option value="font-dmserif">DM Serif</option><option value="font-abril">Abril Fatface</option><option value="font-marcellus">Marcellus</option><option value="font-forum">Forum</option><option value="font-instrument">Instrument Serif</option><option value="font-gloock">Gloock</option><option value="font-castoro">Castoro</option><option value="font-viaoda">Viaoda Libre</option><option value="font-federo">Federo</option><option value="font-rozha">Rozha One</option>
                </select>
              </div>
              <div id="font-preview-edit-lokasi" class="font-preview-box font-playfair">Location</div>
            </div>
            <div>
-             <label class="block text-[11px] font-medium text-blue-300 mb-1">Font Deskripsi</label>
+             <label class="block text-[10px] font-medium text-blue-300 mb-1">Font Deskripsi</label>
              <div class="custom-select-wrapper">
-               <select id="edit-font-pesan" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1.5 text-white shadow-inner focus:border-blue-400 focus:outline-none appearance-none text-[11px]" onchange="updateFontPreview(this.value, 'font-preview-edit-pesan')">
+               <select id="edit-font-pesan" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2 py-1 text-white shadow-inner focus:border-blue-400 focus:outline-none appearance-none text-[10px]" onchange="updateFontPreview(this.value, 'font-preview-edit-pesan')">
                  <option value="font-inter">Inter</option><option value="font-roboto">Roboto</option><option value="font-opensans">Open Sans</option><option value="font-lato">Lato</option><option value="font-montserrat">Montserrat</option><option value="font-nunito">Nunito</option><option value="font-poppins">Poppins</option><option value="font-quicksand">Quicksand</option><option value="font-worksans">Work Sans</option><option value="font-dmsans">DM Sans</option><option value="font-jakarta">Jakarta Sans</option><option value="font-manrope">Manrope</option><option value="font-outfit">Outfit</option><option value="font-urbanist">Urbanist</option><option value="font-mulish">Mulish</option><option value="font-space">Space Grotesk</option><option value="font-figtree">Figtree</option><option value="font-schibsted">Schibsted</option><option value="font-karla">Karla</option><option value="font-sen">Sen</option>
                </select>
              </div>
@@ -317,13 +313,13 @@
         </div>
         
         <div>
-          <label class="block text-xs font-medium text-slate-300 mb-1">Our Note / Caption</label>
-          <textarea id="edit-pesan" required rows="2" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-3 py-1.5 text-white resize-none text-sm shadow-inner focus:border-blue-400 focus:outline-none"></textarea>
+          <label class="block text-[11px] font-medium text-slate-300 mb-1">Our Note / Caption</label>
+          <textarea id="edit-pesan" required rows="2" class="w-full bg-slate-900/80 border border-slate-600 rounded-xl px-2.5 py-1 text-white resize-none text-xs shadow-inner focus:border-blue-400 focus:outline-none"></textarea>
         </div>
 
-        <div class="pt-2 flex gap-3">
-           <button type="button" onclick="closeModal('edit-modal')" class="w-1/3 py-2.5 bg-slate-700/80 hover:bg-slate-600 text-white font-bold rounded-xl transition-all border border-slate-500 shadow-md text-sm">Batal</button>
-           <button type="submit" id="btn-submit-edit" class="w-2/3 py-2.5 bg-blue-500 hover:bg-blue-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all text-sm">Simpan</button>
+        <div class="pt-2 flex gap-2">
+           <button type="button" onclick="closeModal('edit-modal')" class="w-1/3 py-2 bg-slate-700/80 hover:bg-slate-600 text-white font-bold rounded-xl transition-all border border-slate-500 shadow-md text-xs">Batal</button>
+           <button type="submit" id="btn-submit-edit" class="w-2/3 py-2 bg-blue-500 hover:bg-blue-400 text-slate-900 font-bold rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all text-xs">Simpan</button>
         </div>
       </form>
     </div>
@@ -427,7 +423,7 @@
            setTimeout(() => { cover.style.display = 'none'; try { cover.remove(); } catch(e) {} }, 850); 
         }
         if(viewPublic) viewPublic.classList.remove('hidden');
-        setTimeout(() => { fetchGallery(); }, 100); // Defer render agar transisi CSS lancar
+        setTimeout(() => { fetchGallery(); }, 100); 
         
         setTimeout(() => {
             if (currentMusicData && currentMusicData.length > 0) playTrack(0);
@@ -650,7 +646,7 @@
                   <div class="photo-grid ${gridClass}">${gridHtml}</div>
                 </div>
                 <div class="absolute bottom-2.5 left-0 right-0 h-[60px] flex items-center justify-center px-4">
-                  <div class="text-center text-slate-800 ${fontLok} text-[1.5rem] md:text-3xl text-clamp-2 font-bold">${item.lokasi}</div>
+                  <div class="text-center text-slate-800 ${fontLok} text-[1.5rem] md:text-3xl text-clamp-2">${item.lokasi}</div>
                 </div>
               </div>
               <div class="polaroid-back">
@@ -695,7 +691,6 @@
                <span class="absolute top-3 left-3 bg-slate-900/80 text-green-400 text-xs font-mono px-2.5 py-1 rounded-md border border-green-500/30 backdrop-blur-sm shadow-lg">${item.id}</span>
                ${rawUrls.length > 1 ? `<span class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-md shadow-lg">+${rawUrls.length-1}</span>` : ''}
             </div>
-            <!-- SPACING ADMIN CARD OPTIMIZATION (p-4 instead of p-5) -->
             <div class="p-4 flex-grow flex flex-col bg-slate-800/90">
                <h4 class="text-white font-bold text-base mb-0.5 truncate ${item.fontLokasi || 'font-playfair'}">${item.lokasi}</h4>
                <span class="text-green-400/80 text-xs mb-2 block font-medium">${item.tanggal}</span>
@@ -786,7 +781,6 @@
       }).finally(() => { btnElement.innerHTML = originalText; btnElement.disabled = false; btnElement.classList.remove('opacity-70', 'cursor-not-allowed'); });
     }
 
-    // FIX: MEMASTIKAN PAYLOAD BENAR SAAT MENYIMPAN DATABASE (DUAL FONT)
     function submitMemory() {
       if (selectedFilesArray.length === 0) return showToast("Pilih setidaknya 1 foto!", "error");
       const btn = document.getElementById('btn-submit');
