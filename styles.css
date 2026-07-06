@@ -97,10 +97,7 @@ select { appearance: none; -webkit-appearance: none; }
 
 /* Presisi Input Box */
 #upload-form input, #edit-form input, #upload-form select, #edit-form select, #upload-form textarea, #edit-form textarea {
-  padding: 6px 10px !important;
-  font-size: 12px !important;
-  border-radius: 6px !important;
-  min-height: unset !important;
+  padding: 6px 10px !important; font-size: 12px !important; border-radius: 6px !important; min-height: unset !important;
 }
 
 /* =========================================
@@ -136,6 +133,7 @@ select { appearance: none; -webkit-appearance: none; }
 
 /* =========================================
    VINTAGE CINEMATIC FILM STRIP MAGIC (OPSI 7)
+   Menggantikan Polaroid dengan Klise Film Kodak
    ========================================= */
 .film-frame-wrapper {
   margin: 0 auto;
@@ -231,30 +229,15 @@ select { appearance: none; -webkit-appearance: none; }
 
 /* KONTEN TEKS DALAM KLISE */
 .film-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 10;
+  display: flex; flex-direction: column; align-items: center; z-index: 10;
 }
 
 .film-location {
-  color: #facc15; /* Spidol kuning vintage */
-  font-size: 1.8rem;
-  text-align: center;
-  line-height: 1.2;
-  margin-bottom: 8px;
-  word-wrap: break-word;
-  text-shadow: 0 0 5px rgba(250, 204, 21, 0.3); /* Sedikit neon glow */
+  color: #facc15; font-size: 1.8rem; text-align: center; line-height: 1.2; 
+  margin-bottom: 8px; word-wrap: break-word; text-shadow: 0 0 5px rgba(250, 204, 21, 0.3); 
 }
 
-.film-date {
-  color: #ef4444; /* Angka merah klise */
-  font-family: monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
+.film-date { color: #ef4444; font-family: monospace; font-size: 0.75rem; letter-spacing: 0.15em; margin-bottom: 12px; text-transform: uppercase; }
 
 .caption-scroll-area {
   max-height: 180px; overflow-y: auto; overflow-x: hidden; width: 100%; padding-right: 6px;
@@ -265,22 +248,8 @@ select { appearance: none; -webkit-appearance: none; }
 .caption-scroll-area::-webkit-scrollbar-track { background: transparent; } 
 .caption-scroll-area::-webkit-scrollbar-thumb { background: rgba(250, 204, 21, 0.5); border-radius: 10px; }
 
-.film-caption {
-  color: #e5e7eb;
-  font-size: 1.15rem;
-  line-height: 1.5;
-  text-align: center;
-  word-wrap: break-word; 
-  padding-bottom: 8px;
-}
-
-.film-id {
-  color: #4b5563;
-  font-family: monospace;
-  font-size: 0.65rem;
-  align-self: flex-end;
-  margin-top: 10px;
-}
+.film-caption { color: #e5e7eb; font-size: 1.15rem; line-height: 1.5; text-align: center; word-wrap: break-word; padding-bottom: 8px; }
+.film-id { color: #4b5563; font-family: monospace; font-size: 0.65rem; align-self: flex-end; margin-top: 10px; }
 
 /* =========================================
    UI BOARD & ADMIN LAYOUT
