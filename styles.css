@@ -28,101 +28,72 @@ body {
 }
 
 /* =========================================
-   NEW: 20 ELEGANT & AESTHETIC FONTS (NOT BOLD)
+   AESTHETIC FONTS (LOKASI) & SIMPLE FONTS (DESKRIPSI)
    ========================================= */
-.font-playfair { font-family: 'Playfair Display', serif; }
-.font-hw-0 { font-family: 'Caveat', cursive; }
-.font-hw-1 { font-family: 'Dancing Script', cursive; }
-
-/* The 20 new elegant fonts */
-.font-lora { font-family: 'Lora', serif; font-weight: 400; }
-.font-merriweather { font-family: 'Merriweather', serif; font-weight: 300; }
+.font-hw-0 { font-family: 'Caveat', cursive; font-weight: 400; }
+.font-hw-1 { font-family: 'Dancing Script', cursive; font-weight: 400; }
+.font-playfair { font-family: 'Playfair Display', serif; font-weight: 400; }
+.font-cinzel { font-family: 'Cinzel', serif; font-weight: 400; }
 .font-cormorant { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
-.font-ebgaramond { font-family: 'EB Garamond', serif; font-weight: 400; }
-.font-crimson { font-family: 'Crimson Text', serif; font-weight: 400; }
-.font-alice { font-family: 'Alice', serif; font-weight: 400; }
-.font-josefin { font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
-.font-quicksand { font-family: 'Quicksand', sans-serif; font-weight: 400; }
-.font-nunito { font-family: 'Nunito', sans-serif; font-weight: 300; }
-.font-raleway { font-family: 'Raleway', sans-serif; font-weight: 300; }
-.font-montserrat { font-family: 'Montserrat', sans-serif; font-weight: 300; }
-.font-lato { font-family: 'Lato', sans-serif; font-weight: 300; }
-.font-outfit { font-family: 'Outfit', sans-serif; font-weight: 300; }
-.font-dmsans { font-family: 'DM Sans', sans-serif; font-weight: 400; }
-.font-work { font-family: 'Work Sans', sans-serif; font-weight: 300; }
-.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
-.font-inter-reg { font-family: 'Inter', sans-serif; font-weight: 400; }
+.font-bodoni { font-family: 'Bodoni Moda', serif; font-weight: 400; }
+.font-prata { font-family: 'Prata', serif; font-weight: 400; }
+.font-italiana { font-family: 'Italiana', serif; font-weight: 400; }
+.font-yeseva { font-family: 'Yeseva One', serif; font-weight: 400; }
+.font-tenor { font-family: 'Tenor Sans', sans-serif; font-weight: 400; }
+.font-gilda { font-family: 'Gilda Display', serif; font-weight: 400; }
+.font-oranienbaum { font-family: 'Oranienbaum', serif; font-weight: 400; }
+.font-dmserif { font-family: 'DM Serif Display', serif; font-weight: 400; }
+.font-abril { font-family: 'Abril Fatface', serif; font-weight: 400; }
+.font-marcellus { font-family: 'Marcellus', serif; font-weight: 400; }
+.font-forum { font-family: 'Forum', cursive; font-weight: 400; }
+.font-instrument { font-family: 'Instrument Serif', serif; font-weight: 400; }
+.font-gloock { font-family: 'Gloock', serif; font-weight: 400; }
+.font-castoro { font-family: 'Castoro', serif; font-weight: 400; }
+.font-viaoda { font-family: 'Viaoda Libre', serif; font-weight: 400; }
+.font-federo { font-family: 'Federo', sans-serif; font-weight: 400; }
+.font-rozha { font-family: 'Rozha One', serif; font-weight: 400; }
+
+.font-inter { font-family: 'Inter', sans-serif; font-weight: 300; }
 .font-roboto { font-family: 'Roboto', sans-serif; font-weight: 300; }
-.font-poppins { font-family: 'Poppins', sans-serif; font-weight: 300; }
 .font-opensans { font-family: 'Open Sans', sans-serif; font-weight: 300; }
+.font-lato { font-family: 'Lato', sans-serif; font-weight: 300; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; font-weight: 300; }
+.font-nunito { font-family: 'Nunito', sans-serif; font-weight: 300; }
+.font-poppins { font-family: 'Poppins', sans-serif; font-weight: 300; }
+.font-quicksand { font-family: 'Quicksand', sans-serif; font-weight: 400; }
+.font-worksans { font-family: 'Work Sans', sans-serif; font-weight: 300; }
+.font-dmsans { font-family: 'DM Sans', sans-serif; font-weight: 400; }
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
+.font-manrope { font-family: 'Manrope', sans-serif; font-weight: 300; }
+.font-outfit { font-family: 'Outfit', sans-serif; font-weight: 300; }
+.font-urbanist { font-family: 'Urbanist', sans-serif; font-weight: 300; }
+.font-mulish { font-family: 'Mulish', sans-serif; font-weight: 300; }
+.font-space { font-family: 'Space Grotesk', sans-serif; font-weight: 300; }
+.font-figtree { font-family: 'Figtree', sans-serif; font-weight: 300; }
+.font-schibsted { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 400; }
+.font-karla { font-family: 'Karla', sans-serif; font-weight: 300; }
+.font-sen { font-family: 'Sen', sans-serif; font-weight: 400; }
+.font-inter-reg { font-family: 'Inter', sans-serif; font-weight: 400; }
 
 /* Custom Select Dropdown Styling */
 select { appearance: none; -webkit-appearance: none; }
 .custom-select-wrapper { position: relative; }
-.custom-select-wrapper::after {
-  content: '▼'; position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-  color: #4ade80; font-size: 10px; pointer-events: none;
+.custom-select-wrapper::after { content: '▼'; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #4ade80; font-size: 10px; pointer-events: none; }
+
+/* FIX: SPACING UI PREVIEW SUPER COMPACT */
+.font-preview-box {
+  background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4); border-radius: 8px; 
+  padding: 4px 6px; text-align: center; margin-top: 2px; color: #fff; font-size: 0.85rem; transition: all 0.3s ease;
+  word-wrap: break-word; overflow-wrap: break-word; 
 }
 
 /* =========================================
-   SUPER FIX: FORM COMPACT OVERRIDES & SPACING PRESISI
-   (Solusi agar layout Modal Upload & Edit SANGAT mepet dan tidak renggang)
+   SUPER FIX: FORM COMPACT OVERRIDES
    ========================================= */
-#upload-form, #edit-form {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important; /* Jarak proporsional antar grup secara absolut */
-}
-
-/* Target SEMUA element anak langsung untuk membunuh margin tak kasat mata Tailwind */
-#upload-form > *, #edit-form > * {
-  margin: 0px !important; 
-}
-
-#upload-form label, #edit-form label {
-  margin-bottom: 4px !important; /* Merapatkan Teks Label pas di atas kotak Input */
-  font-size: 11px !important;
-  line-height: 1 !important;
-  display: block !important;
-}
-
-/* Rapatkan grid (kolom sebelahan) agar presisi */
-#upload-form .grid, #edit-form .grid {
-  gap: 10px !important; 
-  margin: 0px !important;
-}
-
-/* Padatkan ukuran Input, Select, Textarea agar form sangat compact */
-#upload-form input, #edit-form input,
-#upload-form select, #edit-form select,
-#upload-form textarea, #edit-form textarea {
-  padding: 6px 12px !important;
-  font-size: 12px !important;
-  border-radius: 8px !important;
-}
-
-/* Area drop file dipress ukurannya */
-.file-drop-area {
-  padding: 12px !important;
-  min-height: 70px !important;
-  border-radius: 12px !important;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
-.file-drop-area span.text-2xl {
-  font-size: 24px !important;
-  margin-bottom: 2px !important;
-}
-
-/* Kotak Preview Font agar mepet presisi */
-.font-preview-box {
-  background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(74, 222, 128, 0.4);
-  border-radius: 6px !important; 
-  padding: 6px !important; 
-  text-align: center; 
-  margin-top: 6px !important; /* Presisi jarak dari dropdown ke kotak preview */
-  color: #fff; font-size: 12px !important; transition: all 0.3s ease;
-  word-wrap: break-word; overflow-wrap: break-word; 
-}
+#upload-form, #edit-form { display: flex !important; flex-direction: column !important; gap: 6px !important; }
+#upload-form > div, #edit-form > div, #upload-form > div + div, #edit-form > div + div { margin-top: 0px !important; margin-bottom: 0px !important; }
+#upload-form label, #edit-form label { margin-bottom: 2px !important; padding-bottom: 0px !important; line-height: 1.2 !important; }
+#upload-form .grid, #edit-form .grid { gap: 8px !important; margin: 0px !important; }
 
 /* =========================================
    CSS3 INNOVATIONS: PARALLAX, SPARKLES, SAKURA
@@ -132,16 +103,10 @@ select { appearance: none; -webkit-appearance: none; }
 .orb-1 { width: 450px; height: 450px; background: rgba(74, 222, 128, 0.1); top: -15%; left: -10%; animation-delay: 0s; }
 .orb-2 { width: 400px; height: 400px; background: rgba(56, 189, 248, 0.1); bottom: -15%; right: -10%; animation-delay: -5s; }
 
-@keyframes float { 
-  0%, 100% { transform: translate(0, 0) scale(1); } 
-  50% { transform: translate(30px, -30px) scale(1.05); } 
-}
-
-.cursor-sparkle {
-  position: fixed; width: 4px; height: 4px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999;
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.8), 0 0 20px 5px rgba(74, 222, 128, 0.5); animation: sparkleFade 1s forwards cubic-bezier(0.2, 1, 0.3, 1);
-}
+@keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.05); } }
+.cursor-sparkle { position: fixed; width: 4px; height: 4px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; box-shadow: 0 0 10px 2px rgba(255,255,255,0.8), 0 0 20px 5px rgba(74, 222, 128, 0.5); animation: sparkleFade 1s forwards cubic-bezier(0.2, 1, 0.3, 1); }
 @keyframes sparkleFade { 0% { transform: scale(1) translateY(0); opacity: 1; } 100% { transform: scale(0) translateY(-20px); opacity: 0; } }
+
 .magnetic-btn { transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform; }
 .sakura-petal { position: absolute; background-color: #ffb7c5; border-radius: 15px 0px 15px 0px; opacity: 0.5; will-change: transform, opacity; animation: fall linear infinite; z-index: -1; pointer-events: none; }
 .stardust { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; will-change: transform, opacity; animation: drift 15s infinite linear; opacity: 0; }
@@ -151,10 +116,7 @@ select { appearance: none; -webkit-appearance: none; }
 @keyframes floatUp { 0% { transform: translateY(0) rotate(-15deg) scale(0.8); opacity: 0; } 10% { opacity: 0.4; } 90% { opacity: 0.2; transform: translateY(-90vh) rotate(10deg) scale(1.1); } 100% { transform: translateY(-110vh) rotate(15deg) scale(1); opacity: 0; } }
 @keyframes fall { 0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.4; } 100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; } }
 
-.text-gradient-animated {
-  background: linear-gradient(270deg, #4ade80, #38bdf8, #a855f7, #4ade80); background-size: 300% 300%;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s ease infinite;
-}
+.text-gradient-animated { background: linear-gradient(270deg, #4ade80, #38bdf8, #a855f7, #4ade80); background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s ease infinite; }
 @keyframes gradientMove { 0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% } }
 
 .iris-reveal { animation: cinematicFadeOut 1s cubic-bezier(0.76, 0, 0.24, 1) forwards; pointer-events: none; }
@@ -166,32 +128,85 @@ select { appearance: none; -webkit-appearance: none; }
 .scroll-reveal.revealed { opacity: 1; transform: translateY(0) scale(1); }
 
 /* =========================================
-   POLAROID 3D FLIP MAGIC 
+   TORN PAPER SCRAPBOOK MAGIC (NEW OPSI 8)
+   Desain kertas jurnal artistik pengganti Polaroid
    ========================================= */
-.polaroid-container { perspective: 1500px; width: 100%; max-width: 320px; margin: 0 auto; aspect-ratio: 3/4; cursor: pointer; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); transform: rotate(var(--rot)); }
-.rotate-1 { --rot: -2.5deg; } .rotate-2 { --rot: 3deg; } .rotate-3 { --rot: -1.5deg; } .rotate-4 { --rot: 2deg; }
-.polaroid-container:hover, .polaroid-container:active { transform: translateY(-15px) scale(1.05) rotate(calc(var(--rot) + 1.5deg)); z-index: 10; }
-.polaroid-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-style: preserve-3d; }
-.polaroid-container.is-flipped .polaroid-inner { transform: rotateY(180deg); }
+.scrapbook-paper-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+  transform: rotate(var(--rot));
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.3));
+}
 
-.polaroid-front, .polaroid-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 6px; box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.5); overflow: hidden; will-change: transform; }
-.polaroid-front { background-color: #fafafa; padding: 12px 12px 75px 12px; display: flex; flex-direction: column; }
-.polaroid-front::after { content: ""; position: absolute; top: 0; left: -150%; width: 50%; height: 100%; background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%); transform: skewX(-25deg); transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); z-index: 20; pointer-events: none; }
-.polaroid-container:hover .polaroid-front::after { left: 200%; }
-.polaroid-photo-wrapper { width: 100%; height: 100%; overflow: hidden; background-color: #e2e8f0; border-radius: 4px; position: relative; }
+.rotate-1 { --rot: -2.5deg; } .rotate-2 { --rot: 3.5deg; } .rotate-3 { --rot: -1.5deg; } .rotate-4 { --rot: 2.5deg; }
+
+/* Interaksi Hover: Kertas seperti terangkat mendekat */
+.scrapbook-paper-wrapper:hover {
+  transform: translateY(-15px) scale(1.03) rotate(calc(var(--rot) + 2deg));
+  z-index: 10;
+  filter: drop-shadow(0 25px 30px rgba(0,0,0,0.5));
+}
+
+/* WASHI TAPE (Selotip Transparan Ala Jurnal) */
+.washi-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 130px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), inset 0 0 5px rgba(255,255,255,0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 20;
+  /* Membuat pinggiran selotip terlihat bergerigi/sobek kasar */
+  clip-path: polygon(1% 4%, 99% 0%, 98% 96%, 0% 100%);
+}
+/* Variasi Washi Tape pada urutan genap agar natural */
+.scrapbook-paper-wrapper:nth-child(even) .washi-tape {
+  transform: translateX(-50%) rotate(4deg);
+  background: rgba(74, 222, 128, 0.15); /* Hint warna hijau neon */
+}
+
+/* KERTAS JURNAL TORN PAPER */
+.scrapbook-paper {
+  background-color: #fdfbf7;
+  /* Tekstur titik/garis halus ala kertas buku jurnal */
+  background-image: 
+      linear-gradient(rgba(74, 222, 128, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74, 222, 128, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding: 18px 18px 26px 18px;
+  /* Membuat ujung kertas terlihat sobek/tidak sempurna (handmade) */
+  border-radius: 2px 3px 2px 4px / 3px 2px 4px 2px; 
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.photo-wrapper {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #1e293b;
+  margin-bottom: 16px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
 
 /* =========================================
    DYNAMICS PHOTOBOOTH GRID & ANTI-MIRROR FIX
    ========================================= */
 .photo-grid { display: grid; gap: 4px; width: 100%; height: 100%; }
-
 .photo-grid img, .upload-preview-grid img { 
   width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 1s ease; 
-  
-  /* SUPER FIX 100% ANTI MIRRORING: Gunakan orientasi EXIF asli bawaan kamera agar foto tidak terbalik */
+  /* FIX 100% ANTI MIRRORING: Menggunakan EXIF Asli bawaan Kamera */
   image-orientation: from-image !important; 
 }
-.polaroid-front:hover .photo-grid img { transform: scale(1.05); }
+.scrapbook-paper-wrapper:hover .photo-grid img { transform: scale(1.05); }
 
 .grid-cols-1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
 .grid-cols-2 { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
@@ -200,17 +215,67 @@ select { appearance: none; -webkit-appearance: none; }
 .grid-cols-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
 .grid-cols-more { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
 
-.polaroid-container::before { content: ''; position: absolute; top: -14px; left: 50%; width: 110px; height: 35px; background: rgba(255, 255, 255, 0.4); box-shadow: 0 2px 4px rgba(0,0,0,0.1), inset 0 0 8px rgba(255,255,255,0.3); transform: translateX(-50%) rotate(-2deg); z-index: 50; pointer-events: none; clip-path: polygon(1% 2%, 99% 0%, 100% 98%, 0% 100%); }
-.polaroid-back { background-color: #fdfbf7; background-image: linear-gradient(rgba(74, 222, 128, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(74, 222, 128, 0.1) 1px, transparent 1px); background-size: 24px 24px; color: #1e293b; transform: rotateY(180deg); padding: 24px; display: flex; flex-direction: column; align-items: center; }
+/* KONTEN KERTAS (LOKASI, TANGGAL, CAPTION) DI DEPAN SEMUA */
+.paper-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
 
-.caption-scroll-area { max-height: 180px; overflow-y: auto; overflow-x: hidden; width: 100%; padding-right: 6px; mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent); }
-.caption-scroll-area::-webkit-scrollbar { width: 4px; } .caption-scroll-area::-webkit-scrollbar-track { background: transparent; } .caption-scroll-area::-webkit-scrollbar-thumb { background: rgba(74, 222, 128, 0.5); border-radius: 10px; }
-.caption-scroll-area::-webkit-scrollbar-thumb:hover { background: rgba(74, 222, 128, 0.8); }
-.text-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.1; word-wrap: break-word; }
+.location-title {
+  color: #0f172a;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
 
+.date-badge {
+  color: #16a34a;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 2px dashed rgba(74, 222, 128, 0.5);
+  padding-bottom: 4px;
+  margin-bottom: 14px;
+  font-family: 'Inter', sans-serif;
+}
+
+.caption-area {
+  max-height: 120px; 
+  overflow-y: auto; overflow-x: hidden; 
+  width: 100%; text-align: center; margin-bottom: 12px; padding-right: 4px;
+}
+.caption-area::-webkit-scrollbar { width: 4px; } 
+.caption-area::-webkit-scrollbar-track { background: transparent; } 
+.caption-area::-webkit-scrollbar-thumb { background: rgba(74, 222, 128, 0.4); border-radius: 10px; }
+.caption-area::-webkit-scrollbar-thumb:hover { background: rgba(74, 222, 128, 0.8); }
+
+.caption-text {
+  color: #334155;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  word-wrap: break-word; overflow-wrap: break-word; 
+}
+
+.id-badge {
+  margin-top: auto;
+  font-size: 0.6rem;
+  color: #94a3b8;
+  font-family: monospace;
+  align-self: flex-end;
+}
+
+/* =========================================
+   UI BOARD & ADMIN LAYOUT
+   ========================================= */
 .scrapbook-board { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5); border-radius: 32px; position: relative; }
 .z-safe-layer { z-index: -10; }
-.file-drop-area { position: relative; border: 2px dashed rgba(74, 222, 128, 0.4); border-radius: 16px; padding: 24px; text-align: center; background: rgba(15, 23, 42, 0.5); transition: all 0.3s ease; cursor: pointer; overflow: hidden; }
+.file-drop-area { position: relative; border: 2px dashed rgba(74, 222, 128, 0.4); border-radius: 16px; padding: 10px !important; text-align: center; background: rgba(15, 23, 42, 0.5); transition: all 0.3s ease; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .file-drop-area:hover, .file-drop-area.dragover { background: rgba(74, 222, 128, 0.15); border-color: var(--neon-green); }
 .file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
 .upload-preview-grid { display: grid; gap: 4px; width: 100%; height: 100%; }
@@ -220,6 +285,8 @@ textarea::-webkit-scrollbar { width: 6px; } textarea::-webkit-scrollbar-thumb { 
 
 .admin-card { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; content-visibility: auto; }
 .admin-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); border-color: rgba(74, 222, 128, 0.5); }
+.admin-card > div:nth-child(2) { padding: 12px 14px !important; }
+.admin-card > div:nth-child(2) > div.flex.gap-3.mt-auto { margin-top: 10px !important; }
 
 .music-marquee-container { width: 120px; overflow: hidden; white-space: nowrap; position: relative; }
 .music-marquee-content { display: inline-block; animation: marquee 8s linear infinite; padding-right: 100%; }
