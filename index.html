@@ -56,6 +56,9 @@
     .btn-upload-premium:hover::before { left: 100%; }
     .btn-upload-premium:hover { box-shadow: 0 0 30px rgba(74,222,128,0.3); border-color: rgba(74,222,128,0.8); transform: translateY(-2px); }
 
+    /* SYNC GLOW FIX */
+    .sync-glow { box-shadow: 0 0 15px rgba(74,222,128,0.6) !important; border-color: #4ade80 !important; }
+
     /* ==============================================================
        5 SARAN FRAME STYLE (PILIHAN DESAIN)
        ============================================================== */
@@ -259,7 +262,7 @@
         <p class="text-green-400 font-medium animate-pulse tracking-widest font-mono text-sm">LOADING OUR MEMORIES...</p>
       </div>
 
-      <!-- GALLERY CONTAINER (DI SINI 5 STYLE FRAME AKAN DITERAPKAN) -->
+      <!-- GALLERY CONTAINER -->
       <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 gap-y-12 hidden mt-4"></div>
       
       <div id="empty-state" class="hidden flex-col items-center justify-center h-72 space-y-4 text-center">
@@ -758,6 +761,13 @@
         if(isAutoSync) { setTimeout(() => { if(isAdminPage) { const ind = document.getElementById('admin-sync-indicator'); if(ind) ind.classList.add('opacity-0'); } else { showUpdateIndicator(false, false); const indicator = document.getElementById('update-indicator'); if(indicator) indicator.classList.remove('sync-glow'); } }, 2500); } 
         else if (!isAdminPage) showUpdateIndicator(false, false); 
       });
+    }
+    
+    // -> FUNGSI PENTING YANG DIKEMBALIKAN UNTUK MENCEGAH ERROR
+    function showUpdateIndicator(show, isAutoSyncMode) {
+      const indicator = document.getElementById('update-indicator'); const syncText = document.getElementById('sync-text');
+      if(syncText) syncText.innerHTML = isAutoSyncMode ? "Live Sync..." : "Checking data...";
+      if(indicator) { if (show) indicator.classList.remove('opacity-0', 'translate-y-[-10px]'); else indicator.classList.add('opacity-0', 'translate-y-[-10px]'); }
     }
 
     // --- HACK API: Menggabungkan fontLokasi dengan frameStyle ---
